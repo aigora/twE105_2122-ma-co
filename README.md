@@ -5,6 +5,7 @@
 ## Integrantes del equipo
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+Alejandro Cinque Rivas QuantumEnds
 
 ## Objetivos del trabajo
 
