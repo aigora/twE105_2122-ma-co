@@ -5,6 +5,7 @@
 ## Integrantes del equipo
 
 Alejandro Cinque Rivas (QuantumEnds)
+Miguel Ángel Ortiz Núñez (mortiznunez1)
 
 ## Objetivos del trabajo
 
