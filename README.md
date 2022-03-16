@@ -15,3 +15,4 @@ Ivan Asensio Díez (IvanAsensioDiez)
 ## Objetivos del trabajo
 
 [Lista de los objetivos que se persiguen con el trabajo propuesto.]
+Sacar un 10;
