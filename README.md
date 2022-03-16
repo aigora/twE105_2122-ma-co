@@ -8,6 +8,10 @@ Alejandro Cinque Rivas (QuantumEnds)
 
 Miguel Ángel Ortiz Núñez (mortiznunez1)
 
+Maria Lázaro Moreno (marialazaro17)
+
+Ivan Asensio Díez (IvanAsensioDiez)
+
 ## Objetivos del trabajo
 
 [Lista de los objetivos que se persiguen con el trabajo propuesto.]
