@@ -1,6 +1,7 @@
-# [Título del trabajo]
+# MazeGates
 
-[Descripción breve del proyecto a realizar (2-3 frases).]
+El trabajo consiste en diseñar un juego entretenido, ameno y diverso de escape de laberinto.
+Contará con diversas mecánicas a las que un jugador individual tendrá que hacer frente.
 
 ## Integrantes del equipo
 
@@ -14,5 +15,7 @@ Ivan Asensio Díez (IvanAsensioDiez)
 
 ## Objetivos del trabajo
 
-[Lista de los objetivos que se persiguen con el trabajo propuesto.]
-Sacar un 10;
+1.- Crear un juego de escape de laberinto.
+2.- Elaborar distintas mecánicas que el jugador deberá superar (monstruos, objetos, temporizador, etc).
+3.- Aprender a usar la librería SDL.
+4.-Investigar distintas formas de generar un laberinto
