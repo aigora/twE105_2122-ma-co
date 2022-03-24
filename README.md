@@ -1,7 +1,7 @@
-# MazeGates
+﻿# MazeGates
 
-El trabajo consiste en diseñar un juego entretenido, ameno y diverso de escape de laberinto.
-Contará con diversas mecánicas a las que un jugador individual tendrá que hacer frente.
+El trabajo consiste en diseñar un juego **entretenido**, **ameno** y **diverso** de escape de *laberinto*.
+Contará con diversas *mecánicas* a las que un jugador individual tendrá que hacer frente.
 
 ## Integrantes del equipo
 
@@ -15,10 +15,10 @@ Contará con diversas mecánicas a las que un jugador individual tendrá que hac
 
 ## Objetivos del trabajo
 
-1.- Crear un juego de escape de laberinto.
+1.- Crear un juego de escape de *laberinto*.
 
-2.- Elaborar distintas mecánicas que el jugador deberá superar (monstruos, objetos, temporizador, etc).
+2.- Elaborar distintas *mecánicas* que el jugador deberá superar (monstruos, objetos, temporizador, etc).
 
-3.- Aprender a usar la librería SDL.
+3.- Aprender a usar la *librería SDL*.
 
-4.-Investigar distintas formas de generar un laberinto
+4.-Investigar distintas *formas de generar un laberinto*.
