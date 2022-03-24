@@ -21,4 +21,4 @@ Contará con diversas *mecánicas* a las que un jugador individual tendrá que h
 
 3.- Aprender a usar la *librería SDL*.
 
-4.-Investigar distintas *formas de generar un laberinto*.
+4.-Investigar diferentes *formas de generar un laberinto*.
