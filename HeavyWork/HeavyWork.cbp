@@ -30,10 +30,11 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="Development/SDL2-2.0.20/x86_64-w64-mingw32/lib" />
+			<Add directory="include" />
 		</Compiler>
 		<Linker>
-			<Add option="-lmingw32 -lSDL2main -lSDL2" />
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
+			<Add directory="lib" />
 		</Linker>
 		<Unit filename="HeavyWork.c">
 			<Option compilerVar="CC" />
