@@ -12,37 +12,36 @@ int main(int argc, char *argv[])
     //Inicializamos SDL y vemos si da error
     if(SDL_Init(SDL_INIT_EVERYTHING)!=0)
     {
-        printf("Error initializing SDL: %s\n", SDL_GetError());
+        printf("Error al iniciar SDL: %s\n", SDL_GetError());
         return 1;
     }
 
-    SDL_Window* mainWin = SDL_CreateWindow("HeavyWork", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480 ,0);  //Creamos una ventana
-
+    SDL_Window* mainWin = SDL_CreateWindow("HeavyWork", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,900, 650, 0); //Despliegue de ventana HeavyWork, centrada en "x" e "y", de dimensiones 900x650 y de 0 flags
     //Comprueba que se crea correctamente la ventana
     if(!mainWin)
     {
-        printf("Error creating window: %s\n", SDL_GetError());
+        printf("Error al crear la ventana: %s\n", SDL_GetError());
         SDL_Quit();
         return 0;
     }
 
     Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC ; //Genera las opciones para el renderizador
 
-    SDL_Renderer* rend = SDL_CreateRenderer(mainWin, -1, render_flags); //Genera el render
+    SDL_Renderer* rend = SDL_CreateRenderer(mainWin, -1, render_flags); //Genera el render, se utilizan ambas flags para acudir al software gráfico y para hacer la imagen más fluida evitando superposición de píxeles (screen terror), respectivamente
 
     if(!rend)
     {
-        printf("Error creating renderer: %s\n", SDL_GetError());
+        printf("Error creando renderer: %s\n", SDL_GetError());
         SDL_DestroyWindow(mainWin);
         SDL_Quit();
         return 0;
     }
 
-    SDL_Surface* surface = IMG_Load("resources/prueba.jpg"); //Carga una superficie con la imagen de prueba en la memoria
+    SDL_Surface* surface = IMG_Load("resources/Menuinicio.jpg"); //Carga una superficie con la imagen de prueba en la memoria
 
     if(!surface)
     {
-        printf("Error creating surface: %s\n", SDL_GetError());
+        printf("Error creando surface: %s\n", SDL_GetError());
         SDL_DestroyRenderer(rend);
         SDL_DestroyWindow(mainWin);
         SDL_Quit();
@@ -53,7 +52,7 @@ int main(int argc, char *argv[])
     SDL_FreeSurface(surface);
     if(!texture)
     {
-        printf("Error creating surface: %s\n", SDL_GetError());
+        printf("Error creando texture: %s\n", SDL_GetError());
         SDL_DestroyRenderer(rend);
         SDL_DestroyWindow(mainWin);
         SDL_Quit();
