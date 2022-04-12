@@ -391,7 +391,11 @@
 
 1649752732 ated upstream
 
-1649768800 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
+1649784242 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
 
 1649773440 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>

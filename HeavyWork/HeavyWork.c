@@ -78,15 +78,10 @@ int main(int argc, char *argv[])
         SDL_RenderPresent(rend);
 
 
-
-
         while(SDL_PollEvent(&event))
         {
             if(event.type==SDL_QUIT)
                 stage=1;
-
-
-
 
             if(mouse_x > 550 && mouse_y > 420 && mouse_x < 880 && mouse_y < 500) //Selecciona en que parte de la pantalla puedo clickar
             {
@@ -102,6 +97,19 @@ int main(int argc, char *argv[])
                     stage=1;
                 }
             }
+            if ( mouse_x > 120 && mouse_x < 450 && mouse_y > 520 && mouse_y < 600)
+            {
+                if(event.type==SDL_MOUSEBUTTONUP) //AJUSTES
+                {
+
+                }
+            }
+            if (mouse_x > 550 && mouse_x < 880 && mouse_y > 520 && mouse_y < 600)
+                 if(event.type==SDL_MOUSEBUTTONUP) //SALIR
+                {
+                    stage=1;
+                }
+
         }
 
 
