@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
 
     int stage=0;  //Indica en que fase del flowchart estamos
 
+
     //Inicializamos SDL y vemos si da error
     if(SDL_Init(SDL_INIT_EVERYTHING)!=0)
     {
@@ -16,7 +17,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    SDL_Window* mainWin = SDL_CreateWindow("HeavyWork", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,900, 650, 0); //Despliegue de ventana HeavyWork, centrada en "x" e "y", de dimensiones 900x650 y de 0 flags
+    SDL_Window* mainWin = SDL_CreateWindow("HeavyWork", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,1000, 650, 0); //Despliegue de ventana HeavyWork, centrada en "x" e "y", de dimensiones 900x650 y de 0 flags
     //Comprueba que se crea correctamente la ventana
     if(!mainWin)
     {
@@ -60,10 +61,15 @@ int main(int argc, char *argv[])
     }
 
     SDL_Event event; //Creamos una variable de tipo evento
+    int SDL_CaptureMouse(SDL_bool enabled);
+
 
     //Bucle del juego
     while(stage==0)
     {
+        int mouse_x, mouse_y;
+        int buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
+
 
         SDL_RenderClear(rend); //Limpia la ventana
 
@@ -71,11 +77,35 @@ int main(int argc, char *argv[])
         SDL_RenderCopy(rend, texture, NULL, NULL);
         SDL_RenderPresent(rend);
 
-      while(SDL_PollEvent(&event))
+
+
+
+        while(SDL_PollEvent(&event))
         {
             if(event.type==SDL_QUIT)
                 stage=1;
+
+
+
+
+            if(mouse_x > 550 && mouse_y > 420 && mouse_x < 880 && mouse_y < 500) //Selecciona en que parte de la pantalla puedo clickar
+            {
+                if(event.type==SDL_MOUSEBUTTONUP)
+                {
+                    stage=1;
+                }
+            }
+            if(mouse_x < 450 && mouse_y > 420 && mouse_x > 120 && mouse_y < 500)
+            {
+                if(event.type==SDL_MOUSEBUTTONUP)
+                {
+                    stage=1;
+                }
+            }
         }
+
+
+
     }
 
     //Elimina todos los objetos de SDL
