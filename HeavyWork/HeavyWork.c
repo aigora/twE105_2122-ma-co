@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    SDL_Window* mainWin = SDL_CreateWindow("HeavyWork", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,1000, 650, 0); //Despliegue de ventana HeavyWork, centrada en "x" e "y", de dimensiones 900x650 y de 0 flags
+    SDL_Window* mainWin = SDL_CreateWindow("HeavyWork", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,1000, 650, 0); //Despliegue de ventana HeavyWork, centrada en "x" e "y", de dimensiones 1000x650 y de 0 flags
     //Comprueba que se crea correctamente la ventana
     if(!mainWin)
     {
@@ -80,19 +80,19 @@ int main(int argc, char *argv[])
 
         while(SDL_PollEvent(&event))
         {
-            if(event.type==SDL_QUIT)
+            if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                 stage=1;
 
             if(mouse_x > 550 && mouse_y > 420 && mouse_x < 880 && mouse_y < 500) //Selecciona en que parte de la pantalla puedo clickar
             {
-                if(event.type==SDL_MOUSEBUTTONUP)
+                if(event.type==SDL_MOUSEBUTTONUP) //SCORES
                 {
                     stage=1;
                 }
             }
             if(mouse_x < 450 && mouse_y > 420 && mouse_x > 120 && mouse_y < 500)
             {
-                if(event.type==SDL_MOUSEBUTTONUP)
+                if(event.type==SDL_MOUSEBUTTONUP) //JUGAR
                 {
                     stage=1;
                 }
