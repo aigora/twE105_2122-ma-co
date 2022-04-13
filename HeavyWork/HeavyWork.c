@@ -174,7 +174,94 @@ int main(int argc, char *argv[])
             {
                 if(event.type==SDL_QUIT) //Permite salir de la ventana con la cruceta
                     stage=1;
+
+                     if(mouse_x < 290 && mouse_y > 450 && mouse_x > 60 && mouse_y < 540)
+                {
+                    if(event.type==SDL_MOUSEBUTTONUP) //SONIDO
+                    {
+                        stage=5;
+                    }
+                }
+                if(mouse_x > 30 && mouse_y > 450 && mouse_x < 630 && mouse_y < 540) //Selecciona en que parte de la pantalla puedo clickar
+                {
+                    if(event.type==SDL_MOUSEBUTTONUP) //PERSONAJES
+                    {
+                        stage=6;
+                    }
+                }
+                if ( mouse_x > 710 && mouse_x < 900 && mouse_y > 450 && mouse_y < 540)
+                {
+                    if(event.type==SDL_MOUSEBUTTONUP) //USUARIO
+                    {
+                        stage=7;
+                    }
+                }
+
             }
+            break;
+        case 5://SONIDO
+        buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
+
+
+        SDL_Surface*SONIDOsurface = IMG_Load("resources/Proximamente.jpg");
+        SDL_Texture* SONIDOtexture = SDL_CreateTextureFromSurface(rend, SONIDOsurface);
+        SDL_FreeSurface(SONIDOsurface);
+
+
+        //Dibuja la imagen
+        SDL_RenderCopy(rend, SONIDOtexture, NULL, NULL);
+        SDL_RenderPresent(rend);
+
+
+        while(SDL_PollEvent(&event))
+            {
+                if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
+                    stage=1;
+            }
+            break;
+                    case 6://PERSONAJE
+        buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
+
+
+        SDL_Surface*PERSONAJEsurface = IMG_Load("resources/Proximamente.jpg");
+        SDL_Texture* PERSONAJEtexture = SDL_CreateTextureFromSurface(rend, PERSONAJEsurface);
+        SDL_FreeSurface(PERSONAJEsurface);
+
+
+        //Dibuja la imagen
+        SDL_RenderCopy(rend, PERSONAJEtexture, NULL, NULL);
+        SDL_RenderPresent(rend);
+
+
+        while(SDL_PollEvent(&event))
+            {
+                if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
+                    stage=1;
+            }
+            break;
+
+                    case 7://USUARIO
+        buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
+
+
+        SDL_Surface*USUARIOsurface = IMG_Load("resources/Proximamente.jpg");
+        SDL_Texture* USUARIOtexture = SDL_CreateTextureFromSurface(rend, USUARIOsurface);
+        SDL_FreeSurface(USUARIOsurface);
+
+
+        //Dibuja la imagen
+        SDL_RenderCopy(rend, USUARIOtexture, NULL, NULL);
+        SDL_RenderPresent(rend);
+
+
+        while(SDL_PollEvent(&event))
+            {
+                if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
+                    stage=1;
+            }
+            break;
+
+
     }
     }
 
@@ -184,4 +271,6 @@ int main(int argc, char *argv[])
     SDL_DestroyWindow(mainWin);
     SDL_Quit();
     return 0;
+
+
 }
