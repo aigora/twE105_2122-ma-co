@@ -63,56 +63,107 @@ int main(int argc, char *argv[])
     SDL_Event event; //Creamos una variable de tipo evento
     int SDL_CaptureMouse(SDL_bool enabled);
 
-
-    //Bucle del juego
-    while(stage==0)
+ while(stage!=1)
     {
+        //Bucle del juego
+        while(stage==0)
+        {
+            int mouse_x, mouse_y;
+            int buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
+
+
+            SDL_RenderClear(rend); //Limpia la ventana
+
+            //Dibuja la imagen
+            SDL_RenderCopy(rend, texture, NULL, NULL);
+            SDL_RenderPresent(rend);
+
+
+            while(SDL_PollEvent(&event))
+            {
+                if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
+                    stage=1;
+
+                if(mouse_x < 450 && mouse_y > 420 && mouse_x > 120 && mouse_y < 500)
+                {
+                    if(event.type==SDL_MOUSEBUTTONUP) //JUGAR
+                    {
+                        stage=2;
+                    }
+                }
+                if(mouse_x > 550 && mouse_y > 420 && mouse_x < 880 && mouse_y < 500) //Selecciona en que parte de la pantalla puedo clickar
+                {
+                    if(event.type==SDL_MOUSEBUTTONUP) //SCORES
+                    {
+                        stage=3;
+                    }
+                }
+                if ( mouse_x > 120 && mouse_x < 450 && mouse_y > 520 && mouse_y < 600)
+                {
+                    if(event.type==SDL_MOUSEBUTTONUP) //AJUSTES
+                    {
+                        stage=4;
+                    }
+                }
+                if (mouse_x > 550 && mouse_x < 880 && mouse_y > 520 && mouse_y < 600)
+                     if(event.type==SDL_MOUSEBUTTONUP) //SALIR
+                    {
+                        stage=1;
+                    }
+
+            }
+    }
+
+    while(stage==2) //JUGAR
+    {
+
         int mouse_x, mouse_y;
         int buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
 
-        SDL_RenderClear(rend); //Limpia la ventana
+        SDL_Surface* JUGARsurface = IMG_Load("resources/Proximamente.jpg"); //GENERA UNA NUEVA IMAGEN
+        SDL_Texture* JUGARtexture = SDL_CreateTextureFromSurface(rend, JUGARsurface); //AÑADE LA NUEVA IMAGEN
+        SDL_FreeSurface(JUGARsurface);
+
 
         //Dibuja la imagen
-        SDL_RenderCopy(rend, texture, NULL, NULL);
+        SDL_RenderCopy(rend, JUGARtexture, NULL, NULL);
         SDL_RenderPresent(rend);
 
 
         while(SDL_PollEvent(&event))
-        {
-            if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
-                stage=1;
-
-            if(mouse_x > 550 && mouse_y > 420 && mouse_x < 880 && mouse_y < 500) //Selecciona en que parte de la pantalla puedo clickar
             {
-                if(event.type==SDL_MOUSEBUTTONUP) //SCORES
-                {
+                if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                     stage=1;
-                }
             }
-            if(mouse_x < 450 && mouse_y > 420 && mouse_x > 120 && mouse_y < 500)
+
+
+    }
+      while(stage==3) //SCORES
+    {
+
+        int mouse_x, mouse_y;
+        int buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
+
+
+        SDL_Surface*SCOREsurface = IMG_Load("resources/Proximamente.jpg");
+        SDL_Texture* SCOREtexture = SDL_CreateTextureFromSurface(rend, SCOREsurface);
+        SDL_FreeSurface(SCOREsurface);
+
+
+        //Dibuja la imagen
+        SDL_RenderCopy(rend, SCOREtexture, NULL, NULL);
+        SDL_RenderPresent(rend);
+
+
+        while(SDL_PollEvent(&event))
             {
-                if(event.type==SDL_MOUSEBUTTONUP) //JUGAR
-                {
+                if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                     stage=1;
-                }
             }
-            if ( mouse_x > 120 && mouse_x < 450 && mouse_y > 520 && mouse_y < 600)
-            {
-                if(event.type==SDL_MOUSEBUTTONUP) //AJUSTES
-                {
-
-                }
-            }
-            if (mouse_x > 550 && mouse_x < 880 && mouse_y > 520 && mouse_y < 600)
-                 if(event.type==SDL_MOUSEBUTTONUP) //SALIR
-                {
-                    stage=1;
-                }
-
-        }
 
 
+    }
 
     }
 
