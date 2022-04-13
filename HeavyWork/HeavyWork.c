@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    SDL_Surface* surface = IMG_Load("resources/Menuinicio.jpg"); //Carga una superficie con la imagen de prueba en la memoria
+    SDL_Surface* surface = IMG_Load("resources/Menuinicio2.jpg"); //Carga una superficie con la imagen de prueba en la memoria
 
     if(!surface)
     {
@@ -113,15 +113,14 @@ int main(int argc, char *argv[])
 
             }
     }
-
-    while(stage==2) //JUGAR
+    int mouse_x, mouse_y, buttons;
+    switch (stage)
     {
+        case 2://JUGAR
+        buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
-        int mouse_x, mouse_y;
-        int buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
-
-        SDL_Surface* JUGARsurface = IMG_Load("resources/Proximamente.jpg"); //GENERA UNA NUEVA IMAGEN
+        SDL_Surface* JUGARsurface = IMG_Load("resources/carga.jpg"); //GENERA UNA NUEVA IMAGEN
         SDL_Texture* JUGARtexture = SDL_CreateTextureFromSurface(rend, JUGARsurface); //AÑADE LA NUEVA IMAGEN
         SDL_FreeSurface(JUGARsurface);
 
@@ -136,14 +135,9 @@ int main(int argc, char *argv[])
                 if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                     stage=1;
             }
-
-
-    }
-      while(stage==3) //SCORES
-    {
-
-        int mouse_x, mouse_y;
-        int buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
+            break;
+        case 3://SCORES
+        buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
 
         SDL_Surface*SCOREsurface = IMG_Load("resources/Proximamente.jpg");
@@ -161,10 +155,27 @@ int main(int argc, char *argv[])
                 if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                     stage=1;
             }
+            break;
+        case 4://AJUSTES
+        buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
 
+        SDL_Surface*AJUSTESsurface = IMG_Load("resources/ajustes.jpg");
+        SDL_Texture* AJUSTEStexture = SDL_CreateTextureFromSurface(rend, AJUSTESsurface);
+        SDL_FreeSurface(AJUSTESsurface);
+
+
+        //Dibuja la imagen
+        SDL_RenderCopy(rend, AJUSTEStexture, NULL, NULL);
+        SDL_RenderPresent(rend);
+
+
+        while(SDL_PollEvent(&event))
+            {
+                if(event.type==SDL_QUIT) //Permite salir de la ventana con la cruceta
+                    stage=1;
+            }
     }
-
     }
 
     //Elimina todos los objetos de SDL
