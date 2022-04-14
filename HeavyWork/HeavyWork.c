@@ -196,6 +196,14 @@ int main(int argc, char *argv[])
                         stage=7;
                     }
                 }
+                if ( mouse_x > 830 && mouse_x < 980 && mouse_y > 575 && mouse_y < 600)
+                {
+                    if(event.type==SDL_MOUSEBUTTONUP) //VOLVER
+                    {
+                        stage=0;
+                    }
+                }
+
 
             }
             break;
@@ -238,6 +246,14 @@ int main(int argc, char *argv[])
                         stage=7;
                     }
                 }
+                 if ( mouse_x > 830 && mouse_x < 980 && mouse_y > 575 && mouse_y < 600)
+                {
+                    if(event.type==SDL_MOUSEBUTTONUP) //VOLVER
+                    {
+                        stage=0;
+                    }
+                }
+
 
             }
             break;
