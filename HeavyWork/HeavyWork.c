@@ -129,17 +129,16 @@ int main(int argc, char *argv[])
     {
         case 2://JUGAR
                 while(stage==2){
-                    buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
-                    SDL_Surface* JUGARsurface = IMG_Load("resources/carga.jpg"); //GENERA UNA NUEVA IMAGEN
-                    SDL_Texture* JUGARtexture = SDL_CreateTextureFromSurface(rend, JUGARsurface); //AÑADE LA NUEVA IMAGEN
-                    SDL_FreeSurface(JUGARsurface);
+                    SDL_Surface* surface = IMG_Load("resources/carga.jpg"); //GENERA UNA NUEVA IMAGEN
+                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                    SDL_FreeSurface(surface);
 
 
                     while(stage==2){
                         buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
                         //Dibuja la imagen
-                        SDL_RenderCopy(rend, JUGARtexture, NULL, NULL);
+                        SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
 
 
@@ -148,7 +147,7 @@ int main(int argc, char *argv[])
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                                 {
                                     stage=1;
-                                    SDL_DestroyTexture(JUGARtexture);
+                                    SDL_DestroyTexture(texture);
                                 }
                             }
                     }
@@ -156,17 +155,15 @@ int main(int argc, char *argv[])
             break;
         case 3://SCORES
                 while(stage==3){
-                    buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
-                    SDL_Surface*SCOREsurface = IMG_Load("resources/Proximamente.jpg");
-                    SDL_Texture* SCOREtexture = SDL_CreateTextureFromSurface(rend, SCOREsurface);
-                    SDL_FreeSurface(SCOREsurface);
+                    SDL_Surface*surface = IMG_Load("resources/Proximamente.jpg");
+                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                    SDL_FreeSurface(surface);
 
                      while(stage==3){
                         buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
-
                         //Dibuja la imagen
-                        SDL_RenderCopy(rend, SCOREtexture, NULL, NULL);
+                        SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
 
 
@@ -175,7 +172,7 @@ int main(int argc, char *argv[])
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                                 {
                                     stage=1;
-                                    SDL_DestroyTexture(SCOREtexture);
+                                    SDL_DestroyTexture(texture);
                                 }
                             }
                     }
@@ -183,17 +180,15 @@ int main(int argc, char *argv[])
             break;
         case 4://AJUSTES
                 while(stage==4){
-                    buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
-                    SDL_Surface*AJUSTESsurface = IMG_Load("resources/ajustes.jpg");
-                    SDL_Texture* AJUSTEStexture = SDL_CreateTextureFromSurface(rend, AJUSTESsurface);
-                    SDL_FreeSurface(AJUSTESsurface);
+                    SDL_Surface*surface = IMG_Load("resources/ajustes.jpg");
+                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                    SDL_FreeSurface(surface);
 
                     while(stage==4){
                         buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
-
                         //Dibuja la imagen
-                        SDL_RenderCopy(rend, AJUSTEStexture, NULL, NULL);
+                        SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
 
 
@@ -202,7 +197,7 @@ int main(int argc, char *argv[])
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana con la cruceta
                                     {
                                         stage=1;
-                                        SDL_DestroyTexture(AJUSTEStexture);
+                                        SDL_DestroyTexture(texture);
                                     }
 
                                      if(mouse_x < 290 && mouse_y > 450 && mouse_x > 60 && mouse_y < 540)
@@ -210,7 +205,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //SONIDO
                                     {
                                         stage=5;
-                                        SDL_DestroyTexture(AJUSTEStexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                                 if(mouse_x > 400 && mouse_y > 450 && mouse_x < 630 && mouse_y < 540) //Selecciona en que parte de la pantalla puedo clickar
@@ -218,7 +213,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //PERSONAJE
                                     {
                                         stage=6;
-                                        SDL_DestroyTexture(AJUSTEStexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                                 if ( mouse_x > 710 && mouse_x < 900 && mouse_y > 450 && mouse_y < 540)
@@ -226,7 +221,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //USUARIO
                                     {
                                         stage=7;
-                                        SDL_DestroyTexture(AJUSTEStexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                                 if ( mouse_x > 830 && mouse_x < 980 && mouse_y > 575 && mouse_y < 600)
@@ -234,7 +229,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //VOLVER
                                     {
                                         stage=0;
-                                        SDL_DestroyTexture(AJUSTEStexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                             }
@@ -243,17 +238,16 @@ int main(int argc, char *argv[])
             break;
         case 5://SONIDO
                 while(stage==5){
-                    buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
-                    SDL_Surface*SONIDOsurface = IMG_Load("resources/ajustessinson.jpg");
-                    SDL_Texture* SONIDOtexture = SDL_CreateTextureFromSurface(rend, SONIDOsurface);
-                    SDL_FreeSurface(SONIDOsurface);
+                    SDL_Surface*surface = IMG_Load("resources/ajustessinson.jpg");
+                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                    SDL_FreeSurface(surface);
                     //QUEDA PENDIENTE QUITAR EL SONIDO UNA VEZ SE ACTIVE DESDE INICIO
 
                     while(stage==5){
                         buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
                         //Dibuja la imagen
-                        SDL_RenderCopy(rend, SONIDOtexture, NULL, NULL);
+                        SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
 
 
@@ -262,7 +256,7 @@ int main(int argc, char *argv[])
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana con la cruceta
                                     {
                                         stage=1;
-                                        SDL_DestroyTexture(SONIDOtexture);
+                                        SDL_DestroyTexture(texture);
                                     }
 
                                      if(mouse_x < 290 && mouse_y > 450 && mouse_x > 60 && mouse_y < 540)
@@ -270,7 +264,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //SONIDO
                                     {
                                         stage=4;
-                                        SDL_DestroyTexture(SONIDOtexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                                 if(mouse_x > 400 && mouse_y > 450 && mouse_x < 630 && mouse_y < 540) //Selecciona en que parte de la pantalla puedo clickar
@@ -278,7 +272,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //PERSONAJE
                                     {
                                         stage=6;
-                                        SDL_DestroyTexture(SONIDOtexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                                 if ( mouse_x > 710 && mouse_x < 900 && mouse_y > 450 && mouse_y < 540)
@@ -286,7 +280,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //USUARIO
                                     {
                                         stage=7;
-                                        SDL_DestroyTexture(SONIDOtexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                                  if ( mouse_x > 830 && mouse_x < 980 && mouse_y > 575 && mouse_y < 600)
@@ -294,7 +288,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //VOLVER
                                     {
                                         stage=0;
-                                        SDL_DestroyTexture(SONIDOtexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                             }
@@ -304,17 +298,16 @@ int main(int argc, char *argv[])
             break;
             case 6://PERSONAJE
                     while(stage==6){
-                        buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
-                        SDL_Surface*PERSONAJEsurface = IMG_Load("resources/Proximamente.jpg");
-                        SDL_Texture* PERSONAJEtexture = SDL_CreateTextureFromSurface(rend, PERSONAJEsurface);
-                        SDL_FreeSurface(PERSONAJEsurface);
+                        SDL_Surface*surface = IMG_Load("resources/Proximamente.jpg");
+                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                        SDL_FreeSurface(surface);
 
                         while(stage==6){
                             buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
-                            //Dibuja la imagen
-                            SDL_RenderCopy(rend, PERSONAJEtexture, NULL, NULL);
-                            SDL_RenderPresent(rend);
+                        //Dibuja la imagen
+                        SDL_RenderCopy(rend, texture, NULL, NULL);
+                        SDL_RenderPresent(rend);
 
 
                             while(SDL_PollEvent(&event))
@@ -322,7 +315,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                                     {
                                         stage=1;
-                                        SDL_DestroyTexture(PERSONAJEtexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                         }
@@ -331,18 +324,16 @@ int main(int argc, char *argv[])
             break;
             case 7://USUARIO
                     while(stage==7){
-                        buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
-                        SDL_Surface*USUARIOsurface = IMG_Load("resources/Proximamente.jpg");
-                        SDL_Texture* USUARIOtexture = SDL_CreateTextureFromSurface(rend, USUARIOsurface);
-                        SDL_FreeSurface(USUARIOsurface);
+                        SDL_Surface*surface = IMG_Load("resources/Proximamente.jpg");
+                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                        SDL_FreeSurface(surface);
 
                         while(stage==7){
                             buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
-
-                            //Dibuja la imagen
-                            SDL_RenderCopy(rend, USUARIOtexture, NULL, NULL);
-                            SDL_RenderPresent(rend);
+                        //Dibuja la imagen
+                        SDL_RenderCopy(rend, texture, NULL, NULL);
+                        SDL_RenderPresent(rend);
 
 
                             while(SDL_PollEvent(&event))
@@ -350,12 +341,13 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                                     {
                                         stage=1;
-                                        SDL_DestroyTexture(USUARIOtexture);
+                                        SDL_DestroyTexture(texture);
                                     }
                                 }
                     }
                 }
             break;
+
 
     }
     }
