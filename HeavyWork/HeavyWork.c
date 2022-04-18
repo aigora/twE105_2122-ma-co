@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
 
     int stage=0;  //Indica en que fase del flowchart estamos
-    int sonido = 0; //Indica si el sonido se encuentra habilitado o no
+    int sonido = 1; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
 
     // Se inicializa SDL, con todos los subsistemas y se comprueba si da error
     if(SDL_Init(SDL_INIT_EVERYTHING)!=0)
@@ -58,22 +58,19 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-
-
     SDL_Event event; //Creamos una variable de tipo evento
     int SDL_CaptureMouse(SDL_bool enabled);
 
  while(stage!=1)
     {
-        if(sonido==0)
+        if(sonido==1)
         {
         SDL_PauseAudioDevice(deviceId, 0); //Pausa la grabación de audio al darle un número != 0
         }
-        if(sonido==1)
+        if(sonido==0)
         {
         SDL_PauseAudioDevice(deviceId, 1); //Pausa la grabación de audio al darle un número != 0
         }
-
 
         //Bucle del juego
         while(stage==0)
@@ -103,13 +100,11 @@ int main(int argc, char *argv[])
             while(stage==0){
                 int buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
-
                 SDL_RenderClear(rend); //Limpia la ventana
 
                 //Dibuja la imagen
                 SDL_RenderCopy(rend, texture, NULL, NULL);
                 SDL_RenderPresent(rend);
-
 
                 while(SDL_PollEvent(&event))
                 {
@@ -139,12 +134,12 @@ int main(int argc, char *argv[])
                     {
                         if(event.type==SDL_MOUSEBUTTONUP) //AJUSTES
                         {
-                            if (sonido == 0)
+                            if (sonido == 1)
                             {
                             stage=4;
                             SDL_DestroyTexture(texture);
                             }
-                            if (sonido == 1)
+                            if (sonido == 0)
                             {
                             stage=5;
                             SDL_DestroyTexture(texture);
@@ -171,14 +166,12 @@ int main(int argc, char *argv[])
                     SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
                     SDL_FreeSurface(surface);
 
-
                     while(stage==2){
                         buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
                         //Dibuja la imagen
                         SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
-
 
                         while(SDL_PollEvent(&event))
                             {
@@ -204,7 +197,6 @@ int main(int argc, char *argv[])
                         SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
 
-
                         while(SDL_PollEvent(&event))
                             {
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
@@ -229,7 +221,6 @@ int main(int argc, char *argv[])
                         SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
 
-
                         while(SDL_PollEvent(&event))
                             {
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana con la cruceta
@@ -243,7 +234,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //SONIDO
                                     {
                                         stage=5;
-                                        sonido=1;
+                                        sonido=0;
                                         SDL_DestroyTexture(texture);
                                     }
                                 }
@@ -281,8 +272,6 @@ int main(int argc, char *argv[])
                     SDL_Surface*surface = IMG_Load("resources/ajustessinson.jpg");
                     SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
                     SDL_FreeSurface(surface);
-                    // Parar la música
-
 
                     while(stage==5){
                         buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
@@ -290,7 +279,6 @@ int main(int argc, char *argv[])
                         //Dibuja la imagen
                         SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
-
 
                         while(SDL_PollEvent(&event))
                             {
@@ -305,7 +293,7 @@ int main(int argc, char *argv[])
                                     if(event.type==SDL_MOUSEBUTTONUP) //SONIDO
                                     {
                                         stage=4;
-                                        sonido=0;
+                                        sonido=1;
                                         SDL_DestroyTexture(texture);
                                     }
                                 }
@@ -340,7 +328,7 @@ int main(int argc, char *argv[])
             break;
             case 6://PERSONAJE
                     while(stage==6){
-                        SDL_Surface*surface = IMG_Load("resources/Proximamente.jpg");
+                        SDL_Surface*surface = IMG_Load("resources/personajes.jpg");
                         SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
                         SDL_FreeSurface(surface);
 
@@ -350,7 +338,6 @@ int main(int argc, char *argv[])
                         //Dibuja la imagen
                         SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
-
 
                             while(SDL_PollEvent(&event))
                                 {
@@ -377,7 +364,6 @@ int main(int argc, char *argv[])
                         SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
 
-
                             while(SDL_PollEvent(&event))
                                 {
                                     if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
@@ -389,8 +375,6 @@ int main(int argc, char *argv[])
                     }
                 }
             break;
-
-
     }
     }
 
