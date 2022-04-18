@@ -4,6 +4,9 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_audio.h>
 
+//velocidad en pixeles por segundo
+#define SPEED 300
+
 
 int main(int argc, char *argv[])
 {
@@ -166,13 +169,30 @@ int main(int argc, char *argv[])
                     SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
                     SDL_FreeSurface(surface);
 
+                    SDL_Rect dest;
+
+                     float x_pos = (1000 - dest.w)/2;
+                    float y_pos = (650 - dest.h)/2;
+                    float x_vel = 0;
+                    float y_vel = 0;
+
+                    //Recoge el proceso que se está realizando
+                    int up = 0;
+                    int down = 0;
+                    int left = 0;
+                    int right = 0;
+
+                    //Establece 1 cuando se presiona el bottón de cerrado
+                    int close_requested = 0;
+
                     while(stage==2){
                         buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
                         //Dibuja la imagen
                         SDL_RenderCopy(rend, texture, NULL, NULL);
                         SDL_RenderPresent(rend);
-
+                        while(!close_requested)
+                            {
                         while(SDL_PollEvent(&event))
                             {
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
@@ -180,9 +200,125 @@ int main(int argc, char *argv[])
                                     stage=1;
                                     SDL_DestroyTexture(texture);
                                 }
+
+                        SDL_Surface* surface = IMG_Load("Resources/prueba.jpg");
+                        if(!surface)
+                        {
+                            printf("Error creando surface\n");
+                            SDL_DestroyRenderer(rend);
+                            SDL_DestroyWindow(mainWin);
+                            SDL_Quit();
+                            return 1;
+                        }
+
+                        //carga los datos de la imagen en la memoria gráfica del hardware
+                        SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
+                        SDL_FreeSurface(surface);
+                        if(!tex)
+                        {
+                            printf("Error creando textura: %s\n", SDL_GetError());
+                            SDL_DestroyRenderer(rend);
+                            SDL_DestroyWindow(mainWin);
+                            SDL_Quit();
+                            return 1;
+                        }
+
+                        SDL_QueryTexture(tex, NULL, NULL, &dest.w, &dest.h);
+    dest.w/= 4;
+    dest.h /= 4;
+                                //bucle de animación
+
+
+                                    switch(event.type)
+                                    {
+                                    case SDL_QUIT:
+                                        close_requested = 1;
+                                        break;
+                                    case SDL_KEYDOWN:
+                                        switch (event.key.keysym.scancode)
+                                        {
+                                        case SDL_SCANCODE_W:
+                                        case SDL_SCANCODE_UP:
+                                            up = 1;
+                                            break;
+                                        case SDL_SCANCODE_A:
+                                        case SDL_SCANCODE_LEFT:
+                                            left = 1;
+                                            break;
+                                        case SDL_SCANCODE_S:
+                                        case SDL_SCANCODE_DOWN:
+                                            down = 1;
+                                            break;
+                                        case SDL_SCANCODE_D:
+                                        case SDL_SCANCODE_RIGHT:
+                                            right = 1;
+                                            break;
+                                        }
+                                        break;
+                                        case SDL_KEYUP:
+                                            switch (event.key.keysym.scancode)
+                                            {
+                                        case SDL_SCANCODE_W:
+                                        case SDL_SCANCODE_UP:
+                                            up = 0;
+                                            break;
+                                        case SDL_SCANCODE_A:
+                                        case SDL_SCANCODE_LEFT:
+                                            left = 0;
+                                            break;
+                                        case SDL_SCANCODE_S:
+                                        case SDL_SCANCODE_DOWN:
+                                            down = 0;
+                                            break;
+                                        case SDL_SCANCODE_D:
+                                        case SDL_SCANCODE_RIGHT:
+                                            right = 0;
+                                            break;
+                                            }
+                                            break;
+                                    }
+                                }
+
+                                    //determina la velocidad
+                                    x_vel = y_vel = 0;
+                                    if(up && !down) y_vel = -SPEED;
+                                    if(down && !up) y_vel = SPEED;
+                                    if(left && !right) x_vel = -SPEED;
+                                    if (right && !left) x_vel = SPEED;
+
+                                    //actualización de posiciones
+                                    x_pos += x_vel / 60;
+                                    y_pos += y_vel / 60;
+
+                                    //detención al impactar con los bordes
+                                    if(x_pos <= 0) x_pos = 0;
+                                    if(y_pos <= 0) y_pos = 0;
+                                    if(x_pos>=1000 - dest.w) x_pos = 1000 - dest.w;
+                                    if(y_pos>=650 - dest.h) y_pos = 650 - dest.h;
+
+                                    //Establece las posiciones de la estructura
+                                    dest.y = (int) y_pos;
+                                    dest.x = (int) x_pos;
+
+                                    //Despeja la ventana
+                                    SDL_RenderClear(rend);
+
+                                    //Dibuja la imagen en la ventana
+                                    SDL_RenderCopy(rend, texture, NULL, &dest);
+                                    SDL_RenderPresent(rend);
+
+                                    //Espera 1/60 de un segundo
+                                    SDL_Delay(1000/60);
+
+                                }
                             }
+                            //Se inicia en el centro de la pantalla
+
+
+
+
                     }
-                }
+
             break;
         case 3://SCORES
                 while(stage==3){
@@ -207,6 +343,7 @@ int main(int argc, char *argv[])
                             }
                     }
                 }
+
             break;
         case 4://AJUSTES
                 while(stage==4){
