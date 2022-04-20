@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 
     int stage=0;  //Indica en que fase del flowchart estamos
     int sonido = 1; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
+    int personaje = 1; //Indica el personaje seleccionado, por defecto el stickman
 
     // Se inicializa SDL, con todos los subsistemas y se comprueba si da error
     if(SDL_Init(SDL_INIT_EVERYTHING)!=0)
@@ -296,22 +297,12 @@ int main(int argc, char *argv[])
                                 dest.y = (int) y_pos;
                                 dest.x = (int) x_pos;
 
-
-
                                 //Espera 1/60 de un segundo
                                 SDL_Delay(1000/60);
-
-
-
                                 }
                             }
 
                             //Se inicia en el centro de la pantalla
-
-
-
-
-
 
             break;
         case 3://SCORES
@@ -459,11 +450,32 @@ int main(int argc, char *argv[])
             break;
             case 6://PERSONAJE
                     while(stage==6){
-                        SDL_Surface*surface = IMG_Load("resources/personajes.jpg");
+                            SDL_Surface*surface = IMG_Load("resources/personaje1.jpg");
+                            SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                            SDL_FreeSurface(surface);
+                            SDL_DestroyTexture(texture);
+
+                        while(stage==6){
+                                if (personaje == 1)
+                        {
+                            SDL_Surface*surface = IMG_Load("resources/personaje1.jpg");
+                            SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                            SDL_FreeSurface(surface);
+
+                        }
+                    if (personaje == 2)
+                    {
+                        SDL_Surface*surface = IMG_Load("resources/personaje2.jpg");
                         SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
                         SDL_FreeSurface(surface);
 
-                        while(stage==6){
+                    }
+                    else
+                        {
+                            SDL_Surface*surface = IMG_Load("resources/personaje3.jpg");
+                            SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                            SDL_FreeSurface(surface);
+                        }
                             buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
                         //Dibuja la imagen
@@ -477,7 +489,62 @@ int main(int argc, char *argv[])
                                         stage=1;
                                         SDL_DestroyTexture(texture);
                                     }
+                                    if ( mouse_x > 130 && mouse_x < 315 && mouse_y > 275 && mouse_y < 520)
+                                    {
+                                       if(event.type==SDL_MOUSEBUTTONUP) //PRIMER PERSONAJE
+                                    {
+                                        personaje = 1;
+                                        SDL_DestroyTexture(texture);
+                                        SDL_Surface*surface = IMG_Load("resources/personaje1.jpg");
+                                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                                        SDL_FreeSurface(surface);
+                                        //Dibuja la imagen
+                                        SDL_RenderCopy(rend, texture, NULL, NULL);
+                                        SDL_RenderPresent(rend);
+
+                                    }
+                                    }
+                                    if ( mouse_x > 390 && mouse_x < 570 && mouse_y > 275 && mouse_y < 520)
+                                    {
+                                       if(event.type==SDL_MOUSEBUTTONUP) //SEGUNDO PERSONAJE
+                                    {
+                                        personaje = 2;
+                                        SDL_DestroyTexture(texture);
+                                        SDL_Surface*surface = IMG_Load("resources/personaje2.jpg");
+                                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                                        SDL_FreeSurface(surface);
+                                        //Dibuja la imagen
+                                        SDL_RenderCopy(rend, texture, NULL, NULL);
+                                        SDL_RenderPresent(rend);
+                                    }
+                                    }
+                                    if ( mouse_x > 640 && mouse_x < 820 && mouse_y > 275 && mouse_y < 520)
+                                    {
+                                       if(event.type==SDL_MOUSEBUTTONUP) //TERCER PERSONAJE
+                                    {
+                                        personaje = 3;
+                                        SDL_DestroyTexture(texture);
+                                        SDL_Surface*surface = IMG_Load("resources/personaje3.jpg");
+                                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                                        SDL_FreeSurface(surface);
+                                        //Dibuja la imagen
+                                        SDL_RenderCopy(rend, texture, NULL, NULL);
+                                        SDL_RenderPresent(rend);
+                                    }
+                                    }
+
+                                    if ( mouse_x > 830 && mouse_x < 980 && mouse_y > 575 && mouse_y < 600)
+                                    {
+                                        if(event.type==SDL_MOUSEBUTTONUP) //VOLVER
+                                    {
+                                        stage=0;
+                                        SDL_DestroyTexture(texture);
+
+                                    }
+                                    }
+
                                 }
+
                         }
                 }
 
