@@ -1,8 +1,11 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_audio.h>
+#include "Game.h"
+#include "Menu.h"
 
 //velocidad en pixeles por segundo
 #define SPEED 300
@@ -11,9 +14,12 @@
 int main(int argc, char *argv[])
 {
 
-    int stage=0;  //Indica en que fase del flowchart estamos
+    bool running=true;
+    int stage = 1;  //Indica en que fase del flowchart estamos
     int sonido = 1; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
     int personaje = 1; //Indica el personaje seleccionado, por defecto el stickman
+    Window mainWin;
+    Textures tex;
 
     // Se inicializa SDL, con todos los subsistemas y se comprueba si da error
     if(SDL_Init(SDL_INIT_EVERYTHING)!=0)
@@ -41,33 +47,64 @@ int main(int argc, char *argv[])
 
 	int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength); // SDL_QueueAudio permite enviar la información del WAV directamente al dispositivo
 
-    SDL_Window* mainWin = SDL_CreateWindow("HeavyWork", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,1000, 650, 0); //Despliegue de ventana HeavyWork, centrada en "x" e "y", de dimensiones 1000x650 y de 0 flags
-    //Comprueba que se crea correctamente la ventana
-    if(!mainWin)
+	//Cargamos la ventana del juego
+	mainWin.h=925;
+	mainWin.w=925;
+
+	Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+    mainWin.window = SDL_CreateWindow("HeavyWork",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,mainWin.w,mainWin.h,0);
+    if(!mainWin.window)
     {
         printf("Error al crear la ventana: %s\n", SDL_GetError());
-        SDL_Quit();
-        return 0;
+        running=false;
     }
 
-    Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC ; //Genera las opciones para el renderizador
-
-    SDL_Renderer* rend = SDL_CreateRenderer(mainWin, -1, render_flags); //Genera el render, se utilizan ambas flags para acudir al software gráfico y para hacer la imagen más fluida evitando superposición de píxeles (screen terror), respectivamente
-
-    if(!rend)
+    mainWin.renderer = SDL_CreateRenderer(mainWin.window,-1,render_flags);
+    if(!mainWin.renderer)
     {
-        printf("Error creando renderer: %s\n", SDL_GetError());
-        SDL_DestroyWindow(mainWin);
-        SDL_Quit();
-        return 0;
+        printf("No funciona");
+        printf("Error al crear el renderer: %s\n", SDL_GetError());
+        running=false;
+    }
+	//running=loadWin("HeavyWork",mainWin);
+
+	//Cargamos las texturas que vayamos a usar
+	tex.player=loadTexture("Resources/prueba.jpg",mainWin);
+	tex.menu=loadTexture("Resources/Menuinicio2.jpg",mainWin);
+	tex.ajustes=loadTexture("Resources/ajustes.jpg",mainWin);
+	tex.ajusnos=loadTexture("Resources/ajustessinson.jpg",mainWin);
+	tex.carga=loadTexture("Resources/carga.jpg",mainWin);
+	tex.personaje1=loadTexture("Resources/personaje1.jpg",mainWin);
+	tex.personaje2=loadTexture("Resources/personaje2.jpg",mainWin);
+	tex.personaje3=loadTexture("Resources/personaje3.jpg",mainWin);
+	tex.wall = loadTexture("resources/Negro.jpg",mainWin);
+    tex.fondo = loadTexture("resources/Gris.jpg",mainWin);
+
+	while(running)
+    {
+        switch(stage)
+        {
+        case 0:
+            running=false;
+            break;
+
+        case 1:
+            stage=menu(mainWin,tex,&personaje);
+            break;
+
+        case 2:
+            stage=game(mainWin,tex,personaje);
+            break;
+        }
     }
 
-    SDL_Event event; //Creamos una variable de tipo evento
-    int SDL_CaptureMouse(SDL_bool enabled);//Relativo a la detección del ratón
+    SDL_DestroyRenderer(mainWin.renderer);
+    SDL_DestroyWindow(mainWin.window);
+    SDL_Quit();
+    return 0;
 
-    SDL_Surface* PLAYsurface = IMG_Load("Resources/prueba.jpg");
-    SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, PLAYsurface);
-    SDL_FreeSurface(PLAYsurface);
+    /*SDL_Event event; //Creamos una variable de tipo evento
+    int SDL_CaptureMouse(SDL_bool enabled);//Relativo a la detección del ratón
 
 
     SDL_Rect dest;
@@ -585,6 +622,8 @@ int main(int argc, char *argv[])
        SDL_FreeWAV(wavBuffer);
     }
 	SDL_Quit();
-    return 0;
+    return 0;*/
+
+
 
 }

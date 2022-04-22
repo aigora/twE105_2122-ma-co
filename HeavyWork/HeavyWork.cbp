@@ -36,9 +36,29 @@
 			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="Game.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Game.h" />
 		<Unit filename="HeavyWork.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Laberinto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Laberinto.h" />
+		<Unit filename="Menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Menu.h" />
+		<Unit filename="Player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Player.h" />
+		<Unit filename="Utilities.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Utilities.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
