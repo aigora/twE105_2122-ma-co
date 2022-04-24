@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 {
 
     bool running=true;
-    int stage = 1;  //Indica en que fase del flowchart estamos
+    int stage = 0;  //Indica en que fase del flowchart estamos
     int sonido = 1; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
     int personaje = 1; //Indica el personaje seleccionado, por defecto el stickman
     Window mainWin;
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         printf("Error al iniciar SDL: %s\n", SDL_GetError());
         return 1;
     }
-
+/*
     // Para cargar un archivo de audio, el formato reconocido por la librería básica de SDL es WAV. El clip de audio es cargado:
     SDL_AudioSpec wavSpec;
 	Uint32 wavLength;
@@ -46,10 +46,10 @@ int main(int argc, char *argv[])
 	// Reproducir la pista
 
 	int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength); // SDL_QueueAudio permite enviar la información del WAV directamente al dispositivo
-
+*/
 	//Cargamos la ventana del juego
-	mainWin.h=925;
-	mainWin.w=925;
+	mainWin.h=650;
+	mainWin.w=1000;
 
 	Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
     mainWin.window = SDL_CreateWindow("HeavyWork",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,mainWin.w,mainWin.h,0);
@@ -85,11 +85,11 @@ int main(int argc, char *argv[])
         switch(stage)
         {
         case 0:
-            running=false;
+            stage=menu(mainWin,tex,&personaje, stage, sonido);
             break;
 
         case 1:
-            stage=menu(mainWin,tex,&personaje);
+            running=false;
             break;
 
         case 2:

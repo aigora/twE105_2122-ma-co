@@ -394,12 +394,15 @@
 
 1649752732 ated upstream
 
-1650440184 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
+1650797916 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
+	<stdbool.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
+	"Game.h"
+	"Menu.h"
 
 1650303170 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
@@ -1666,5 +1669,101 @@
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	"Laberinto.h"
+	"Utilities.h"
+
+1650625888 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.c
+	<stdio.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Game.h"
+	"Player.h"
+	"Utilities.h"
+	"Laberinto.h"
+
+1650625888 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.h
+	<stdio.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Utilities.h"
+	"Laberinto.h"
+
+1650625888 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\utilities.h
+	<stdio.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+
+1650625888 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\laberinto.h
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
+	<time.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	"Utilities.h"
+
+1650625888 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.h
+	<stdio.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Utilities.h"
+
+1650797781 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\menu.h
+	<stdio.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Utilities.h"
+
+1650625888 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\laberinto.c
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
+	<time.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	"Laberinto.h"
+	"Utilities.h"
+
+1650797781 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\menu.c
+	<stdio.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Menu.h"
+	"Utilities.h"
+
+1650625888 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.c
+	<stdio.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Player.h"
+	"Utilities.h"
+
+1650625888 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\utilities.c
+	<stdio.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
