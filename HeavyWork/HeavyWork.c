@@ -13,13 +13,15 @@
 
 int main(int argc, char *argv[])
 {
-
+    int p;
     bool running=true;
     int stage = 1;  //Indica en que fase del flowchart estamos
-    int sonido = 0; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
+    int sonido; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
     int personaje = 1; //Indica el personaje seleccionado, por defecto el stickman
     Window mainWin;
     Textures tex;
+
+
 
     // Se inicializa SDL, con todos los subsistemas y se comprueba si da error
     if(SDL_Init(SDL_INIT_EVERYTHING)!=0)
@@ -90,7 +92,7 @@ int main(int argc, char *argv[])
             running=false;
             break;
         case 1:
-            stage=menu(mainWin,tex,personaje, stage, sonido);
+            stage=menu(mainWin,tex,personaje, stage, &p, sonido);
             break;
         case 2:
             stage=game(mainWin,tex,personaje);

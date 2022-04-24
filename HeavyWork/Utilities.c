@@ -54,3 +54,16 @@ void renderFondo(Window window, SDL_Texture* tex)
 {
     SDL_RenderCopy(window.renderer, tex, NULL, NULL);
 }
+
+void imprimirImagen(Window window, SDL_Texture* tex)
+{
+    SDL_RenderClear(window.renderer);
+    SDL_RenderCopy(window.renderer, tex, NULL, NULL);
+    SDL_RenderPresent(window.renderer);
+}
+
+int Cerrax (SDL_Event event)
+{
+    if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
+                        return 0;
+}
