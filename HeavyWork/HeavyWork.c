@@ -85,16 +85,15 @@ int main(int argc, char *argv[])
         switch(stage)
         {
         case 0:
-            stage=menu(mainWin,tex,&personaje, stage, sonido);
+            stage=menu(mainWin,tex,personaje, stage, sonido);
             break;
-
+        case 2:
+            stage=game(mainWin,tex,personaje);
+            break;
         case 1:
             running=false;
             break;
 
-        case 2:
-            stage=game(mainWin,tex,personaje);
-            break;
         }
     }
 

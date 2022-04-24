@@ -8,7 +8,7 @@
 #include "Utilities.h"
 #define SPEED 300//velocidad en pixeles por segundo
 
-int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
+int menu(Window window, Textures tex, int personaje, int stage, int sonido)
 {
     SDL_Event event; //Creamos una variable de tipo evento
     // Para cargar un archivo de audio, el formato reconocido por la librería básica de SDL es WAV. El clip de audio es cargado:
@@ -104,15 +104,14 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                 {
                     if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                         {
-                            stage=1;
-                            SDL_DestroyTexture(texture);
+                            return 1;
                         }
 
                     if(mouse_x < 450 && mouse_y > 420 && mouse_x > 120 && mouse_y < 500)
                     {
                         if(event.type==SDL_MOUSEBUTTONUP) //JUGAR
                         {
-                            stage=2;
+                            stage = 2;
                             SDL_DestroyTexture(texture);
                         }
                     }
@@ -120,7 +119,7 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                     {
                         if(event.type==SDL_MOUSEBUTTONUP) //SCORES
                         {
-                            stage=3;
+                            stage = 3;
                             SDL_DestroyTexture(texture);
                         }
                     }
@@ -130,12 +129,12 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                         {
                             if (sonido == 1)
                             {
-                            stage=4;
+                            stage = 4;
                             SDL_DestroyTexture(texture);
                             }
                             if (sonido == 0)
                             {
-                            stage=5;
+                            stage = 5;
                             SDL_DestroyTexture(texture);
                             }
                         }
@@ -144,7 +143,7 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                     {
                          if(event.type==SDL_MOUSEBUTTONUP) //SALIR
                         {
-                            stage=1;
+                            return 1;
                             SDL_DestroyTexture(texture);
                         }
                     }
@@ -163,9 +162,9 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                     SDL_RenderPresent(window.renderer);
                     SDL_Delay(2000);
                     SDL_DestroyTexture(texture);
+                    return 2;
 
-
-                    while(stage==2){
+                    /*while(stage==2){
 
                         buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
@@ -175,7 +174,7 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                             {
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                                 {
-                                    stage=1;
+                                    return 1;
                                     SDL_DestroyTexture(texture);
                                 }
 
@@ -261,7 +260,7 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                                 }
                             }
 
-                            //Se inicia en el centro de la pantalla
+                            //Se inicia en el centro de la pantalla*/
 
             break;
         case 3://SCORES
@@ -281,7 +280,7 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                             {
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                                 {
-                                    stage=1;
+                                    return 1;
                                     SDL_DestroyTexture(texture);
                                 }
                             }
@@ -306,7 +305,7 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                             {
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana con la cruceta
                                     {
-                                        stage=1;
+                                        return 1;
                                         SDL_DestroyTexture(texture);
                                     }
 
@@ -365,7 +364,7 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                             {
                                 if(event.type==SDL_QUIT) //Permite salir de la ventana con la cruceta
                                     {
-                                        stage=1;
+                                        return 1;
                                         SDL_DestroyTexture(texture);
                                     }
 
@@ -445,7 +444,7 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                                 {
                                     if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                                     {
-                                        stage=1;
+                                        return 1;
                                         SDL_DestroyTexture(texture);
                                     }
                                     if ( mouse_x > 130 && mouse_x < 315 && mouse_y > 275 && mouse_y < 520)
@@ -525,7 +524,7 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
                                 {
                                     if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                                     {
-                                        stage=1;
+                                        return 1;
                                         SDL_DestroyTexture(texture);
                                     }
                                 }
@@ -534,4 +533,5 @@ int menu(Window window, Textures tex, int *personaje, int stage, int sonido)
             break;
     }
     }
+}
 }
