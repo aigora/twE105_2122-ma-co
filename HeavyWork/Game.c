@@ -11,6 +11,11 @@
 
 int game(Window window, Textures tex, int personaje)
 {
+    SDL_RenderClear(window.renderer);
+    SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
+    SDL_RenderPresent(window.renderer);
+    SDL_Delay(2000);
+
     bool update=true;
     SDL_Event event;
     M_Lab m_Lab;
@@ -59,7 +64,7 @@ int game(Window window, Textures tex, int personaje)
         while(SDL_PollEvent(&event))
         {
             if(event.type==SDL_QUIT)
-                return 0;
+                return 1;
         }
 
         SDL_Delay(1000/60);

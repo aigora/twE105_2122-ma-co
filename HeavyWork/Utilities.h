@@ -48,6 +48,7 @@ typedef struct
     SDL_Texture* wall;
     SDL_Texture* fondo;
     SDL_Texture* player;
+    SDL_Texture* prox;
 
 } Textures; //Estructura de las texturas
 
