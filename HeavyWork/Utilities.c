@@ -65,5 +65,5 @@ void imprimirImagen(Window window, SDL_Texture* tex)
 int Cerrax (SDL_Event event)
 {
     if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
-                        return 0;
+    return 0;
 }

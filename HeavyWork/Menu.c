@@ -8,7 +8,7 @@
 #include "Utilities.h"
 #define SPEED 300//velocidad en pixeles por segundo
 
-int menu(Window window, Textures tex, int personaje, int stage, int *p, int sonido)
+int menu(Window window, Textures tex, int personaje, int stage, int sonido)
 {
     SDL_Event event; //Creamos una variable de tipo evento
     int mouse_x, mouse_y;
@@ -59,7 +59,8 @@ int menu(Window window, Textures tex, int personaje, int stage, int *p, int soni
 
                 while(SDL_PollEvent(&event))
                 {
-                  return cierre = Cerrax (event);
+                    if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
+                        return 0;
                     if(event.type==SDL_MOUSEBUTTONUP)
                     {
                         if(mouse_x < 450 && mouse_y > 420 && mouse_x > 120 && mouse_y < 500) //JUGAR
@@ -127,13 +128,11 @@ int menu(Window window, Textures tex, int personaje, int stage, int *p, int soni
                             if (sonido == 1)
                             {
                                 sonido=0;
-                                *p = 0;
                                 SDL_PauseAudioDevice(deviceId, 0);
                             }
                             else
                             {
                                 sonido=1;
-                                *p = 1;
                                 SDL_PauseAudioDevice(deviceId, 1);
                             }
                         }

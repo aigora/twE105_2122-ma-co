@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
             running=false;
             break;
         case 1:
-            stage=menu(mainWin,tex,personaje, stage, &p, sonido);
+            stage=menu(mainWin,tex,personaje, stage, sonido);
             break;
         case 2:
             stage=game(mainWin,tex,personaje);

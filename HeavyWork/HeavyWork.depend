@@ -404,7 +404,7 @@
 	"Game.h"
 	"Menu.h"
 
-1650808131 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
+1650867315 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1792,7 +1792,7 @@
 	"Utilities.h"
 	"Laberinto.h"
 
-1650804002 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
+1650817157 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1838,7 +1838,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1650737632 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
+1650817157 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1847,7 +1847,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1650807134 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.h
+1650867315 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1856,7 +1856,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1650801887 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
+1650867532 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
