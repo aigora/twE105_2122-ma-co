@@ -8,8 +8,9 @@
 #include "Utilities.h"
 #define SPEED 300//velocidad en pixeles por segundo
 
-int menu(Window window, Textures tex, int personaje, int stage, int sonido)
+int menu(Window window, Textures tex, int *personaje, int sonido)
 {
+    int stage=1;
     SDL_Event event; //Creamos una variable de tipo evento
     int mouse_x, mouse_y;
     int buttons;
@@ -45,13 +46,12 @@ int menu(Window window, Textures tex, int personaje, int stage, int sonido)
             SDL_PauseAudioDevice(deviceId, 1);
         }
 
-        //Bucle del juego
+        //Bucle del menú
 
         switch (stage)
         {
         case 1:
         {
-            //Bucle del juego
             while(stage==1)
             {
                 imprimirImagen(window, tex.menu);
@@ -65,6 +65,9 @@ int menu(Window window, Textures tex, int personaje, int stage, int sonido)
                     {
                         if(mouse_x < 450 && mouse_y > 420 && mouse_x > 120 && mouse_y < 500) //JUGAR
                         {
+                            SDL_RenderClear(window.renderer);
+                            SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
+                            SDL_RenderPresent(window.renderer);
                             return 2;
                         }
                         if(mouse_x > 550 && mouse_y > 420 && mouse_x < 880 && mouse_y < 500) //SCORES
@@ -155,11 +158,11 @@ int menu(Window window, Textures tex, int personaje, int stage, int sonido)
         case 6://PERSONAJE
             while(stage==6)
             {
-                if (personaje == 1)
+                if (*personaje == 1)
                 {
                     imprimirImagen(window, tex.personaje1);
                 }
-                else if (personaje == 2)
+                else if (*personaje == 2)
                 {
                     imprimirImagen(window, tex.personaje2);
                 }
@@ -180,15 +183,15 @@ int menu(Window window, Textures tex, int personaje, int stage, int sonido)
                     {
                         if ( mouse_x > 130 && mouse_x < 315 && mouse_y > 275 && mouse_y < 520)
                         {
-                            personaje = 1;
+                            *personaje = 1;
                         }
                         if ( mouse_x > 390 && mouse_x < 570 && mouse_y > 275 && mouse_y < 520)
                         {
-                            personaje = 2;
+                            *personaje = 2;
                         }
                         if ( mouse_x > 640 && mouse_x < 820 && mouse_y > 275 && mouse_y < 520)
                         {
-                            personaje = 3;
+                            *personaje = 3;
                         }
 
                         if ( mouse_x > 830 && mouse_x < 980 && mouse_y > 575 && mouse_y < 600)

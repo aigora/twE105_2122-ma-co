@@ -8,4 +8,4 @@
 #include "Utilities.h"
 #define SPEED 300//velocidad en pixeles por segundo
 
-int menu(Window window, Textures tex, int personaje, int stage, int sonido);
+int menu(Window window, Textures tex, int *personaje, int sonido);

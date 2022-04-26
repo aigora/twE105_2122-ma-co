@@ -14,62 +14,89 @@ int game(Window window, Textures tex, int personaje)
     SDL_RenderClear(window.renderer);
     SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
     SDL_RenderPresent(window.renderer);
-    SDL_Delay(2000);
 
-    bool update=true;
+    bool update,game=true, A_pres=false;
     SDL_Event event;
     M_Lab m_Lab;
     m_Lab.w=4;
     m_Lab.h=4;
     Entity *muros;
-    int nmuros=0, i, j;
-    m_Lab.esq = malloc((m_Lab.w*2+1)*(m_Lab.h*2+1)*sizeof(char));
-    if(m_Lab.esq==NULL)
-    {
-        printf("Error reservando memoria");
-        exit(-1);
-    }
-    generarLaberinto(m_Lab);
-    //DebugLab(m_Lab);
+    int nmuros=0, i, j, stage=1;
 
-    for(j=1;j<m_Lab.h*2;j++)
+    while(game)
     {
-        for(i=1;i<m_Lab.w*2;i++)
+        switch(stage)
         {
-            if((((i%2!=0)&&(j%2==0))||(j%2!=0))&&(m_Lab.esq[i+j*(2*m_Lab.w+1)]=='#'))
-                nmuros++;
+        case 0:
+            return 0;
+
+        case 1: //Generación del laberinto
+
+            m_Lab.esq = malloc((m_Lab.w*2+1)*(m_Lab.h*2+1)*sizeof(char));
+            if(m_Lab.esq==NULL)
+            {
+                printf("Error reservando memoria");
+                exit(-1);
+            }
+            generarLaberinto(m_Lab);
+            DebugLab(m_Lab);
+
+            nmuros=0;
+            for(j=1;j<m_Lab.h*2;j++)
+            {
+                for(i=1;i<m_Lab.w*2;i++)
+                {
+                    if((((i%2!=0)&&(j%2==0))||(j%2!=0))&&(m_Lab.esq[i+j*(2*m_Lab.w+1)]=='#'))
+                        nmuros++;
+                }
+            }
+            nmuros+=4;
+
+            muros=malloc((nmuros+4)*sizeof(Entity));
+            drawLab(window,m_Lab,muros,tex.wall);
+            free(m_Lab.esq);
+            stage=2;
+            update=true;
+
+            break;
+
+        case 2: //Bucle del juego
+
+            while(update)
+            {
+                SDL_RenderClear(window.renderer);
+
+                //Set positions etc
+
+                //Dibujar la imagen
+                renderFondo(window,tex.fondo);
+                renderLab(window,muros,nmuros);
+                SDL_RenderPresent(window.renderer);
+
+                //Updates
+                while(SDL_PollEvent(&event))
+                {
+                    if(event.type==SDL_QUIT)
+                    {
+                        free(muros);
+                        return 0;
+                    }
+                    if(event.type==SDL_KEYDOWN)
+                    {
+                        if(event.key.keysym.scancode==SDL_SCANCODE_A && A_pres==false)
+                        {
+                            stage=1;
+                            update=false;
+                            A_pres=true;
+                        }
+                    }
+                }
+
+                SDL_Delay(1000/60);
+            }
+            free(muros);
+
         }
     }
-
-    nmuros+=4;
-
-    muros=malloc((nmuros+4)*sizeof(Entity));
-
-    drawLab(window,m_Lab,muros,tex.wall);
-
-    free(m_Lab.esq);
-
-    while(update)
-    {
-        SDL_RenderClear(window.renderer);
-
-        //Set positions etc
-
-        //Dibujar la imagen
-        renderFondo(window,tex.fondo);
-        renderLab(window,muros,nmuros);
-        SDL_RenderPresent(window.renderer);
-
-        //Updates
-        while(SDL_PollEvent(&event))
-        {
-            if(event.type==SDL_QUIT)
-                return 1;
-        }
-
-        SDL_Delay(1000/60);
-    }
-
-    free(muros);
 
 }
