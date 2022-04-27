@@ -84,9 +84,11 @@ int game(Window window, Textures tex, player_t* player)
                     {
                         case SDL_QUIT:
                             update = false;
+                            return 0; //Provisional hasta ver qué falla
                             break;
 
                         case SDL_KEYDOWN:
+
                             switch (event.key.keysym.scancode)
                             {
                                 case SDL_SCANCODE_W:
@@ -116,8 +118,7 @@ int game(Window window, Textures tex, player_t* player)
             free(muros);
         }
     }
-    return 0;
-
+return 0;
 }
 void mov_bot (int x,Vector2f vect)
 {//Añadir la particularidad de que si hay muros no lo haga
