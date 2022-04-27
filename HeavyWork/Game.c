@@ -116,6 +116,7 @@ int game(Window window, Textures tex, player_t* player)
             free(muros);
         }
     }
+    return 0;
 
 }
 void mov_bot (int x,Vector2f vect)
