@@ -405,7 +405,7 @@
 	"Game.h"
 	"Menu.h"
 
-1650867315 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
+1651078575 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1775,7 +1775,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1650808759 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
+1651078028 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1797,9 +1797,11 @@
 	"Utilities.h"
 	"Laberinto.h"
 
-1650817157 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
+1651078575 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
+	<stdlib.h>
+	<time.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
@@ -1814,8 +1816,9 @@
 	<SDL2/SDL_image.h>
 	"Utilities.h"
 
-1650737632 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
+1651079170 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
+	<math.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
@@ -1843,7 +1846,18 @@
 	"Player.h"
 	"Utilities.h"
 
-1650817157 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
+1651078029 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
+	<time.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Utilities.h"
+
+1651050775 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1852,16 +1866,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1650867315 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.h
-	<stdio.h>
-	<stdbool.h>
-	<SDL2/SDL.h>
-	<SDL2/SDL_timer.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_audio.h>
-	"Utilities.h"
-
-1650867532 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
+1651079046 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>

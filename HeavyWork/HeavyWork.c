@@ -82,6 +82,7 @@ int main(int argc, char *argv[])
 	tex.wall = loadTexture("resources/Negro.jpg",mainWin);
     tex.fondo = loadTexture("resources/parquetg.jpg",mainWin);
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
+    tex.png = loadTexture("resources/PruebaPNG.png",mainWin);
 
 
 	while(running)
