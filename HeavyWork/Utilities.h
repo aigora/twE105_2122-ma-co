@@ -1,6 +1,8 @@
 #pragma once
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h> //Preguntar si su uso está permitido
+#include <time.h> //Preguntar si su uso está permitido
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
@@ -49,6 +51,7 @@ typedef struct
     SDL_Texture* fondo;
     SDL_Texture* player;
     SDL_Texture* prox;
+    SDL_Texture* png;
 
 } Textures; //Estructura de las texturas
 
@@ -66,4 +69,4 @@ SDL_Texture* loadTexture(const char p_file[], Window window);
 void renderLab(Window window, Entity muros[], int nmuros);
 void renderFondo(Window window, SDL_Texture* tex);
 void imprimirImagen(Window window, SDL_Texture* tex);
-
+int num_al (void);

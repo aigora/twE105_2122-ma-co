@@ -118,3 +118,22 @@ int game(Window window, Textures tex, player_t* player)
     }
 
 }
+void mov_bot (int x,Vector2f vect)
+{//Añadir la particularidad de que si hay muros no lo haga
+
+    switch (x)
+    {
+        case 1://Derecha
+    vect.x+=1;
+    break;
+case 2://Izquierda
+    vect.x-=1;
+    break;
+case 3://Arriba
+    vect.y+=1;
+    break;
+case 4://Abajo
+    vect.y-=1;
+    break;
+    }
+}
