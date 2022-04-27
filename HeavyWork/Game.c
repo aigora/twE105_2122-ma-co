@@ -9,7 +9,9 @@
 #include "Utilities.h"
 #include "Laberinto.h"
 
-int game(Window window, Textures tex, int personaje)
+#define VELOCITY 25
+
+int game(Window window, Textures tex, player_t* player)
 {
     SDL_RenderClear(window.renderer);
     SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
@@ -30,7 +32,7 @@ int game(Window window, Textures tex, int personaje)
         case 0:
             return 0;
 
-        case 1: //Generación del laberinto
+        case 1: //Generaciï¿½n del laberinto
 
             m_Lab.esq = malloc((m_Lab.w*2+1)*(m_Lab.h*2+1)*sizeof(char));
             if(m_Lab.esq==NULL)
@@ -71,22 +73,47 @@ int game(Window window, Textures tex, int personaje)
                 //Dibujar la imagen
                 renderFondo(window,tex.fondo);
                 renderLab(window,muros,nmuros);
+                renderPlayer(player, window);
+
                 SDL_RenderPresent(window.renderer);
 
                 //Updates
                 while(SDL_PollEvent(&event))
                 {
-                    if(event.type==SDL_QUIT)
+                    switch(event.type)
                     {
-                        free(muros);
-                        return 0;
+                        case SDL_QUIT:
+                            update = false;
+                            break;
+
+                        case SDL_KEYDOWN:
+                            switch (event.key.keysym.scancode)
+                            {
+                                case SDL_SCANCODE_W:
+                                case SDL_SCANCODE_UP:
+                                    player->texture.y -= VELOCITY;
+                                    break;
+                                case SDL_SCANCODE_A:
+                                case SDL_SCANCODE_LEFT:
+                                    player->texture.x -= VELOCITY;
+                                    break;
+                                case SDL_SCANCODE_S:
+                                case SDL_SCANCODE_DOWN:
+                                    player->texture.y += VELOCITY;
+                                    break;
+                                case SDL_SCANCODE_D:
+                                case SDL_SCANCODE_RIGHT:
+                                    player->texture.x += VELOCITY;
+                                    break;
+                            }
+                            break;
                     }
                 }
 
-                SDL_Delay(1000/60); //Hay que cambiarlo por un temporizador de ejecución
+                SDL_Delay(1000/60); //Hay que cambiarlo por un temporizador de ejecuciï¿½n
             }
-            free(muros);
 
+            free(muros);
         }
     }
 

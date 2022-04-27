@@ -6,6 +6,7 @@
 #include <SDL2/SDL_audio.h>
 #include "Game.h"
 #include "Menu.h"
+#include "Player.h"
 
 //velocidad en pixeles por segundo
 #define SPEED 300
@@ -30,7 +31,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 /*
-    // Para cargar un archivo de audio, el formato reconocido por la librería básica de SDL es WAV. El clip de audio es cargado:
+    // Para cargar un archivo de audio, el formato reconocido por la librerï¿½a bï¿½sica de SDL es WAV. El clip de audio es cargado:
     SDL_AudioSpec wavSpec;
 	Uint32 wavLength;
 	Uint8 *wavBuffer;
@@ -41,13 +42,13 @@ int main(int argc, char *argv[])
 
 	SDL_AudioDeviceID deviceId = SDL_OpenAudioDevice(NULL, 0, &wavSpec, NULL, 0);
 
-	// Los argumentos del comando anterior hacen referencia, el primero al nombre del dispositivo que lo reproducirá (al pasarle NULL
-    // tomará el dispositivo predeterminado, el segundo es relevante en relación a dispositivos de grabación, no de reproducción, el
+	// Los argumentos del comando anterior hacen referencia, el primero al nombre del dispositivo que lo reproducirï¿½ (al pasarle NULL
+    // tomarï¿½ el dispositivo predeterminado, el segundo es relevante en relaciï¿½n a dispositivos de grabaciï¿½n, no de reproducciï¿½n, el
     // tercero representa el formato del audio de entrada, el cuarto el formato del audio de salida y el quinto se refiere a escenarios avanzados de audio
 
 	// Reproducir la pista
 
-	int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength); // SDL_QueueAudio permite enviar la información del WAV directamente al dispositivo
+	int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength); // SDL_QueueAudio permite enviar la informaciï¿½n del WAV directamente al dispositivo
 */
 	//Cargamos la ventana del juego
 	mainWin.h=650;
@@ -83,6 +84,9 @@ int main(int argc, char *argv[])
     tex.fondo = loadTexture("resources/Gris.jpg",mainWin);
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
 
+    // Instanciar jugador
+    Vector2i pos = { 50, 100 };
+    player_t* player = newPlayer(pos);
 
 	while(running)
     {
@@ -95,7 +99,7 @@ int main(int argc, char *argv[])
             stage=menu(mainWin,tex,&personaje, sonido);
             break;
         case 2:
-            stage=game(mainWin,tex,personaje);
+            stage=game(mainWin,tex,player);
             break;
 
         }
@@ -107,7 +111,7 @@ int main(int argc, char *argv[])
     return 0;
 
     /*SDL_Event event; //Creamos una variable de tipo evento
-    int SDL_CaptureMouse(SDL_bool enabled);//Relativo a la detección del ratón
+    int SDL_CaptureMouse(SDL_bool enabled);//Relativo a la detecciï¿½n del ratï¿½n
 
 
     SDL_Rect dest;
@@ -123,13 +127,13 @@ int main(int argc, char *argv[])
     float x_vel = 0;
     float y_vel = 0;
 
-    //Recoge el proceso que se está realizando
+    //Recoge el proceso que se estï¿½ realizando
     int up = 0;
     int down = 0;
     int left = 0;
     int right = 0;
 
-    //Establece 1 cuando se presiona el bottón de cerrado
+    //Establece 1 cuando se presiona el bottï¿½n de cerrado
     int close_requested = 0;
 
 
@@ -140,7 +144,7 @@ int main(int argc, char *argv[])
     {
         if(sonido==1)
         {
-        SDL_PauseAudioDevice(deviceId, 0); //Pausa la grabación de audio al darle un número != 0
+        SDL_PauseAudioDevice(deviceId, 0); //Pausa la grabaciï¿½n de audio al darle un nï¿½mero != 0
         }
         if(sonido==0)
         {
@@ -238,7 +242,7 @@ int main(int argc, char *argv[])
         case 2://JUGAR
                 while(stage==2){
                     SDL_Surface* surface = IMG_Load("resources/carga.jpg"); //GENERA UNA NUEVA IMAGEN
-                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                     SDL_FreeSurface(surface);
                     SDL_RenderCopy(rend, texture, NULL, NULL);//Genera un efecto de carga
                     SDL_RenderPresent(rend);
@@ -260,7 +264,7 @@ int main(int argc, char *argv[])
                                     SDL_DestroyTexture(texture);
                                 }
 
-                                //bucle de animación
+                                //bucle de animaciï¿½n
                                     switch(event.type) //Escanea los eventos
                                     {
 
@@ -323,11 +327,11 @@ int main(int argc, char *argv[])
                                 if(left && !right) x_vel = -SPEED;
                                 if (right && !left) x_vel = SPEED;
 
-                                //actualización de posiciones
+                                //actualizaciï¿½n de posiciones
                                 x_pos += x_vel / 60;
                                 y_pos += y_vel / 60;
 
-                                //detención al impactar con los bordes
+                                //detenciï¿½n al impactar con los bordes
                                 if(x_pos <= 0) x_pos = 0;
                                 if(y_pos <= 0) y_pos = 0;
                                 if(x_pos>=1000 - dest.w) x_pos = 1000 - dest.w;
@@ -348,7 +352,7 @@ int main(int argc, char *argv[])
         case 3://SCORES
                 while(stage==3){
                     SDL_Surface*surface = IMG_Load("resources/Proximamente.jpg");
-                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                     SDL_FreeSurface(surface);
 
                      while(stage==3){
@@ -373,7 +377,7 @@ int main(int argc, char *argv[])
         case 4://AJUSTES
                 while(stage==4){
                     SDL_Surface*surface = IMG_Load("resources/ajustes.jpg");
-                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                     SDL_FreeSurface(surface);
 
                     while(stage==4){
@@ -432,7 +436,7 @@ int main(int argc, char *argv[])
 
                 while(stage==5){
                     SDL_Surface*surface = IMG_Load("resources/ajustessinson.jpg");
-                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                     SDL_FreeSurface(surface);
 
                     while(stage==5){
@@ -491,7 +495,7 @@ int main(int argc, char *argv[])
             case 6://PERSONAJE
                     while(stage==6){
                             SDL_Surface*surface = IMG_Load("resources/personaje1.jpg");
-                            SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                            SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                             SDL_FreeSurface(surface);
                             SDL_DestroyTexture(texture);
 
@@ -499,21 +503,21 @@ int main(int argc, char *argv[])
                                 if (personaje == 1)
                         {
                             SDL_Surface*surface = IMG_Load("resources/personaje1.jpg");
-                            SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                            SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                             SDL_FreeSurface(surface);
 
                         }
                     if (personaje == 2)
                     {
                         SDL_Surface*surface = IMG_Load("resources/personaje2.jpg");
-                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                         SDL_FreeSurface(surface);
 
                     }
                     else
                         {
                             SDL_Surface*surface = IMG_Load("resources/personaje3.jpg");
-                            SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                            SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                             SDL_FreeSurface(surface);
                         }
                             buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
@@ -536,7 +540,7 @@ int main(int argc, char *argv[])
                                         personaje = 1;
                                         SDL_DestroyTexture(texture);
                                         SDL_Surface*surface = IMG_Load("resources/personaje1.jpg");
-                                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                                         SDL_FreeSurface(surface);
                                         //Dibuja la imagen
                                         SDL_RenderCopy(rend, texture, NULL, NULL);
@@ -551,7 +555,7 @@ int main(int argc, char *argv[])
                                         personaje = 2;
                                         SDL_DestroyTexture(texture);
                                         SDL_Surface*surface = IMG_Load("resources/personaje2.jpg");
-                                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                                         SDL_FreeSurface(surface);
                                         //Dibuja la imagen
                                         SDL_RenderCopy(rend, texture, NULL, NULL);
@@ -565,7 +569,7 @@ int main(int argc, char *argv[])
                                         personaje = 3;
                                         SDL_DestroyTexture(texture);
                                         SDL_Surface*surface = IMG_Load("resources/personaje3.jpg");
-                                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                                         SDL_FreeSurface(surface);
                                         //Dibuja la imagen
                                         SDL_RenderCopy(rend, texture, NULL, NULL);
@@ -592,7 +596,7 @@ int main(int argc, char *argv[])
             case 7://USUARIO
                     while(stage==7){
                         SDL_Surface*surface = IMG_Load("resources/Proximamente.jpg");
-                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //AÑADE LA NUEVA IMAGEN
+                        SDL_Texture* texture = SDL_CreateTextureFromSurface(rend, surface); //Aï¿½ADE LA NUEVA IMAGEN
                         SDL_FreeSurface(surface);
 
                         while(stage==7){

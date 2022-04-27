@@ -7,5 +7,6 @@
 #include <SDL2/SDL_audio.h>
 #include "Utilities.h"
 #include "Laberinto.h"
+#include "Player.h"
 
-int game(Window window, Textures tex, int personaje);
+int game(Window window, Textures tex, player_t* player);
