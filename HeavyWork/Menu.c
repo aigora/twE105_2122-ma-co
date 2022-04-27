@@ -35,7 +35,7 @@ int menu(Window window, Textures tex, int *personaje, int sonido)
     int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength); // SDL_QueueAudio permite enviar la información del WAV directamente al dispositivo
     int SDL_CaptureMouse(SDL_bool enabled);//Relativo a la detección del ratón
 
-    while(stage!=0)
+    while(true)
     {
         if(sonido==0)
         {
@@ -105,6 +105,7 @@ int menu(Window window, Textures tex, int *personaje, int sonido)
 
             break;
         case 4://AJUSTES
+            imprimirImagen(window,tex.ajustes);
             while(stage==4)
             {
                 buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse

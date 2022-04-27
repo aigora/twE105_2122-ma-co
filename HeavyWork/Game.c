@@ -39,7 +39,7 @@ int game(Window window, Textures tex, int personaje)
                 exit(-1);
             }
             generarLaberinto(m_Lab);
-            DebugLab(m_Lab);
+            //DebugLab(m_Lab);
 
             nmuros=0;
             for(j=1;j<m_Lab.h*2;j++)
@@ -81,18 +81,9 @@ int game(Window window, Textures tex, int personaje)
                         free(muros);
                         return 0;
                     }
-                    if(event.type==SDL_KEYDOWN)
-                    {
-                        if(event.key.keysym.scancode==SDL_SCANCODE_A && A_pres==false)
-                        {
-                            stage=1;
-                            update=false;
-                            A_pres=true;
-                        }
-                    }
                 }
 
-                SDL_Delay(1000/60);
+                SDL_Delay(1000/60); //Hay que cambiarlo por un temporizador de ejecución
             }
             free(muros);
 
