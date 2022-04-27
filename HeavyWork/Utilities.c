@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h> //Preguntar si su uso está permitido
+#include <time.h> //Preguntar si su uso está permitido
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
@@ -66,4 +68,11 @@ int Cerrax (SDL_Event event)
 {
     if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
     return 0;
+}
+int num_al (void) //Para el movimiento aleatorio de los bots
+{
+    int n;
+    srand(time(NULL)); //Genera semilla aleatoria a partir de la hora del equipo
+    n = rand() % 4 + 1;//Numero aleatorio entero entre 1 y 4
+    return n;
 }

@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     int p;
     bool running=true;
     int stage = 1;  //Indica en que fase del flowchart estamos
-    int sonido; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
+    int sonido = 0; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
     int personaje = 1; //Indica el personaje seleccionado, por defecto el stickman
     Window mainWin;
     Textures tex;
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 	tex.personaje2=loadTexture("Resources/personaje2.jpg",mainWin);
 	tex.personaje3=loadTexture("Resources/personaje3.jpg",mainWin);
 	tex.wall = loadTexture("resources/Negro.jpg",mainWin);
-    tex.fondo = loadTexture("resources/Gris.jpg",mainWin);
+    tex.fondo = loadTexture("resources/parquetg.jpg",mainWin);
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
 
 
