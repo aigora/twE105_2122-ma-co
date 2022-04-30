@@ -52,6 +52,8 @@ typedef struct
     SDL_Texture* player;
     SDL_Texture* prox;
     SDL_Texture* png;
+    SDL_Texture* bot;
+
 
 } Textures; //Estructura de las texturas
 

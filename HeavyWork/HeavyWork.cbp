@@ -36,6 +36,10 @@
 			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="Enemies.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Enemies.h" />
 		<Unit filename="Game.c">
 			<Option compilerVar="CC" />
 		</Unit>

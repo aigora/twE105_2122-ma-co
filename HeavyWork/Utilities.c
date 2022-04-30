@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h> //Preguntar si su uso está permitido
@@ -7,6 +8,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_audio.h>
 #include "Utilities.h"
+
 
 void pushStack(Stack stack[],int x, int y)
 {
@@ -74,12 +76,5 @@ int num_al (void) //Para el movimiento aleatorio de los bots
     int n;
     srand(time(NULL)); //Genera semilla aleatoria a partir de la hora del equipo
     n = rand() % 4 + 1;//Numero aleatorio entero entre 1 y 4
-    return n;
-}
-int num_botsplanta (int nivel) //Para la generación de tantos mobs por platna, mayor conforme el nivel crece
-{
-    int n;
-    srand(time(NULL)); //Genera semilla aleatoria a partir de la hora del equipo
-    n = rand() % (nivel + 3) + 1;//Numero aleatorio entre 1 y nivel más 3, se comienza en el nivel 1
     return n;
 }

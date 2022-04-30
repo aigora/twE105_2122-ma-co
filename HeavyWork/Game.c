@@ -11,7 +11,7 @@
 
 #define VELOCITY 25
 
-int game(Window window, Textures tex, player_t* player)
+int game(Window window, Textures tex, player_t* player, player_t* bot)
 {
     SDL_RenderClear(window.renderer);
     SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
@@ -74,6 +74,7 @@ int game(Window window, Textures tex, player_t* player)
                 renderFondo(window,tex.fondo);
                 renderLab(window,muros,nmuros);
                 renderPlayer(player, window);
+                renderBot(bot,window);
 
                 SDL_RenderPresent(window.renderer);
 
@@ -84,7 +85,7 @@ int game(Window window, Textures tex, player_t* player)
                     {
                         case SDL_QUIT:
                             update = false;
-                            return 0; //Provisional hasta ver qué falla
+                            game = false;
                             break;
 
                         case SDL_KEYDOWN:
@@ -110,6 +111,7 @@ int game(Window window, Textures tex, player_t* player)
                             }
                             break;
                     }
+                    mov_bot (num_al(), bot);
                 }
 
                 SDL_Delay(1000/60); //Hay que cambiarlo por un temporizador de ejecuciï¿½n
@@ -119,23 +121,4 @@ int game(Window window, Textures tex, player_t* player)
         }
     }
 return 0;
-}
-void mov_bot (int x,Vector2f vect)
-{//Añadir la particularidad de que si hay muros no lo haga
-
-    switch (x)
-    {
-        case 1://Derecha
-    vect.x+=1;
-    break;
-case 2://Izquierda
-    vect.x-=1;
-    break;
-case 3://Arriba
-    vect.y+=1;
-    break;
-case 4://Abajo
-    vect.y-=1;
-    break;
-    }
 }

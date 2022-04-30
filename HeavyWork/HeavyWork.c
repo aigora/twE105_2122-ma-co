@@ -73,6 +73,7 @@ int main(int argc, char *argv[])
 
 	//Cargamos las texturas que vayamos a usar
 	tex.player=loadTexture("Resources/prueba.jpg",mainWin);
+    tex.bot=loadTexture("Resources/personajes.jpg",mainWin);
 	tex.menu=loadTexture("Resources/Menuinicio2.jpg",mainWin);
 	tex.ajustes=loadTexture("Resources/ajustes.jpg",mainWin);
 	tex.ajusnos=loadTexture("Resources/ajustessinson.jpg",mainWin);
@@ -88,6 +89,9 @@ int main(int argc, char *argv[])
     // Instanciar jugador
     Vector2i pos = { 50, 100 };
     player_t* player = newPlayer(pos);
+    //Iniciar un bot
+    Vector2i coordbot = {100,100};
+    bot_struct* bot = bot_creator(coordbot);
 
 	while(running)
     {
@@ -100,9 +104,8 @@ int main(int argc, char *argv[])
             stage=menu(mainWin,tex,&personaje, sonido);
             break;
         case 2:
-            stage=game(mainWin,tex,player);
+            stage=game(mainWin,tex,player,bot);
             break;
-
         }
     }
 
