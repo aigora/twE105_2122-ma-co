@@ -28,10 +28,10 @@ void renderPlayer(player_t* player, Window window) {
     SDL_RenderFillRect(window.renderer, &player->texture);
 }
 
-float modist(Vector2f v1, Vector2f v2)//V1=player v2=IA
+float dist(player_t* v1, bot_struct* v2)//V1=player v2=IA
 {
     float mod;
-    mod = sqrt(pow((v2.x - v1.x),2) + pow((v2.y - v1.y), 2));
+    mod = sqrt(pow((v2->texture.x - v1->texture.x),2) + pow((v2->texture.y - v1->texture.y), 2));
     return mod;
 
 }

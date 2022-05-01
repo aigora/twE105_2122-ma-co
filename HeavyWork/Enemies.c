@@ -10,7 +10,7 @@
 
 #define WIDTH  25
 #define HEIGHT 25
-#define VELOCITY 3
+#define VELOCITY 2
 
 
 bot_struct* bot_creator(Vector2i initial_position)

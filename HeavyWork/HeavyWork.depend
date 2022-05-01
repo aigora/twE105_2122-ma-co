@@ -406,7 +406,7 @@
 	"Menu.h"
 	"Player.h"
 
-1651084436 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
+1651417325 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1788,7 +1788,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1651078028 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
+1651418782 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1800,7 +1800,7 @@
 	"Utilities.h"
 	"Laberinto.h"
 
-1651084436 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.h
+1651416290 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1810,8 +1810,9 @@
 	"Utilities.h"
 	"Laberinto.h"
 	"Player.h"
+	"Enemies.h"
 
-1651078575 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
+1651416290 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1830,7 +1831,7 @@
 	<SDL2/SDL_image.h>
 	"Utilities.h"
 
-1651084667 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
+1651418957 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1839,6 +1840,7 @@
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
+	"Enemies.h"
 	<SDL2/SDL_rect.h>
 	"Utilities.h"
 
@@ -1852,7 +1854,7 @@
 	"Laberinto.h"
 	"Utilities.h"
 
-1651084735 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
+1651418312 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1863,7 +1865,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1651078029 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
+1651416290 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1893,7 +1895,7 @@
 	"Menu.h"
 	"Utilities.h"
 
-1650808759 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\game.c
+1651418084 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -2289,7 +2291,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1650737632 c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\game.h
+1651416290 c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -2298,10 +2300,14 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 	"Laberinto.h"
+	"Player.h"
+	"Enemies.h"
 
-1650804002 c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\utilities.h
+1651416290 c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
+	<stdlib.h>
+	<time.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
@@ -2316,13 +2322,17 @@
 	<SDL2/SDL_image.h>
 	"Utilities.h"
 
-1650737632 c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\player.h
+1651418312 c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\player.h
 	<stdio.h>
+	<math.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
+	"Utilities.h"
+	"Enemies.h"
+	<SDL2/SDL_rect.h>
 	"Utilities.h"
 
 1650737632 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\laberinto.c
@@ -2335,8 +2345,9 @@
 	"Laberinto.h"
 	"Utilities.h"
 
-1650737632 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\player.c
+1651418312 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\player.c
 	<stdio.h>
+	<math.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
@@ -2345,16 +2356,18 @@
 	"Player.h"
 	"Utilities.h"
 
-1650737632 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\utilities.c
+1651416290 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
+	<stdlib.h>
+	<time.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1650808131 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\heavywork.c
+1651417325 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -2363,8 +2376,9 @@
 	<SDL2/SDL_audio.h>
 	"Game.h"
 	"Menu.h"
+	"Player.h"
 
-1650807134 c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\menu.h
+1651050775 c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\menu.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -2373,7 +2387,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1650808389 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\menu.c
+1651079046 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -2969,5 +2983,51 @@
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
 	"Enemies.h"
+	"Utilities.h"
+
+1651416825 source:c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\enemies.c
+	<stdio.h>
+	<math.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Enemies.h"
+	"Utilities.h"
+
+1651416289 c:\users\ivano\onedrive\documentos\universidad\informatica\trabajo\heavywork\enemies.h
+	<stdio.h>
+	<math.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Utilities.h"
+	<SDL2/SDL_rect.h>
+	"Utilities.h"
+
+1651416825 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
+	<stdio.h>
+	<math.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Enemies.h"
+	"Utilities.h"
+
+1651416289 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
+	<stdio.h>
+	<math.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Utilities.h"
+	<SDL2/SDL_rect.h>
 	"Utilities.h"
 

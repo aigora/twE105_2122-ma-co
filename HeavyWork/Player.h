@@ -7,6 +7,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_audio.h>
 #include "Utilities.h"
+#include "Enemies.h"
 
 #include <SDL2/SDL_rect.h>
 
@@ -21,5 +22,5 @@ player_t* newPlayer(Vector2i initial_position);
 
 void renderPlayer(player_t* player, Window window);
 
-float modist();
+float dist(player_t* v1, bot_struct* v2);
 

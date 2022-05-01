@@ -111,9 +111,15 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                             }
                             break;
                     }
-                    mov_bot (num_al(), bot);
+
                 }
 
+                mov_bot (num_al(), bot);
+                if(dist(player, bot)<=100)
+                {
+                    update = false;
+                    game = false;
+                }
                 SDL_Delay(1000/60); //Hay que cambiarlo por un temporizador de ejecuci�n
             }
 
