@@ -17,10 +17,18 @@ typedef struct {
     SDL_Rect texture;
 } player_t;
 
-player_t* newPlayer(Vector2i initial_position);
+typedef enum {
+    MOVEMENT_UP = 0,
+    MOVEMENT_DOWN,
+    MOVEMENT_RIGHT,
+    MOVEMENT_LEFT,
+} player_direction_t;
 
+player_t* newPlayer(Vector2i initial_position);
 
 void renderPlayer(player_t* player, Window window);
 
-float dist(player_t* v1, bot_struct* v2);
+void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction);
+
+float playerDist(player_t* v1, bot_struct* v2);
 

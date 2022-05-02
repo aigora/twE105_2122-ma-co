@@ -9,8 +9,6 @@
 #include "Utilities.h"
 #include "Laberinto.h"
 
-#define VELOCITY 25
-
 int game(Window window, Textures tex, player_t* player, player_t* bot)
 {
     SDL_RenderClear(window.renderer);
@@ -94,19 +92,19 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                             {
                                 case SDL_SCANCODE_W:
                                 case SDL_SCANCODE_UP:
-                                    player->texture.y -= VELOCITY;
+                                    movePlayer(player, muros, nmuros, MOVEMENT_UP);
                                     break;
                                 case SDL_SCANCODE_A:
                                 case SDL_SCANCODE_LEFT:
-                                    player->texture.x -= VELOCITY;
+                                    movePlayer(player, muros, nmuros, MOVEMENT_LEFT);
                                     break;
                                 case SDL_SCANCODE_S:
                                 case SDL_SCANCODE_DOWN:
-                                    player->texture.y += VELOCITY;
+                                    movePlayer(player, muros, nmuros, MOVEMENT_DOWN);
                                     break;
                                 case SDL_SCANCODE_D:
                                 case SDL_SCANCODE_RIGHT:
-                                    player->texture.x += VELOCITY;
+                                    movePlayer(player, muros, nmuros, MOVEMENT_RIGHT);
                                     break;
                             }
                             break;
@@ -115,7 +113,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 }
 
                 mov_bot (num_al(), bot);
-                if(dist(player, bot)<=100)
+                if(playerDist(player, bot)<=100)
                 {
                     update = false;
                     game = false;
