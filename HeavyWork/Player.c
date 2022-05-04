@@ -13,18 +13,6 @@
 
 #define VELOCITY 5
 
-// Devuelve TRUE si el punto `point` estÃ¡ dentro del rectÃ¡ngulo `rectangle`.
-static bool is_inside(Vector2i point, SDL_Rect rectangle) {
-    if ((point.y >= rectangle.y) && (point.y <= (rectangle.y + rectangle.h))) {
-        if ((point.x >= rectangle.x) && (point.x <= (rectangle.x + rectangle.w))) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-//CRea la imagen del jugador con sus dimensiones y su posicion inicial
 player_t* newPlayer(Vector2i initial_position) {
     player_t* player = (player_t*) malloc(sizeof(player_t));
 
@@ -41,49 +29,43 @@ void renderPlayer(player_t* player, Window window) {
     SDL_RenderFillRect(window.renderer, &player->texture);
 }
 
-//Permite el movimiento del jugador, teniendo en cuenta los muros
-//
+/// Mover el jugador en la direccion indicada.
 void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction) {
-    bool can_move = true;
-    Vector2i target;
-    switch (direction) {
+   //el bucle recorre desde 0 hasta la velocidad y se avanza o no para cada interacción del bucle
+    for (int i = 0; i < VELOCITY; ++i) {
+        int new_x = player->texture.x;
+        int new_y = player->texture.y;
+        switch (direction) {
         case MOVEMENT_UP:
-            target.x = player->texture.x;
-            target.y = player->texture.y - VELOCITY;
+            new_y--;
             break;
-
         case MOVEMENT_DOWN:
-            target.x = player->texture.x;
-            target.y = player->texture.y + VELOCITY;
+            new_y++;
             break;
-
         case MOVEMENT_RIGHT:
-            target.x = player->texture.x + VELOCITY;
-            target.y = player->texture.y;
+            new_x++;
             break;
-
         case MOVEMENT_LEFT:
-            target.x = player->texture.x - VELOCITY;
-            target.y = player->texture.y;
-            break;
-    }
-    //Recorremos los muros del laberinto
-    for (int i = 0; i < num_muros; ++i) {
-        Vector2i bottom_right;
-        //Dtermina el contorno del jugador
-        bottom_right.x = target.x + player->texture.w;
-        bottom_right.y = target.y + player->texture.h;
-        //Si el contorno del jugador entra en contacto con un muro, no se puede mover
-        if (is_inside(target, muros[i].dst) || is_inside(bottom_right, muros[i].dst)) {
-            can_move = false;
-            break;
-        }
-    }
+            new_x--;
+            break;}
 
-    //Si el jugador no entra en contacto con los muros se puede mover
-    if (can_move) {
-        player->texture.x = target.x;
-        player->texture.y = target.y;
+            //Creación de un nuevo rectangulo desplazado sobre el que se detectan las colisiones
+        SDL_Rect target;
+        target.x = new_x;
+        target.y = new_y;
+        target.w = player->texture.w;
+        target.h = player->texture.h;
+
+        // Si el rectangulo NO intersecciona con los muros, se avanza
+        for (int j = 0; j < num_muros; ++j) {
+            SDL_Rect aux;
+            if (SDL_IntersectRect(&muros[j].dst, &target, &aux) == SDL_TRUE) {
+                return;
+            }
+        }
+
+        player->texture.x = new_x;
+        player->texture.y = new_y;
     }
 }
 
@@ -93,3 +75,4 @@ float playerDist(player_t* v1, bot_struct* v2)//V1=player v2=IA
     mod = sqrt(pow((v2->texture.x - v1->texture.x),2) + pow((v2->texture.y - v1->texture.y), 2));
     return mod;
 }
+
