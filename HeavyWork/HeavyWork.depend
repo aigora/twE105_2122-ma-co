@@ -1788,7 +1788,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1651418782 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
+1651732095 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1812,7 +1812,7 @@
 	"Player.h"
 	"Enemies.h"
 
-1651416290 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
+1651732040 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1831,7 +1831,7 @@
 	<SDL2/SDL_image.h>
 	"Utilities.h"
 
-1651418957 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
+1651732049 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1854,7 +1854,7 @@
 	"Laberinto.h"
 	"Utilities.h"
 
-1651418312 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
+1651731530 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1865,7 +1865,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1651416290 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
+1651561854 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3052,7 +3052,7 @@
 	<SDL2/SDL_rect.h>
 	"Utilities.h"
 
-1651416825 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
+1651732256 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3062,8 +3062,9 @@
 	<SDL2/SDL_audio.h>
 	"Enemies.h"
 	"Utilities.h"
+	"Player.h"
 
-1651416289 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
+1651732040 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3074,6 +3075,7 @@
 	"Utilities.h"
 	<SDL2/SDL_rect.h>
 	"Utilities.h"
+	"Player.h"
 
 1651419702 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>

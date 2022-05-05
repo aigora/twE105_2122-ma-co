@@ -112,12 +112,18 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
                 }
 
-                mov_bot (num_al(), bot);
                 if(playerDist(player, bot)<=100)
                 {
                     update = false;
                     game = false;
                 }
+
+                if(playerDist(player, bot)<=300)
+                {
+                    perseguir(player, bot);
+                }
+                else
+                    mov_bot (num_al(), bot);
                 SDL_Delay(1000/60); //Hay que cambiarlo por un temporizador de ejecuci�n
             }
 

@@ -13,9 +13,6 @@
 
 #include "Utilities.h"
 
-typedef struct {
-    SDL_Rect texture;
-} player_t;
 
 typedef enum {
     MOVEMENT_UP = 0,

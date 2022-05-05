@@ -65,6 +65,15 @@ typedef struct
 
 } Entity; //Estructura de los muros
 
+typedef struct
+{
+    SDL_Rect texture;
+} bot_struct;
+
+typedef struct {
+    SDL_Rect texture;
+} player_t;
+
 void pushStack(Stack stack[],int x, int y);
 int popStack(Stack stack[]);
 SDL_Texture* loadTexture(const char p_file[], Window window);

@@ -7,6 +7,7 @@
 #include <SDL2/SDL_audio.h>
 #include "Enemies.h"
 #include "Utilities.h"
+#include "Player.h"
 
 #define WIDTH  25
 #define HEIGHT 25
@@ -51,5 +52,26 @@ void mov_bot (int num_aleat, bot_struct* bot)
             bot->texture.y -= VELOCITY;
     break;
     }
+}
+
+void perseguir(player_t* v1, bot_struct* v2)
+{
+    Vector2f vect;
+    vect.x=v2->texture.x - v1->texture.x;
+    vect.y=v2->texture.y - v1->texture.y;
+
+    vect.x=vect.x/playerDist(v1, v2);
+    vect.y=vect.y/playerDist(v1, v2);
+    printf("%f  ", vect.x);
+    if(vect.x>0)
+    v2->texture.x-= VELOCITY/2;
+    if(vect.x<0)
+    v2->texture.x+= VELOCITY/2;
+    if(vect.y>0)
+    v2->texture.y-= VELOCITY/2;
+    if(vect.y<0)
+    v2->texture.y+= VELOCITY/2;
+
+
 }
 
