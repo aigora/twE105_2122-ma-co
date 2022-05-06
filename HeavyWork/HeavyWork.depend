@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1651050969 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
+1651650329 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -8,6 +8,7 @@
 	<SDL2/SDL_audio.h>
 	"Game.h"
 	"Menu.h"
+	"Player.h"
 
 1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -1605,24 +1606,28 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1650871988 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.h
+1651836860 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
+	<stdlib.h>
+	<time.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
 
-1650871988 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.c
+1651650329 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
+	<stdlib.h>
+	<time.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1651054956 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.c
+1651838361 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1634,7 +1639,7 @@
 	"Utilities.h"
 	"Laberinto.h"
 
-1650566359 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.h
+1651650329 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1643,18 +1648,25 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 	"Laberinto.h"
+	"Player.h"
+	"Enemies.h"
 
-1650557736 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.h
+1651837991 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
+	<math.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
+	"Enemies.h"
+	<SDL2/SDL_rect.h>
+	"Utilities.h"
 
-1650557736 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.c
+1651838082 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
+	<math.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
@@ -3122,4 +3134,29 @@
 	"Utilities.h"
 	<SDL2/SDL_rect.h>
 	"Utilities.h"
+
+1651838361 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\enemies.h
+	<stdio.h>
+	<math.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Utilities.h"
+	<SDL2/SDL_rect.h>
+	"Utilities.h"
+	"Player.h"
+
+1651836860 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\enemies.c
+	<stdio.h>
+	<math.h>
+	<stdbool.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Enemies.h"
+	"Utilities.h"
+	"Player.h"
 

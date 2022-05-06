@@ -34,27 +34,27 @@ void renderBot(bot_struct* bot, Window window)
 }
 
 
-void mov_bot (int num_aleat, bot_struct* bot)
+void mov_bot (int num_aleat, bot_struct* bot,float delta_time)
 {//Añadir la particularidad de que si hay muros no lo haga
     switch (num_aleat)
     {
         case 1://Derecha
-            bot->texture.x += VELOCITY;
+            bot->texture.x += (int) VELOCITY*delta_time;
     break;
         case 2://Izquierda
-            bot->texture.x -= VELOCITY;
+            bot->texture.x -= (int) VELOCITY*delta_time;
 
     break;
         case 3://Arriba
-            bot->texture.y += VELOCITY;
+            bot->texture.y += (int) VELOCITY*delta_time;
     break;
         case 4://Abajo
-            bot->texture.y -= VELOCITY;
+            bot->texture.y -= (int) VELOCITY*delta_time;
     break;
     }
 }
 
-void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros)
+void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,float delta_time)
 {
     Vector2f vect;
     int new_x = v2->texture.x;
@@ -69,13 +69,13 @@ void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros)
     //printf("%f  ", vect.x);
 
     if(vect.x>0)
-    new_x-= VELOCITY/2;
+    new_x-= (int) VELOCITY*delta_time/2;
     if(vect.x<0)
-    new_x+= VELOCITY/2;
+    new_x+= (int) VELOCITY*delta_time/2;
     if(vect.y>0)
-    new_y-= VELOCITY/2;
+    new_y-= (int) VELOCITY*delta_time/2;
     if(vect.y<0)
-    new_y+= VELOCITY/2;
+    new_y+= (int) VELOCITY*delta_time/2;
 
     SDL_Rect target;
     target.x = new_x;

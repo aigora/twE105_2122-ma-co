@@ -11,7 +11,7 @@
 #define WIDTH  40
 #define HEIGHT 40
 
-#define VELOCITY 5
+#define VELOCITY 200
 
 player_t* newPlayer(Vector2i initial_position) {
     player_t* player = (player_t*) malloc(sizeof(player_t));
@@ -30,9 +30,9 @@ void renderPlayer(player_t* player, Window window) {
 }
 
 /// Mover el jugador en la direccion indicada.
-void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction) {
+void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction, float delta_time) {
    //el bucle recorre desde 0 hasta la velocidad y se avanza o no para cada interacción del bucle
-    for (int i = 0; i < VELOCITY; ++i) {
+    for (int i = 0; i < (int)VELOCITY*delta_time; ++i) {
         int new_x = player->texture.x;
         int new_y = player->texture.y;
         switch (direction) {

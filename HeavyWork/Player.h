@@ -25,7 +25,7 @@ player_t* newPlayer(Vector2i initial_position);
 
 void renderPlayer(player_t* player, Window window);
 
-void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction);
+void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction,float delta_time);
 
 float playerDist(player_t* v1, bot_struct* v2);
 

@@ -21,7 +21,8 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     m_Lab.w=4;
     m_Lab.h=4;
     Entity *muros;
-    int nmuros=0, i, j, stage=1;
+    int nmuros=0, i, j, stage=1, last_time;
+    float delta_time;
 
     while(game)
     {
@@ -62,6 +63,8 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
         case 2: //Bucle del juego
 
+            last_time=SDL_GetTicks();
+
             while(update)
             {
                 SDL_RenderClear(window.renderer);
@@ -92,19 +95,19 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                             {
                                 case SDL_SCANCODE_W:
                                 case SDL_SCANCODE_UP:
-                                    movePlayer(player, muros, nmuros, MOVEMENT_UP);
+                                    movePlayer(player, muros, nmuros, MOVEMENT_UP,delta_time);
                                     break;
                                 case SDL_SCANCODE_A:
                                 case SDL_SCANCODE_LEFT:
-                                    movePlayer(player, muros, nmuros, MOVEMENT_LEFT);
+                                    movePlayer(player, muros, nmuros, MOVEMENT_LEFT,delta_time);
                                     break;
                                 case SDL_SCANCODE_S:
                                 case SDL_SCANCODE_DOWN:
-                                    movePlayer(player, muros, nmuros, MOVEMENT_DOWN);
+                                    movePlayer(player, muros, nmuros, MOVEMENT_DOWN,delta_time);
                                     break;
                                 case SDL_SCANCODE_D:
                                 case SDL_SCANCODE_RIGHT:
-                                    movePlayer(player, muros, nmuros, MOVEMENT_RIGHT);
+                                    movePlayer(player, muros, nmuros, MOVEMENT_RIGHT,delta_time);
                                     break;
                             }
                             break;
@@ -120,11 +123,15 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
                 if(playerDist(player, bot)<=300)
                 {
-                    perseguir(player, bot, muros, nmuros);
+                    perseguir(player, bot, muros, nmuros, delta_time);
                 }
                 else
-                    mov_bot (num_al(), bot);
-                SDL_Delay(1000/60); //Hay que cambiarlo por un temporizador de ejecuci�n
+                    mov_bot (num_al(), bot, delta_time);
+
+
+                printf("%.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                delta_time=(SDL_GetTicks()-last_time)/1000.0;
+                last_time=SDL_GetTicks();
             }
 
             free(muros);
