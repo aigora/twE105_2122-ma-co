@@ -16,4 +16,4 @@
 bot_struct* bot_creator(Vector2i initial_position);
 void renderBot(bot_struct* bot, Window window);
 void mov_bot (int num_aleat, bot_struct* bot);
-void perseguir(player_t* v1, bot_struct* v2);
+void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros);

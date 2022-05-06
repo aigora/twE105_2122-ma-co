@@ -112,7 +112,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
                 }
 
-                if(playerDist(player, bot)<=100)
+                if(playerDist(player, bot)<=70)
                 {
                     update = false;
                     game = false;
@@ -120,7 +120,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
                 if(playerDist(player, bot)<=300)
                 {
-                    perseguir(player, bot);
+                    perseguir(player, bot, muros, nmuros);
                 }
                 else
                     mov_bot (num_al(), bot);

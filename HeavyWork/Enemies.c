@@ -54,24 +54,45 @@ void mov_bot (int num_aleat, bot_struct* bot)
     }
 }
 
-void perseguir(player_t* v1, bot_struct* v2)
+void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros)
 {
     Vector2f vect;
-    vect.x=v2->texture.x - v1->texture.x;
-    vect.y=v2->texture.y - v1->texture.y;
+    int new_x = v2->texture.x;
+    int new_y = v2->texture.y;
+
+    vect.x=new_x - v1->texture.x;
+    vect.y=new_y - v1->texture.y;
 
     vect.x=vect.x/playerDist(v1, v2);
     vect.y=vect.y/playerDist(v1, v2);
-    printf("%f  ", vect.x);
-    if(vect.x>0)
-    v2->texture.x-= VELOCITY/2;
-    if(vect.x<0)
-    v2->texture.x+= VELOCITY/2;
-    if(vect.y>0)
-    v2->texture.y-= VELOCITY/2;
-    if(vect.y<0)
-    v2->texture.y+= VELOCITY/2;
 
+    //printf("%f  ", vect.x);
+
+    if(vect.x>0)
+    new_x-= VELOCITY/2;
+    if(vect.x<0)
+    new_x+= VELOCITY/2;
+    if(vect.y>0)
+    new_y-= VELOCITY/2;
+    if(vect.y<0)
+    new_y+= VELOCITY/2;
+
+    SDL_Rect target;
+    target.x = new_x;
+    target.y = new_y;
+    target.w = v2->texture.w;
+    target.h = v2->texture.h;
+
+    // Si el rectangulo NO intersecciona con los muros, se avanza
+    for (int j = 0; j < num_muros; ++j) {
+        SDL_Rect aux;
+        if (SDL_IntersectRect(&muros[j].dst, &target, &aux) == SDL_TRUE) {
+            return;
+        }
+    }
+
+    v2->texture.x = new_x;
+    v2->texture.y = new_y;
 
 }
 
