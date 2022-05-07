@@ -11,7 +11,7 @@
 #define WIDTH  40
 #define HEIGHT 40
 
-#define VELOCITY 200
+#define VELOCITY 10
 
 player_t* newPlayer(Vector2i initial_position) {
     player_t* player = (player_t*) malloc(sizeof(player_t));
@@ -37,16 +37,16 @@ void movePlayer(player_t* player, const Entity* muros, int num_muros, player_dir
         int new_y = player->texture.y;
         switch (direction) {
         case MOVEMENT_UP:
-            new_y--;
+            new_y-= VELOCITY;
             break;
         case MOVEMENT_DOWN:
-            new_y++;
+            new_y+= VELOCITY;
             break;
         case MOVEMENT_RIGHT:
-            new_x++;
+            new_x+= VELOCITY;
             break;
         case MOVEMENT_LEFT:
-            new_x--;
+            new_x-= VELOCITY;
             break;}
 
             //Creación de un nuevo rectangulo desplazado sobre el que se detectan las colisiones
@@ -72,7 +72,7 @@ void movePlayer(player_t* player, const Entity* muros, int num_muros, player_dir
 float playerDist(player_t* v1, bot_struct* v2)//V1=player v2=IA
 {
     float mod;
-    mod = sqrt(pow((v2->texture.x - v1->texture.x),2) + pow((v2->texture.y - v1->texture.y), 2));
+    mod = sqrt(pow((v2->texture.x+12 - (v1->texture.x+20)),2) + pow((v2->texture.y+12 - (v1->texture.y+20)), 2));
     return mod;
 }
 

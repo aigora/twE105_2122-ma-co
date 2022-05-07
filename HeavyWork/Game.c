@@ -127,7 +127,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 else
                     printf("No\n");*/
 
-                if((playerDist(player, bot)<=30)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
+                if((playerDist(player, bot)<=25)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
                 {
                     update = false;
                     game = false;

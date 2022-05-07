@@ -1801,7 +1801,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1651762573 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
+1651949765 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1825,7 +1825,7 @@
 	"Player.h"
 	"Enemies.h"
 
-1651732040 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
+1651947204 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1844,7 +1844,7 @@
 	<SDL2/SDL_image.h>
 	"Utilities.h"
 
-1651732049 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
+1651947204 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1867,7 +1867,7 @@
 	"Laberinto.h"
 	"Utilities.h"
 
-1651731530 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
+1651949765 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1878,7 +1878,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1651561854 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
+1651947204 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3067,7 +3067,7 @@
 	<SDL2/SDL_rect.h>
 	"Utilities.h"
 
-1651762573 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
+1651949765 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3079,7 +3079,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1651762179 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
+1651947204 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
