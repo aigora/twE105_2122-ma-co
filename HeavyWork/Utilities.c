@@ -78,3 +78,4 @@ int num_al (void) //Para el movimiento aleatorio de los bots
     n = rand() % 4 + 1;//Numero aleatorio entero entre 1 y 4
     return n;
 }
+

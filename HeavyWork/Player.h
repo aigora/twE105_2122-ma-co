@@ -29,3 +29,6 @@ void movePlayer(player_t* player, const Entity* muros, int num_muros, player_dir
 
 float playerDist(player_t* v1, bot_struct* v2);
 
+int invisibility(float time);
+
+

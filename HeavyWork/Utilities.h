@@ -74,6 +74,8 @@ typedef struct {
     SDL_Rect texture;
 } player_t;
 
+
+
 void pushStack(Stack stack[],int x, int y);
 int popStack(Stack stack[]);
 SDL_Texture* loadTexture(const char p_file[], Window window);
@@ -81,3 +83,4 @@ void renderLab(Window window, Entity muros[], int nmuros);
 void renderFondo(Window window, SDL_Texture* tex);
 void imprimirImagen(Window window, SDL_Texture* tex);
 int num_al (void);
+

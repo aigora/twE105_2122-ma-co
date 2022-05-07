@@ -34,28 +34,30 @@ void renderBot(bot_struct* bot, Window window)
 }
 
 
-void mov_bot (int num_aleat, bot_struct* bot,float delta_time)
+void mov_bot (int num_aleat, player_t* player, bot_struct* bot, const Entity* muros, int num_muros,float delta_time)
 {//Añadir la particularidad de que si hay muros no lo haga
-    switch (num_aleat)
+    Vector2f vect;
+    switch(num_aleat)
     {
         case 1://Derecha
             bot->texture.x += (int) VELOCITY*delta_time;
-    break;
+            break;
         case 2://Izquierda
             bot->texture.x -= (int) VELOCITY*delta_time;
-
-    break;
+            break;
         case 3://Arriba
             bot->texture.y += (int) VELOCITY*delta_time;
-    break;
+            break;
         case 4://Abajo
             bot->texture.y -= (int) VELOCITY*delta_time;
-    break;
+            break;
     }
 }
 
-void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,float delta_time)
+void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,float delta_time, int invisibilidad)
 {
+    if(invisibilidad == 0)
+    {
     Vector2f vect;
     int new_x = v2->texture.x;
     int new_y = v2->texture.y;
@@ -69,13 +71,13 @@ void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,
     //printf("%f  ", vect.x);
 
     if(vect.x>0)
-    new_x-= (int) VELOCITY*delta_time/2;
+    new_x-= (int) VELOCITY/2; //Preguntar por el delta_time porque deja de funcionar perseguir
     if(vect.x<0)
-    new_x+= (int) VELOCITY*delta_time/2;
+    new_x+= (int) VELOCITY/2;
     if(vect.y>0)
-    new_y-= (int) VELOCITY*delta_time/2;
+    new_y-= (int) VELOCITY/2;
     if(vect.y<0)
-    new_y+= (int) VELOCITY*delta_time/2;
+    new_y+= (int) VELOCITY/2;
 
     SDL_Rect target;
     target.x = new_x;
@@ -93,6 +95,6 @@ void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,
 
     v2->texture.x = new_x;
     v2->texture.y = new_y;
-
+}
 }
 

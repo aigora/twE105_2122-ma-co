@@ -15,5 +15,5 @@
 
 bot_struct* bot_creator(Vector2i initial_position);
 void renderBot(bot_struct* bot, Window window);
-void mov_bot (int num_aleat, bot_struct* bot,float delta_time);
-void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros, float delta_time);
+void mov_bot (int num_aleat, player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,float delta_time);
+void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,float delta_time, int invisibilidad);

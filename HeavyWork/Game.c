@@ -21,8 +21,8 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     m_Lab.w=4;
     m_Lab.h=4;
     Entity *muros;
-    int nmuros=0, i, j, stage=1, last_time;
-    float delta_time;
+    int nmuros=0, i, j, stage=1, last_time, invisibilidad=0;
+    float delta_time,game_time,t_inicio; //Las dos últimas se utilizan para un contador desde el inicio de juego
 
     while(game)
     {
@@ -64,6 +64,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
         case 2: //Bucle del juego
 
             last_time=SDL_GetTicks();
+            t_inicio = SDL_GetTicks();
 
             while(update)
             {
@@ -115,24 +116,36 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
                 }
 
-                if(playerDist(player, bot)<=70)
+                //Temporizador desde el comienzo del juego, se usa en la invisibilidad
+                game_time = (SDL_GetTicks()-t_inicio)/1000.0;
+                printf("%.2f\n",game_time);
+
+                //Invisibilidad, 1 activada, 0 desactivada
+                invisibilidad = invisibility(game_time);
+                /*if (invisibilidad == 1)
+                    printf("Sí\n");
+                else
+                    printf("No\n");*/
+
+                if((playerDist(player, bot)<=30)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
                 {
                     update = false;
                     game = false;
                 }
 
-                if(playerDist(player, bot)<=300)
+                if((playerDist(player, bot)<=300)&&(invisibilidad == 0))
                 {
-                    perseguir(player, bot, muros, nmuros, delta_time);
+                    perseguir(player, bot, muros, nmuros, delta_time, invisibilidad);
                 }
                 else
-                    mov_bot (num_al(), bot, delta_time);
+                    mov_bot (num_al(), player, bot, muros, nmuros, delta_time);
 
 
-                printf("%.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                //printf("%.2f\n",1000.0/(SDL_GetTicks()-last_time));
                 delta_time=(SDL_GetTicks()-last_time)/1000.0;
                 last_time=SDL_GetTicks();
-            }
+
+}
 
             free(muros);
         }
