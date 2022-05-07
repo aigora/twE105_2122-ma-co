@@ -37,21 +37,40 @@ void renderBot(bot_struct* bot, Window window)
 void mov_bot (int num_aleat, player_t* player, bot_struct* bot, const Entity* muros, int num_muros,float delta_time)
 {//Añadir la particularidad de que si hay muros no lo haga
     Vector2f vect;
+    int new_x = bot->texture.x;
+    int new_y = bot->texture.y;
+
     switch(num_aleat)
     {
         case 1://Derecha
-            bot->texture.x += /*(int)*/ VELOCITY/**delta_time*/;
+            new_x += /*(int)*/ VELOCITY/**delta_time*/;
             break;
         case 2://Izquierda
-            bot->texture.x -= /*(int)*/ VELOCITY/**delta_time*/;
+            new_x -= /*(int)*/ VELOCITY/**delta_time*/;
             break;
         case 3://Arriba
-            bot->texture.y += /*(int)*/ VELOCITY/**delta_time*/;
+            new_y += /*(int)*/ VELOCITY/**delta_time*/;
             break;
         case 4://Abajo
-            bot->texture.y -= /*(int)*/ VELOCITY/**delta_time*/;
+            new_y -= /*(int)*/ VELOCITY/**delta_time*/;
             break;
     }
+    SDL_Rect target;
+    target.x = new_x;
+    target.y = new_y;
+    target.w = bot->texture.w;
+    target.h = bot->texture.h;
+
+    // Si el rectangulo no intersecs con los muros, avanza
+    for (int j = 0; j < num_muros; ++j) {
+        SDL_Rect aux;
+        if (SDL_IntersectRect(&muros[j].dst, &target, &aux) == SDL_TRUE) {
+            return;
+        }
+    }
+
+    bot->texture.x = new_x;
+    bot->texture.y = new_y;
 }
 
 void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,float delta_time, int invisibilidad)
