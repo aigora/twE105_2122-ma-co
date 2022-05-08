@@ -1694,7 +1694,7 @@
 	"Laberinto.h"
 	"Utilities.h"
 
-1651955542 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.c
+1651998475 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1737,7 +1737,7 @@
 	<SDL2/SDL_image.h>
 	"Utilities.h"
 
-1651941376 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.h
+1651998126 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1779,7 +1779,7 @@
 	"Menu.h"
 	"Utilities.h"
 
-1651955542 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.c
+1651998269 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>

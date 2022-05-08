@@ -76,22 +76,32 @@ float playerDist(player_t* v1, bot_struct* v2)//V1=player v2=IA
     return mod;
 }
 
-int invisibility(float time)
+int invisibility(float time, int *aux_invisibilidad, int invisibilidad)
 {
     int t_ent,i;
     t_ent = (int) time;
-       if (((t_ent % 60 == 0)&&(t_ent>0))||((t_ent % 61 == 0)&&(t_ent>0))||((t_ent % 62 == 0)&&(t_ent>0))||((t_ent % 63 == 0)&&(t_ent>0))||((t_ent % 64 == 0)&&(t_ent>0))||((t_ent % 65 == 0)&&(t_ent>0))||((t_ent % 66 == 0)&&(t_ent>0))||((t_ent % 67 == 0)&&(t_ent>0))||((t_ent % 68 == 0)&&(t_ent>0))||((t_ent % 69 == 0)&&(t_ent>0)))
+
+    if(invisibilidad == 0)
     {
-        return 1;
+        if ((t_ent % 60 == 0)&&(t_ent>0))
+    {
+        *aux_invisibilidad = t_ent+10; //Como queremos que dure 10s la invisibilidad, aux_invisibilidad es el tiempo de inicio más 10
+        return 1;//Invisible
     }
     else
+        return 0;
+    }
+    if (invisibilidad == 1)
+    {
+        if (t_ent == *aux_invisibilidad)
         {
             return 0;
         }
-        //La condición del if es completamente momentánea, se ha intentado solucionar con bucle for pero no lo he conseguido. A esperas de
-        //ser cambiada al ocurrírseme una solución
+    else return 1;
+    }
+
 }
 //La función invisibility funciona como booleano, si el tiempo desde el inicio de juego (game_time) es divisible por 60 se activa
-//la invisibilidad. Al hacer la conversión de float a entero, mientras time se encuentre en [n*60,n*70], será divisible y, por
-//tanto, la invisibilidad estará activada (10 segundos de invisibilidad).
+//la invisibilidad. Al hacer la conversión de float a entero, mientras time se encuentre en [n*60,n*70],
+//la invisibilidad estará activada (10 segundos de invisibilidad).
 

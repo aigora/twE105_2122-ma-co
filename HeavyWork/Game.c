@@ -21,7 +21,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     m_Lab.w=4;
     m_Lab.h=4;
     Entity *muros;
-    int nmuros=0, i, j, stage=1, last_time, invisibilidad=0;
+    int nmuros=0, i, j, stage=1, last_time, invisibilidad=0,aux_invisibilidad;
     float delta_time,game_time,t_inicio; //Las dos últimas se utilizan para un contador desde el inicio de juego
 
     while(game)
@@ -121,7 +121,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 printf("%.2f\n",game_time);
 
                 //Invisibilidad, 1 activada, 0 desactivada
-                invisibilidad = invisibility(game_time);
+                invisibilidad = invisibility(game_time, &aux_invisibilidad, invisibilidad);
                 /*if (invisibilidad == 1)
                     printf("Sí\n");
                 else
