@@ -27,7 +27,7 @@ void renderPlayer(player_t* player, Window window);
 
 void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction,float delta_time);
 
-float playerDist(player_t* v1, bot_struct* v2);
+float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros);
 
 int invisibility(float time,int *aux_invisibilidad, int invisibilidad);
 

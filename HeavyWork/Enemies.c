@@ -55,19 +55,8 @@ void mov_bot (int num_aleat, player_t* player, bot_struct* bot, const Entity* mu
             new_y -= /*(int)*/ VELOCITY/**delta_time*/;
             break;
     }
-    SDL_Rect target;
-    target.x = new_x;
-    target.y = new_y;
-    target.w = bot->texture.w;
-    target.h = bot->texture.h;
-
-    // Si el rectangulo no intersecs con los muros, avanza
-    for (int j = 0; j < num_muros; ++j) {
-        SDL_Rect aux;
-        if (SDL_IntersectRect(&muros[j].dst, &target, &aux) == SDL_TRUE) {
-            return;
-        }
-    }
+    if(ComprobarMuros(new_x, new_y, bot, muros, num_muros)==1)
+        return;
 
     bot->texture.x = new_x;
     bot->texture.y = new_y;
@@ -84,32 +73,32 @@ void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,
     vect.x=new_x - (v1->texture.x);
     vect.y=new_y - (v1->texture.y);
 
-    vect.x=vect.x/playerDist(v1, v2); //Puede generarse un problema con el rango debido a
-    vect.y=vect.y/playerDist(v1, v2); //que la función distancia no hace exactamente lo que necesitariamos aquí
-
-    //printf("%f  ", vect.x);
+    //vect.x=vect.x/playerDist(v1, v2, muros, num_muros); //Puede generarse un problema con el rango debido a
+    //vect.y=vect.y/playerDist(v1, v2, muros, num_muros); //que la función distancia no hace exactamente lo que necesitariamos aquí
 
     if(vect.x>0)
-    new_x-= /*(int)*/ VELOCITY; //Preguntar por el delta_time porque deja de funcionar perseguir
+    {
+        new_x-= /*(int)*/ VELOCITY;//Preguntar por el delta_time porque deja de funcionar perseguir
+        if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
+            new_x+=VELOCITY;
+    }
     if(vect.x<0)
-    new_x+= /*(int)*/ VELOCITY;
+    {
+        new_x+= /*(int)*/ VELOCITY;//Preguntar por el delta_time porque deja de funcionar perseguir
+        if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
+            new_x-=VELOCITY;
+    }
     if(vect.y>0)
-    new_y-= /*(int)*/ VELOCITY;
+    {
+        new_y-= /*(int)*/ VELOCITY;//Preguntar por el delta_time porque deja de funcionar perseguir
+        if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
+            new_y+=VELOCITY;
+    }
     if(vect.y<0)
-    new_y+= /*(int)*/ VELOCITY;
-
-    SDL_Rect target;
-    target.x = new_x;
-    target.y = new_y;
-    target.w = v2->texture.w;
-    target.h = v2->texture.h;
-
-    // Si el rectangulo NO intersecciona con los muros, se avanza
-    for (int j = 0; j < num_muros; ++j) {
-        SDL_Rect aux;
-        if (SDL_IntersectRect(&muros[j].dst, &target, &aux) == SDL_TRUE) {
-            return;
-        }
+    {
+        new_y+= /*(int)*/ VELOCITY;//Preguntar por el delta_time porque deja de funcionar perseguir
+        if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
+            new_y-=VELOCITY;
     }
 
     v2->texture.x = new_x;

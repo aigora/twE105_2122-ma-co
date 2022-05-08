@@ -50,29 +50,57 @@ void movePlayer(player_t* player, const Entity* muros, int num_muros, player_dir
             break;}
 
             //Creación de un nuevo rectangulo desplazado sobre el que se detectan las colisiones
-        SDL_Rect target;
-        target.x = new_x;
-        target.y = new_y;
-        target.w = player->texture.w;
-        target.h = player->texture.h;
-
-        // Si el rectangulo NO intersecciona con los muros, se avanza
-        for (int j = 0; j < num_muros; ++j) {
-            SDL_Rect aux;
-            if (SDL_IntersectRect(&muros[j].dst, &target, &aux) == SDL_TRUE) {
-                return;
-            }
-        }
+        if(ComprobarMuros(new_x, new_y, player, muros, num_muros)==1)
+            return;
 
         player->texture.x = new_x;
         player->texture.y = new_y;
     }
 }
 
-float playerDist(player_t* v1, bot_struct* v2)//V1=player v2=IA
+float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros)//V1=player v2=IA
 {
     float mod;
+    int i=0;
     mod = sqrt(pow((v2->texture.x+12 - (v1->texture.x+20)),2) + pow((v2->texture.y+12 - (v1->texture.y+20)), 2));
+
+    Vector2f new1, new2;
+
+    new1.x= v1->texture.x+20;
+    new1.y= v1->texture.y+20;
+    new2.x= v2->texture.x+12;
+    new2.y= v2->texture.y+12;
+
+    Vector2f vect, resum;
+
+    vect.x=new2.x - new1.x;
+    vect.y=new2.y - new1.y;
+    resum.x=new1.x;
+    resum.y=new1.y;
+
+
+    while( i<100)
+    {
+        resum.x+=vect.x/100;
+        resum.y+=vect.y/100;
+        i++;
+
+
+        SDL_Rect target;
+        target.x = resum.x;
+        target.y = resum.y;
+        target.w = 1;
+        target.h = 1;
+
+        // Si el rectangulo NO intersecciona con los muros, se avanza
+        for (int j = 0; j < num_muros; ++j) {
+            SDL_Rect aux;
+            if (SDL_IntersectRect(&muros[j].dst, &target, &aux) == SDL_TRUE) {
+                return 100000;
+            }
+        }
+    }
+
     return mod;
 }
 

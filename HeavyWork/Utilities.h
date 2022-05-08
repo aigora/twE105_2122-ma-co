@@ -83,4 +83,5 @@ void renderLab(Window window, Entity muros[], int nmuros);
 void renderFondo(Window window, SDL_Texture* tex);
 void imprimirImagen(Window window, SDL_Texture* tex);
 int num_al (void);
+int ComprobarMuros(int new_x, int new_y, bot_struct* v2, const Entity* muros, int num_muros);
 
