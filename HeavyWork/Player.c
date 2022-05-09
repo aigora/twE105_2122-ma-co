@@ -13,7 +13,15 @@
 
 #define VELOCITY 10
 
-player_t* newPlayer(Vector2i initial_position) {
+#define VIDA_WIDTH      40
+#define VIDA_HEIGHT     40
+
+#define VIDA_X_INITIAL  25
+#define VIDA_Y          25
+
+#define VIDA_MARGIN     10
+
+player_t* newPlayer(Vector2i initial_position, int num_vidas, SDL_Texture* life_texture) {
     player_t* player = (player_t*) malloc(sizeof(player_t));
 
     player->texture.x = initial_position.x;
@@ -21,17 +29,34 @@ player_t* newPlayer(Vector2i initial_position) {
     player->texture.w = WIDTH;
     player->texture.h = HEIGHT;
 
+    //Conserva la posicion inicial del personaje
+    player->pos_inicial.x = initial_position.x;
+    player->pos_inicial.y = initial_position.y;
+
+    player->num_vidas = num_vidas;
+    player->texture_life = life_texture;
+
     return player;
 }
 
 void renderPlayer(player_t* player, Window window) {
     SDL_SetRenderDrawColor(window.renderer, 0, 0, 180, 255);
     SDL_RenderFillRect(window.renderer, &player->texture);
+
+    // Renderizar el numero de vidas.
+    for (int i = 0; i < player->num_vidas; i++) {
+        SDL_Rect dst;
+        dst.w = VIDA_WIDTH;
+        dst.h = VIDA_HEIGHT;
+        dst.x = VIDA_X_INITIAL + (i * VIDA_MARGIN) + (i * VIDA_WIDTH);
+        dst.y = VIDA_Y;
+        SDL_RenderCopy(window.renderer, player->texture_life, NULL, &dst);
+    }
 }
 
-/// Mover el jugador en la direccion indicada.
+// Mover el jugador en la direccion indicada.
 void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction, float delta_time) {
-   //el bucle recorre desde 0 hasta la velocidad y se avanza o no para cada interacción del bucle
+   //el bucle recorre desde 0 hasta la velocidad y se avanza o no para cada interacciï¿½n del bucle
     for (int i = 0; i < (int)VELOCITY*delta_time; ++i) {
         int new_x = player->texture.x;
         int new_y = player->texture.y;
@@ -49,7 +74,7 @@ void movePlayer(player_t* player, const Entity* muros, int num_muros, player_dir
             new_x-= VELOCITY;
             break;}
 
-            //Creación de un nuevo rectangulo desplazado sobre el que se detectan las colisiones
+        //Creaciï¿½n de un nuevo rectangulo desplazado sobre el que se detectan las colisiones
         if(ComprobarMuros(new_x, new_y, player, muros, num_muros)==1)
             return;
 
@@ -104,6 +129,16 @@ float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muro
     return mod;
 }
 
+//Por cada vez que el jugador se choque con un enemigo pierde una vida y vuelve a la posicion inicial (Hasta que se le acaban las vidas)
+bool playerKill(player_t* player) {
+    player->texture.x = player->pos_inicial.x;
+    player->texture.y = player->pos_inicial.y;
+
+    player->num_vidas--;
+
+    return (player->num_vidas > 0);
+}
+
 int invisibility(float time, int *aux_invisibilidad, int invisibilidad)
 {
     int t_ent,i;
@@ -113,7 +148,7 @@ int invisibility(float time, int *aux_invisibilidad, int invisibilidad)
     {
         if ((t_ent % 60 == 0)&&(t_ent>0))
     {
-        *aux_invisibilidad = t_ent+10; //Como queremos que dure 10s la invisibilidad, aux_invisibilidad es el tiempo de inicio más 10
+        *aux_invisibilidad = t_ent+10; //Como queremos que dure 10s la invisibilidad, aux_invisibilidad es el tiempo de inicio mï¿½s 10
         return 1;//Invisible
     }
     else
@@ -129,7 +164,7 @@ int invisibility(float time, int *aux_invisibilidad, int invisibilidad)
     }
 
 }
-//La función invisibility funciona como booleano, si el tiempo desde el inicio de juego (game_time) es divisible por 60 se activa
-//la invisibilidad. Al hacer la conversión de float a entero, mientras time se encuentre en [n*60,n*70],
-//la invisibilidad estará activada (10 segundos de invisibilidad).
+//La funciï¿½n invisibility funciona como booleano, si el tiempo desde el inicio de juego (game_time) es divisible por 60 se activa
+//la invisibilidad. Al hacer la conversiï¿½n de float a entero, mientras time se encuentre en [n*60,n*70],
+//la invisibilidad estarï¿½ activada (10 segundos de invisibilidad).
 

@@ -1,8 +1,8 @@
 #pragma once
 #include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h> //Preguntar si su uso está permitido
-#include <time.h> //Preguntar si su uso está permitido
+#include <stdlib.h> //Preguntar si su uso estï¿½ permitido
+#include <time.h> //Preguntar si su uso estï¿½ permitido
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
@@ -53,8 +53,7 @@ typedef struct
     SDL_Texture* prox;
     SDL_Texture* png;
     SDL_Texture* bot;
-
-
+    SDL_Texture* vida;
 } Textures; //Estructura de las texturas
 
 typedef struct
@@ -72,9 +71,10 @@ typedef struct
 
 typedef struct {
     SDL_Rect texture;
+    Vector2i pos_inicial;
+    SDL_Texture* texture_life;
+    int num_vidas;
 } player_t;
-
-
 
 void pushStack(Stack stack[],int x, int y);
 int popStack(Stack stack[]);

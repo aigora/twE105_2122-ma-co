@@ -11,6 +11,7 @@
 //velocidad en pixeles por segundo
 #define SPEED 300
 
+#define MAX_VIDAS   3
 
 int main(int argc, char *argv[])
 {
@@ -85,10 +86,11 @@ int main(int argc, char *argv[])
     tex.fondo = loadTexture("resources/parquetg.jpg",mainWin);
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
     tex.png = loadTexture("resources/PruebaPNG.png",mainWin);
+    tex.vida = loadTexture("resources/life.png",mainWin);
 
     // Instanciar jugador
     Vector2i pos = { 50, 100 };
-    player_t* player = newPlayer(pos);
+    player_t* player = newPlayer(pos, MAX_VIDAS, tex.vida);
     //Iniciar un bot
     Vector2i coordbot = {500,300};
     bot_struct* bot = bot_creator(coordbot);

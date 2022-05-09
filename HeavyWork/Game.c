@@ -129,8 +129,12 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
                 if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
                 {
-                    update = false;
-                    game = false;
+                    // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
+                    bool alive = playerKill(player);
+                    if (!alive) {
+                        update = false;
+                        game = false;
+                    }
                 }
 
                 if((playerDist(player, bot, muros, nmuros)<=300)&&(invisibilidad == 0))
@@ -145,9 +149,11 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 delta_time=(SDL_GetTicks()-last_time)/1000.0;
                 last_time=SDL_GetTicks();
 
-}
+            }
 
             free(muros);
+            free(player);
+
         }
     }
 return 0;

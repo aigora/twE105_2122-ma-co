@@ -21,13 +21,15 @@ typedef enum {
     MOVEMENT_LEFT,
 } player_direction_t;
 
-player_t* newPlayer(Vector2i initial_position);
+player_t* newPlayer(Vector2i initial_position, int num_vidas, SDL_Texture* life_texture);
 
 void renderPlayer(player_t* player, Window window);
 
 void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction,float delta_time);
 
 float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros);
+
+bool playerKill(player_t* player);
 
 int invisibility(float time,int *aux_invisibilidad, int invisibilidad);
 
