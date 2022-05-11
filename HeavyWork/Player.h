@@ -33,4 +33,6 @@ bool playerKill(player_t* player);
 
 int invisibility(float time,int *aux_invisibilidad, int invisibilidad);
 
+void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update);
+
 

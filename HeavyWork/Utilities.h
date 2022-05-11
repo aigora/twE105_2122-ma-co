@@ -8,6 +8,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_audio.h>
 
+
 typedef struct
 {
     float x;
@@ -76,6 +77,14 @@ typedef struct {
     int num_vidas;
 } player_t;
 
+typedef struct {
+
+    bool W;
+    bool A;
+    bool S;
+    bool D;
+} key_buttons;
+
 void pushStack(Stack stack[],int x, int y);
 int popStack(Stack stack[]);
 SDL_Texture* loadTexture(const char p_file[], Window window);
@@ -84,4 +93,5 @@ void renderFondo(Window window, SDL_Texture* tex);
 void imprimirImagen(Window window, SDL_Texture* tex);
 int num_al (void);
 int ComprobarMuros(int new_x, int new_y, bot_struct* v2, const Entity* muros, int num_muros);
+
 

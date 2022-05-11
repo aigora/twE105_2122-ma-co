@@ -21,6 +21,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     m_Lab.w=4;
     m_Lab.h=4;
     Entity *muros;
+    key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;
     int nmuros=0, i, j, stage=1, last_time, invisibilidad=0,aux_invisibilidad;
     float delta_time,game_time,t_inicio; //Las dos últimas se utilizan para un contador desde el inicio de juego
 
@@ -77,44 +78,22 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 renderLab(window,muros,nmuros);
                 renderPlayer(player, window);
                 renderBot(bot,window);
+                UpdateKeys(&KEYS, event, &game, &update);
+
 
                 SDL_RenderPresent(window.renderer);
 
-                //Updates
-                while(SDL_PollEvent(&event))
-                {
-                    switch(event.type)
-                    {
-                        case SDL_QUIT:
-                            update = false;
-                            game = false;
-                            break;
 
-                        case SDL_KEYDOWN:
+                if(KEYS.W==true)
+                    movePlayer(player, muros, nmuros, MOVEMENT_UP,delta_time);
+                if(KEYS.A==true)
+                    movePlayer(player, muros, nmuros, MOVEMENT_LEFT,delta_time);
+                if(KEYS.S==true)
+                    movePlayer(player, muros, nmuros, MOVEMENT_DOWN,delta_time);
+                if(KEYS.D==true)
+                    movePlayer(player, muros, nmuros, MOVEMENT_RIGHT,delta_time);
 
-                            switch (event.key.keysym.scancode)
-                            {
-                                case SDL_SCANCODE_W:
-                                case SDL_SCANCODE_UP:
-                                    movePlayer(player, muros, nmuros, MOVEMENT_UP,delta_time);
-                                    break;
-                                case SDL_SCANCODE_A:
-                                case SDL_SCANCODE_LEFT:
-                                    movePlayer(player, muros, nmuros, MOVEMENT_LEFT,delta_time);
-                                    break;
-                                case SDL_SCANCODE_S:
-                                case SDL_SCANCODE_DOWN:
-                                    movePlayer(player, muros, nmuros, MOVEMENT_DOWN,delta_time);
-                                    break;
-                                case SDL_SCANCODE_D:
-                                case SDL_SCANCODE_RIGHT:
-                                    movePlayer(player, muros, nmuros, MOVEMENT_RIGHT,delta_time);
-                                    break;
-                            }
-                            break;
-                    }
 
-                }
 
                 //Temporizador desde el comienzo del juego, se usa en la invisibilidad
                 game_time = (SDL_GetTicks()-t_inicio)/1000.0;
