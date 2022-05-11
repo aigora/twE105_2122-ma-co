@@ -68,12 +68,16 @@ typedef struct
 typedef struct
 {
     SDL_Rect texture;
+    Vector2i pos_inicial;
+    SDL_Texture* texture_bot;
+
 } bot_struct;
 
 typedef struct {
     SDL_Rect texture;
     Vector2i pos_inicial;
     SDL_Texture* texture_life;
+    SDL_Texture* texture_player;
     int num_vidas;
 } player_t;
 

@@ -9,12 +9,12 @@
 #include "Utilities.h"
 #include "Player.h"
 
-#define WIDTH  25
-#define HEIGHT 25
+#define WIDTH 70
+#define HEIGHT 70
 #define VELOCITY 1
 
 
-bot_struct* bot_creator(Vector2i initial_position)
+bot_struct* bot_creator(Vector2i initial_position, SDL_Texture* bot_texture)
 {
     bot_struct* bot = (bot_struct*) malloc(sizeof(bot_struct));
 
@@ -24,13 +24,18 @@ bot_struct* bot_creator(Vector2i initial_position)
     bot->texture.w = WIDTH;
     bot->texture.h = HEIGHT;
 
+    bot->texture_bot = bot_texture;
+
     return bot;
 }
 
 void renderBot(bot_struct* bot, Window window)
 {
-    SDL_SetRenderDrawColor(window.renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(window.renderer, 0, 0, 0, 0);
     SDL_RenderFillRect(window.renderer, &bot->texture);
+    SDL_SetRenderDrawBlendMode(window.renderer,  SDL_BLENDMODE_BLEND);
+    SDL_RenderCopy(window.renderer, bot->texture_bot, NULL, &bot->texture);
+
 }
 
 

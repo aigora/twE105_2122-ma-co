@@ -8,8 +8,8 @@
 #include "Player.h"
 #include "Utilities.h"
 
-#define WIDTH  40
-#define HEIGHT 40
+#define WIDTH  70
+#define HEIGHT 70
 
 #define VELOCITY 10
 
@@ -21,7 +21,7 @@
 
 #define VIDA_MARGIN     10
 
-player_t* newPlayer(Vector2i initial_position, int num_vidas, SDL_Texture* life_texture) {
+player_t* newPlayer(Vector2i initial_position, int num_vidas, SDL_Texture* life_texture,SDL_Texture* player_texture) {
     player_t* player = (player_t*) malloc(sizeof(player_t));
 
     player->texture.x = initial_position.x;
@@ -35,13 +35,17 @@ player_t* newPlayer(Vector2i initial_position, int num_vidas, SDL_Texture* life_
 
     player->num_vidas = num_vidas;
     player->texture_life = life_texture;
+    player->texture_player = player_texture;
 
     return player;
 }
 
 void renderPlayer(player_t* player, Window window) {
-    SDL_SetRenderDrawColor(window.renderer, 0, 0, 180, 255);
+    SDL_SetRenderDrawColor(window.renderer, 0, 0, 0, 0);
     SDL_RenderFillRect(window.renderer, &player->texture);
+    SDL_SetRenderDrawBlendMode(window.renderer,  SDL_BLENDMODE_BLEND);
+    SDL_RenderCopy(window.renderer, player->texture_player, NULL, &player->texture);
+
 
     // Renderizar el numero de vidas.
     for (int i = 0; i < player->num_vidas; i++) {
