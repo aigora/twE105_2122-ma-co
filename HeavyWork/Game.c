@@ -140,7 +140,8 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                     mov_bot (num_al(), player, bot, muros, nmuros, delta_time);
 
 
-                //printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                while(SDL_GetTicks()-last_time<1000/60){}
+                printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
                 delta_time=(SDL_GetTicks()-last_time)/1000.0+1;
                 last_time=SDL_GetTicks();
 
