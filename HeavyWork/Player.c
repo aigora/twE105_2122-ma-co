@@ -11,7 +11,7 @@
 #define WIDTH  70
 #define HEIGHT 70
 
-#define VELOCITY 10
+#define VELOCITY 2
 
 #define VIDA_WIDTH      40
 #define VIDA_HEIGHT     40
@@ -60,23 +60,23 @@ void renderPlayer(player_t* player, Window window) {
 
 // Mover el jugador en la direccion indicada.
 void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction, float delta_time) {
-   //el bucle recorre desde 0 hasta la velocidad y se avanza o no para cada interacci�n del bucle
-    for (int i = 0; i < (int)VELOCITY*delta_time; ++i) {
-        int new_x = player->texture.x;
-        int new_y = player->texture.y;
-        switch (direction) {
-        case MOVEMENT_UP:
-            new_y-= VELOCITY;
-            break;
-        case MOVEMENT_DOWN:
-            new_y+= VELOCITY;
-            break;
-        case MOVEMENT_RIGHT:
-            new_x+= VELOCITY;
-            break;
-        case MOVEMENT_LEFT:
-            new_x-= VELOCITY;
-            break;}
+
+    int new_x = player->texture.x;
+    int new_y = player->texture.y;
+    switch (direction) {
+    case MOVEMENT_UP:
+        new_y-= (int)VELOCITY*delta_time;
+        break;
+    case MOVEMENT_DOWN:
+        new_y+= (int)VELOCITY*delta_time;
+        break;
+    case MOVEMENT_RIGHT:
+        new_x+= (int)VELOCITY*delta_time;
+        break;
+    case MOVEMENT_LEFT:
+        new_x-= (int)VELOCITY*delta_time;
+        break;
+            }
 
         //Creaci�n de un nuevo rectangulo desplazado sobre el que se detectan las colisiones
         if(ComprobarMuros(new_x, new_y, player, muros, num_muros)==1)
@@ -84,7 +84,6 @@ void movePlayer(player_t* player, const Entity* muros, int num_muros, player_dir
 
         player->texture.x = new_x;
         player->texture.y = new_y;
-    }
 }
 
 float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros)//V1=player v2=IA
@@ -172,18 +171,10 @@ int invisibility(float time, int *aux_invisibilidad, int invisibilidad)
 //la invisibilidad. Al hacer la conversi�n de float a entero, mientras time se encuentre en [n*60,n*70],
 //la invisibilidad estar� activada (10 segundos de invisibilidad).
 
-
 void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
 {
-                while(SDL_PollEvent(&event))
-                {
                     switch(event.type)
                     {
-                        case SDL_QUIT:
-                            *update = false;
-                            *game = false;
-                            break;
-
                         case SDL_KEYDOWN:
 
                             switch (event.key.keysym.scancode)
@@ -191,7 +182,6 @@ void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
                                 case SDL_SCANCODE_W:
                                 case SDL_SCANCODE_UP:
                                     k->W=true;
-                                    printf("wiii");
                                     break;
                                 case SDL_SCANCODE_A:
                                 case SDL_SCANCODE_LEFT:
@@ -207,29 +197,29 @@ void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
                                     break;
                             }
                             break;
-                                case SDL_KEYUP:
 
-                                switch (event.key.keysym.scancode)
-                                {
-                                    case SDL_SCANCODE_W:
-                                    case SDL_SCANCODE_UP:
-                                        k->W=false;
-                                        break;
-                                    case SDL_SCANCODE_A:
-                                    case SDL_SCANCODE_LEFT:
-                                        k->A=false;
-                                        break;
-                                    case SDL_SCANCODE_S:
-                                    case SDL_SCANCODE_DOWN:
-                                        k->S=false;
-                                        break;
-                                    case SDL_SCANCODE_D:
-                                    case SDL_SCANCODE_RIGHT:
-                                        k->D=false;
-                                        break;
-                                }
-                                break;
+                         case SDL_KEYUP:
+
+                            switch (event.key.keysym.scancode)
+                            {
+                                case SDL_SCANCODE_W:
+                                case SDL_SCANCODE_UP:
+                                    k->W=false;
+                                    break;
+                                case SDL_SCANCODE_A:
+                                case SDL_SCANCODE_LEFT:
+                                    k->A=false;
+                                    break;
+                                case SDL_SCANCODE_S:
+                                case SDL_SCANCODE_DOWN:
+                                    k->S=false;
+                                    break;
+                                case SDL_SCANCODE_D:
+                                case SDL_SCANCODE_RIGHT:
+                                    k->D=false;
+                                    break;
+                            }
+                            break;
                     }
-}
 }
 

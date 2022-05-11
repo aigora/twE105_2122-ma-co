@@ -18,8 +18,8 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     bool update,game=true, A_pres=false;
     SDL_Event event;
     M_Lab m_Lab;
-    m_Lab.w=4;
-    m_Lab.h=4;
+    m_Lab.w=10;
+    m_Lab.h=10;
     Entity *muros;
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;
     int nmuros=0, i, j, stage=1, last_time, invisibilidad=0,aux_invisibilidad;
@@ -78,6 +78,22 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 renderLab(window,muros,nmuros);
                 renderPlayer(player, window);
                 renderBot(bot,window);
+
+                while(SDL_PollEvent(&event))
+                {
+                    switch(event.type)
+                    {
+                    case SDL_QUIT:
+                        update=false;
+                        game=false;
+                        break;
+
+                    case SDL_KEYDOWN:
+                    case SDL_KEYUP:
+                        UpdateKeys(&KEYS,event,&game,&update);
+                        break;
+                    }
+                }
                 UpdateKeys(&KEYS, event, &game, &update);
 
 
@@ -124,8 +140,8 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                     mov_bot (num_al(), player, bot, muros, nmuros, delta_time);
 
 
-                //printf("%.2f\n",1000.0/(SDL_GetTicks()-last_time));
-                delta_time=(SDL_GetTicks()-last_time)/1000.0;
+                //printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                delta_time=(SDL_GetTicks()-last_time)/1000.0+1;
                 last_time=SDL_GetTicks();
 
             }

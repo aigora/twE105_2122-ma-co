@@ -185,6 +185,8 @@ void generarLaberinto(M_Lab m_Lab)
 void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
 {
     int i,j,nmuro=0;
+    int width=5;
+    int large=235;
 
     for(j=0;j<m_Lab.h*2+1;j++)
     {
@@ -200,10 +202,10 @@ void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
                         muros[nmuro].src.x=0;
                         muros[nmuro].src.y=0;
                         SDL_QueryTexture(wallTex,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
-                        muros[nmuro].dst.h=235;
-                        muros[nmuro].dst.w=5;
-                        muros[nmuro].dst.x=230*(i-i/2);
-                        muros[nmuro].dst.y=230*(j-j/2-1);
+                        muros[nmuro].dst.h= large;
+                        muros[nmuro].dst.w=width;
+                        muros[nmuro].dst.x=(large-width)*(i-i/2);
+                        muros[nmuro].dst.y=(large-width)*(j-j/2-1);
                         nmuro++;
                     }
 
@@ -214,10 +216,10 @@ void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
                         muros[nmuro].src.x=0;
                         muros[nmuro].src.y=0;
                         SDL_QueryTexture(wallTex,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
-                        muros[nmuro].dst.h=5;
-                        muros[nmuro].dst.w=235;
-                        muros[nmuro].dst.x=230*(i-i/2-1);
-                        muros[nmuro].dst.y=230*(j-j/2);
+                        muros[nmuro].dst.h=width;
+                        muros[nmuro].dst.w=large;
+                        muros[nmuro].dst.x=(large-width)*(i-i/2-1);
+                        muros[nmuro].dst.y=(large-width)*(j-j/2);
                         nmuro++;
                     }
                 }
@@ -231,9 +233,9 @@ void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
                         muros[nmuro].src.x=0;
                         muros[nmuro].src.y=0;
                         SDL_QueryTexture(wallTex,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
-                        muros[nmuro].dst.h=925;
-                        muros[nmuro].dst.w=5;
-                        muros[nmuro].dst.x=230*(i-i/2);
+                        muros[nmuro].dst.h=window.h;
+                        muros[nmuro].dst.w=width;
+                        muros[nmuro].dst.x=(large-width)*(i-i/2);
                         muros[nmuro].dst.y=0;
                         nmuro++;
                     }
@@ -244,10 +246,10 @@ void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
                         muros[nmuro].src.x=0;
                         muros[nmuro].src.y=0;
                         SDL_QueryTexture(wallTex,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
-                        muros[nmuro].dst.h=5;
-                        muros[nmuro].dst.w=925;
+                        muros[nmuro].dst.h=width;
+                        muros[nmuro].dst.w=window.h;
                         muros[nmuro].dst.x=0;
-                        muros[nmuro].dst.y=230*(j-j/2);
+                        muros[nmuro].dst.y=(large-width)*(j-j/2);
                         nmuro++;
                     }
                 }

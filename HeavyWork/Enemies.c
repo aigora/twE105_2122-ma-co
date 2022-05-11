@@ -48,16 +48,16 @@ void mov_bot (int num_aleat, player_t* player, bot_struct* bot, const Entity* mu
     switch(num_aleat)
     {
         case 1://Derecha
-            new_x += /*(int)*/ VELOCITY/**delta_time*/;
+            new_x += (int) VELOCITY*delta_time;
             break;
         case 2://Izquierda
-            new_x -= /*(int)*/ VELOCITY/**delta_time*/;
+            new_x -= (int) VELOCITY*delta_time;
             break;
         case 3://Arriba
-            new_y += /*(int)*/ VELOCITY/**delta_time*/;
+            new_y += (int) VELOCITY*delta_time;
             break;
         case 4://Abajo
-            new_y -= /*(int)*/ VELOCITY/**delta_time*/;
+            new_y -= (int) VELOCITY*delta_time;
             break;
     }
     if(ComprobarMuros(new_x, new_y, bot, muros, num_muros)==1)
