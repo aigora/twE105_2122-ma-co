@@ -171,55 +171,5 @@ int invisibility(float time, int *aux_invisibilidad, int invisibilidad)
 //la invisibilidad. Al hacer la conversi�n de float a entero, mientras time se encuentre en [n*60,n*70],
 //la invisibilidad estar� activada (10 segundos de invisibilidad).
 
-void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
-{
-                    switch(event.type)
-                    {
-                        case SDL_KEYDOWN:
 
-                            switch (event.key.keysym.scancode)
-                            {
-                                case SDL_SCANCODE_W:
-                                case SDL_SCANCODE_UP:
-                                    k->W=true;
-                                    break;
-                                case SDL_SCANCODE_A:
-                                case SDL_SCANCODE_LEFT:
-                                    k->A=true;
-                                    break;
-                                case SDL_SCANCODE_S:
-                                case SDL_SCANCODE_DOWN:
-                                    k->S=true;
-                                    break;
-                                case SDL_SCANCODE_D:
-                                case SDL_SCANCODE_RIGHT:
-                                    k->D=true;
-                                    break;
-                            }
-                            break;
-
-                         case SDL_KEYUP:
-
-                            switch (event.key.keysym.scancode)
-                            {
-                                case SDL_SCANCODE_W:
-                                case SDL_SCANCODE_UP:
-                                    k->W=false;
-                                    break;
-                                case SDL_SCANCODE_A:
-                                case SDL_SCANCODE_LEFT:
-                                    k->A=false;
-                                    break;
-                                case SDL_SCANCODE_S:
-                                case SDL_SCANCODE_DOWN:
-                                    k->S=false;
-                                    break;
-                                case SDL_SCANCODE_D:
-                                case SDL_SCANCODE_RIGHT:
-                                    k->D=false;
-                                    break;
-                            }
-                            break;
-                    }
-}
 

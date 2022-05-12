@@ -21,7 +21,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     m_Lab.w=10;
     m_Lab.h=10;
     Entity *muros;
-    key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;
+    key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;
     int nmuros=0, i, j, stage=1, last_time, invisibilidad=0,aux_invisibilidad;
     float delta_time,game_time,t_inicio; //Las dos últimas se utilizan para un contador desde el inicio de juego
 
@@ -108,6 +108,10 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                     movePlayer(player, muros, nmuros, MOVEMENT_DOWN,delta_time);
                 if(KEYS.D==true)
                     movePlayer(player, muros, nmuros, MOVEMENT_RIGHT,delta_time);
+                if(KEYS.SPACE==true)
+                    printf("Wiiii");//Insertar aquí código util
+                if(KEYS.ESC==true)
+                    printf("Wiiii");//Insertar aquí código util
 
 
 

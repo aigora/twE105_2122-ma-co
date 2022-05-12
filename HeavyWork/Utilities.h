@@ -87,6 +87,8 @@ typedef struct {
     bool A;
     bool S;
     bool D;
+    bool SPACE;
+    bool ESC;
 } key_buttons;
 
 void pushStack(Stack stack[],int x, int y);
@@ -97,5 +99,6 @@ void renderFondo(Window window, SDL_Texture* tex);
 void imprimirImagen(Window window, SDL_Texture* tex);
 int num_al (void);
 int ComprobarMuros(int new_x, int new_y, bot_struct* v2, const Entity* muros, int num_muros);
+void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update);
 
 

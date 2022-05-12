@@ -407,7 +407,7 @@
 	"Menu.h"
 	"Player.h"
 
-1652282850 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
+1652338651 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1801,7 +1801,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1652285459 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
+1652338651 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1825,7 +1825,7 @@
 	"Player.h"
 	"Enemies.h"
 
-1652283767 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
+1652339341 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1844,7 +1844,7 @@
 	<SDL2/SDL_image.h>
 	"Utilities.h"
 
-1652285459 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
+1652339019 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1857,7 +1857,7 @@
 	<SDL2/SDL_rect.h>
 	"Utilities.h"
 
-1652282850 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.c
+1652338651 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1867,7 +1867,7 @@
 	"Laberinto.h"
 	"Utilities.h"
 
-1652285860 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
+1652339019 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1878,7 +1878,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1652283767 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
+1652339341 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3069,7 +3069,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1652282850 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
+1652338651 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3081,7 +3081,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1652282850 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
+1652338651 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>

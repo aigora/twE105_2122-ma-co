@@ -96,3 +96,67 @@ int ComprobarMuros(int new_x, int new_y, bot_struct* v2, const Entity* muros, in
     }
     return;
 }
+
+void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
+{
+                    switch(event.type)
+                    {
+                        case SDL_KEYDOWN:
+
+                            switch (event.key.keysym.scancode)
+                            {
+                                case SDL_SCANCODE_W:
+                                case SDL_SCANCODE_UP:
+                                    k->W=true;
+                                    break;
+                                case SDL_SCANCODE_A:
+                                case SDL_SCANCODE_LEFT:
+                                    k->A=true;
+                                    break;
+                                case SDL_SCANCODE_S:
+                                case SDL_SCANCODE_DOWN:
+                                    k->S=true;
+                                    break;
+                                case SDL_SCANCODE_D:
+                                case SDL_SCANCODE_RIGHT:
+                                    k->D=true;
+                                    break;
+                                case SDL_SCANCODE_SPACE:
+                                    k->SPACE=true;
+                                    break;
+                                case SDL_SCANCODE_ESCAPE:
+                                    k->ESC=true;
+                                    break;
+                            }
+                            break;
+
+                         case SDL_KEYUP:
+
+                            switch (event.key.keysym.scancode)
+                            {
+                                case SDL_SCANCODE_W:
+                                case SDL_SCANCODE_UP:
+                                    k->W=false;
+                                    break;
+                                case SDL_SCANCODE_A:
+                                case SDL_SCANCODE_LEFT:
+                                    k->A=false;
+                                    break;
+                                case SDL_SCANCODE_S:
+                                case SDL_SCANCODE_DOWN:
+                                    k->S=false;
+                                    break;
+                                case SDL_SCANCODE_D:
+                                case SDL_SCANCODE_RIGHT:
+                                    k->D=false;
+                                    break;
+                                case SDL_SCANCODE_SPACE:
+                                    k->SPACE=false;
+                                    break;
+                                case SDL_SCANCODE_ESCAPE:
+                                    k->ESC=false;
+                                    break;
+                            }
+                            break;
+                    }
+}
