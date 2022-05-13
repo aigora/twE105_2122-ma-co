@@ -72,15 +72,15 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 SDL_RenderClear(window.renderer);
                 //Temporizador desde el comienzo del juego, se usa en la invisibilidad
                 game_time = (SDL_GetTicks()-t_inicio)/1000.0;
-                printf("%.2f\n",game_time);
+                //printf("%.2f\n",game_time);
 
                 //Set positions etc
 
                 //Dibujar la imagen
                 renderFondo(window,tex.fondo);
                 renderLab(window,muros,nmuros);
-                renderPlayer(player, window);
                 renderBot(bot,window);
+                renderPlayer(player, window);
 
                 while(SDL_PollEvent(&event))
                 {
@@ -125,13 +125,6 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 }
 
 
-                //Invisibilidad, 1 activada, 0 desactivada
-                //invisibilidad = invisibility(game_time, &aux_invisibilidad, invisibilidad);
-                /*if (invisibilidad == 1)
-                    printf("Sí\n");
-                else
-                    printf("No\n");*/
-
                 if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
                 {
                     // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
@@ -152,7 +145,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
                 while(SDL_GetTicks()-last_time<1000/60){}
                 //printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
-                delta_time=(SDL_GetTicks()-last_time)/1000.0+1;
+                delta_time=(SDL_GetTicks()-last_time)/1000.0;
                 last_time=SDL_GetTicks();
 
             }

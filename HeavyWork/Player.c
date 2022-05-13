@@ -11,8 +11,6 @@
 #define WIDTH  70
 #define HEIGHT 70
 
-#define VELOCITY 2
-
 #define VIDA_WIDTH      40
 #define VIDA_HEIGHT     40
 
@@ -61,20 +59,24 @@ void renderPlayer(player_t* player, Window window) {
 // Mover el jugador en la direccion indicada.
 void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction, float delta_time) {
 
+    const float velocity=150;
+    const int position=(int)(velocity*delta_time);
+
     int new_x = player->texture.x;
     int new_y = player->texture.y;
+
     switch (direction) {
     case MOVEMENT_UP:
-        new_y-= (int)VELOCITY*delta_time;
+        new_y-= position;
         break;
     case MOVEMENT_DOWN:
-        new_y+= (int)VELOCITY*delta_time;
+        new_y+= position;
         break;
     case MOVEMENT_RIGHT:
-        new_x+= (int)VELOCITY*delta_time;
+        new_x+= position;
         break;
     case MOVEMENT_LEFT:
-        new_x-= (int)VELOCITY*delta_time;
+        new_x-= position;
         break;
             }
 

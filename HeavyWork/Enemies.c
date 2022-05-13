@@ -11,7 +11,6 @@
 
 #define WIDTH 70
 #define HEIGHT 70
-#define VELOCITY 1
 
 
 bot_struct* bot_creator(Vector2i initial_position, SDL_Texture* bot_texture)
@@ -41,23 +40,26 @@ void renderBot(bot_struct* bot, Window window)
 
 void mov_bot (int num_aleat, player_t* player, bot_struct* bot, const Entity* muros, int num_muros,float delta_time)
 {//Añadir la particularidad de que si hay muros no lo haga
-    Vector2f vect;
     int new_x = bot->texture.x;
     int new_y = bot->texture.y;
+
+    const float velocity=150;
+
+    const int position=(int)(velocity*delta_time);
 
     switch(num_aleat)
     {
         case 1://Derecha
-            new_x += (int) VELOCITY*delta_time;
+            new_x += position;
             break;
         case 2://Izquierda
-            new_x -= (int) VELOCITY*delta_time;
+            new_x -= position;
             break;
         case 3://Arriba
-            new_y += (int) VELOCITY*delta_time;
+            new_y += position;
             break;
         case 4://Abajo
-            new_y -= (int) VELOCITY*delta_time;
+            new_y -= position;
             break;
     }
     if(ComprobarMuros(new_x, new_y, bot, muros, num_muros)==1)
@@ -69,6 +71,10 @@ void mov_bot (int num_aleat, player_t* player, bot_struct* bot, const Entity* mu
 
 void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,float delta_time, int invisibilidad)
 {
+
+    const float velocity=150;
+    const int position=(int)(velocity*delta_time);
+
     if(invisibilidad == 0)
     {
     Vector2f vect;
@@ -78,32 +84,29 @@ void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,
     vect.x=new_x - (v1->texture.x);
     vect.y=new_y - (v1->texture.y);
 
-    //vect.x=vect.x/playerDist(v1, v2, muros, num_muros); //Puede generarse un problema con el rango debido a
-    //vect.y=vect.y/playerDist(v1, v2, muros, num_muros); //que la función distancia no hace exactamente lo que necesitariamos aquí
-
     if(vect.x>0)
     {
-        new_x-= /*(int)*/ VELOCITY;//Preguntar por el delta_time porque deja de funcionar perseguir
+        new_x-= position;
         if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
-            new_x+=VELOCITY;
+            new_x+=position;
     }
     if(vect.x<0)
     {
-        new_x+= /*(int)*/ VELOCITY;//Preguntar por el delta_time porque deja de funcionar perseguir
+        new_x+= position;
         if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
-            new_x-=VELOCITY;
+            new_x-=position;
     }
     if(vect.y>0)
     {
-        new_y-= /*(int)*/ VELOCITY;//Preguntar por el delta_time porque deja de funcionar perseguir
+        new_y-= position;
         if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
-            new_y+=VELOCITY;
+            new_y+=position;
     }
     if(vect.y<0)
     {
-        new_y+= /*(int)*/ VELOCITY;//Preguntar por el delta_time porque deja de funcionar perseguir
+        new_y+= position;
         if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
-            new_y-=VELOCITY;
+            new_y-=position;
     }
 
     v2->texture.x = new_x;
