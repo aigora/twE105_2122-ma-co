@@ -8,11 +8,11 @@
 #include "Player.h"
 #include "Utilities.h"
 
-#define WIDTH  70
+#define WIDTH  40
 #define HEIGHT 70
 
-#define VIDA_WIDTH      40
-#define VIDA_HEIGHT     40
+#define VIDA_WIDTH      30
+#define VIDA_HEIGHT     30
 
 #define VIDA_X_INITIAL  25
 #define VIDA_Y          25
@@ -144,29 +144,20 @@ bool playerKill(player_t* player) {
     return (player->num_vidas > 0);
 }
 
-int invisibility(float time, int *aux_invisibilidad, int invisibilidad)
+bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton)
 {
     int t_ent,i;
     t_ent = (int) time;
 
-    if(invisibilidad == 0)
+    if(boton == 1)
     {
-        if ((t_ent % 60 == 0)&&(t_ent>0))
-    {
-        *aux_invisibilidad = t_ent+10; //Como queremos que dure 10s la invisibilidad, aux_invisibilidad es el tiempo de inicio m�s 10
-        return 1;//Invisible
+        return true;
     }
-    else
-        return 0;
-    }
-    if (invisibilidad == 1)
-    {
-        if (t_ent == *aux_invisibilidad)
+    else if (time<tiempo_fin_invisibilidad)
         {
-            return 0;
+            return true;
         }
-    else return 1;
-    }
+        else return false;
 
 }
 //La funci�n invisibility funciona como booleano, si el tiempo desde el inicio de juego (game_time) es divisible por 60 se activa

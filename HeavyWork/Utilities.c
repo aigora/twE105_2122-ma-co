@@ -161,27 +161,33 @@ void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
                     }
 }
 
-bool boton_invisibilidad (bool boton, float game_time, float *tiempo_boton_in, float *tiempo_boton_fin)
+bool boton_invisibilidad (bool boton, float game_time, float *tiempo_boton_in, float *tiempo_boton_fin, float *tiempo_fin_invisibilidad, bool *invisibilidad)
 {
 
-int game_time_int, tiempo_boton_fin_int;
+int game_time_int, tiempo_boton_fin_int, tiempo_fin_invis_int;
 game_time_int = (int)game_time;
 tiempo_boton_fin_int = (int) *tiempo_boton_fin;
+tiempo_fin_invis_int = (int) *tiempo_fin_invisibilidad;
 
 
     if (boton == true )//Si botón activado
     {
         *tiempo_boton_in = game_time;
-        *tiempo_boton_fin = *tiempo_boton_in + 30;
+        *tiempo_boton_fin = *tiempo_boton_in + 15; //Habrá 15 segundos de cooldown del botón, son 10 tras acabar la invisibilidad
+        *tiempo_fin_invisibilidad = *tiempo_boton_in + 5;
+        *invisibilidad = invisibility(game_time, tiempo_fin_invis_int, boton);
         //printf("False por primera vez de nuevo------------\n");
         return false;
 
     }
     else //Si boton desactivado
     {
+        if (game_time_int == tiempo_fin_invis_int)
+        {
+            *invisibilidad = false;
+        }
         if (game_time_int == tiempo_boton_fin_int)
         {
-
             //printf("True de nuevo-----------------------------\n");
             return true;
         }

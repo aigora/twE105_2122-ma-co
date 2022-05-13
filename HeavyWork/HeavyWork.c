@@ -52,8 +52,8 @@ int main(int argc, char *argv[])
 	//running=loadWin("HeavyWork",mainWin);
 
 	//Cargamos las texturas que vayamos a usar
-	tex.player=loadTexture("Resources/player_mar.png",mainWin);
-    tex.bot=loadTexture("Resources/player_gri2.png",mainWin);
+	tex.player=loadTexture("Resources/playerdef.png",mainWin);
+    tex.bot=loadTexture("Resources/player_gri2def.png",mainWin);
     tex.menu=loadTexture("Resources/Menuinicio2.jpg",mainWin);
 	tex.ajustes=loadTexture("Resources/ajustes.jpg",mainWin);
 	tex.ajusnos=loadTexture("Resources/ajustessinson.jpg",mainWin);

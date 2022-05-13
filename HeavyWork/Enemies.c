@@ -9,12 +9,12 @@
 #include "Utilities.h"
 #include "Player.h"
 
-#define WIDTH 70
-#define HEIGHT 70
-
 
 bot_struct* bot_creator(Vector2i initial_position, SDL_Texture* bot_texture)
 {
+    int const WIDTH = 40;
+    int const HEIGHT = 70;
+
     bot_struct* bot = (bot_struct*) malloc(sizeof(bot_struct));
 
 
@@ -38,7 +38,7 @@ void renderBot(bot_struct* bot, Window window)
 }
 
 
-void mov_bot (int num_aleat, player_t* player, bot_struct* bot, const Entity* muros, int num_muros,float delta_time)
+void mov_bot (int num_aleat, bot_struct* bot, const Entity* muros, int num_muros,float delta_time)
 {//Añadir la particularidad de que si hay muros no lo haga
     int new_x = bot->texture.x;
     int new_y = bot->texture.y;

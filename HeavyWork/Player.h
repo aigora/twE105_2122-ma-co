@@ -31,8 +31,7 @@ float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muro
 
 bool playerKill(player_t* player);
 
-int invisibility(float time,int *aux_invisibilidad, int invisibilidad);
-
+bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton);
 
 
 
