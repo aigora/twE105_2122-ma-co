@@ -273,3 +273,56 @@ void DebugLab(M_Lab m_Lab)
     }
 }
 
+void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot)
+{
+    int i, j;
+    const float veloz=3;
+    Vector2f v;
+    v.x = player.texture.w;
+    v.y = player.texture.h;
+
+    if(k.W==true)
+    {
+        for(i=0; i<nmuros; i++)
+            muros[i].dst.y+=veloz;
+
+        if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+                for(j=0; j<nmuros; j++)
+                    muros[j].dst.y-=veloz;
+        else
+            bot->texture.y+=veloz;
+    }
+    if(k.A==true)
+    {
+        for(i=0; i<nmuros; i++)
+            muros[i].dst.x+=veloz;
+
+        if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+                for(j=0; j<nmuros; j++)
+                    muros[j].dst.x-=veloz;
+        else
+            bot->texture.x+=veloz;
+    }
+    if(k.D==true)
+    {
+        for(i=0; i<nmuros; i++)
+            muros[i].dst.x-=veloz;
+
+        if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+                for(j=0; j<nmuros; j++)
+                    muros[j].dst.x+=veloz;
+        else
+            bot->texture.x-=veloz;
+    }
+    if(k.S==true)
+    {
+        for(i=0; i<nmuros; i++)
+            muros[i].dst.y-=veloz;
+
+        if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+                for(j=0; j<nmuros; j++)
+                    muros[j].dst.y+=veloz;
+        else
+            bot->texture.y-=veloz;
+    }
+}

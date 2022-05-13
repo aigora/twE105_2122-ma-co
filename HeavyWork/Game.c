@@ -105,13 +105,17 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
 
                 if(KEYS.W==true)
-                    movePlayer(player, muros, nmuros, MOVEMENT_UP,delta_time);
+                    //movePlayer(player, muros, nmuros, MOVEMENT_UP,delta_time);
+                    MovLab(muros, nmuros, KEYS, *player, bot);
                 if(KEYS.A==true)
-                    movePlayer(player, muros, nmuros, MOVEMENT_LEFT,delta_time);
+                    //movePlayer(player, muros, nmuros, MOVEMENT_LEFT,delta_time);
+                    MovLab(muros, nmuros, KEYS, *player, bot);
                 if(KEYS.S==true)
-                    movePlayer(player, muros, nmuros, MOVEMENT_DOWN,delta_time);
+                    //movePlayer(player, muros, nmuros, MOVEMENT_DOWN,delta_time);
+                    MovLab(muros, nmuros, KEYS, *player, bot);
                 if(KEYS.D==true)
-                    movePlayer(player, muros, nmuros, MOVEMENT_RIGHT,delta_time);
+                    //movePlayer(player, muros, nmuros, MOVEMENT_RIGHT,delta_time);
+                    MovLab(muros, nmuros, KEYS, *player, bot);
                 if(KEYS.SPACE==true)
                 {
                     boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);

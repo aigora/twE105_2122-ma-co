@@ -61,6 +61,9 @@ void movePlayer(player_t* player, const Entity* muros, int num_muros, player_dir
 
     const float velocity=150;
     const int position=(int)(velocity*delta_time);
+    Vector2f v;
+    v.x = player->texture.w;
+    v.y = player->texture.h;
 
     int new_x = player->texture.x;
     int new_y = player->texture.y;
@@ -81,7 +84,7 @@ void movePlayer(player_t* player, const Entity* muros, int num_muros, player_dir
             }
 
         //Creaci�n de un nuevo rectangulo desplazado sobre el que se detectan las colisiones
-        if(ComprobarMuros(new_x, new_y, player, muros, num_muros)==1)
+        if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
             return;
 
         player->texture.x = new_x;

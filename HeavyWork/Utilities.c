@@ -79,13 +79,13 @@ int num_al (void) //Para el movimiento aleatorio de los bots
     n = rand() % 4 + 1;//Numero aleatorio entero entre 1 y 4
     return n;
 }
-int ComprobarMuros(int new_x, int new_y, bot_struct* v2, const Entity* muros, int num_muros)
+int ComprobarMuros(int new_x, int new_y, Vector2f v2, const Entity* muros, int num_muros)
 {
     SDL_Rect target;
     target.x = new_x;
     target.y = new_y;
-    target.w = v2->texture.w;
-    target.h = v2->texture.h;
+    target.w = v2.x;
+    target.h = v2.y;
 
     // Si el rectangulo NO intersecciona con los muros, se avanza
     for (int j = 0; j < num_muros; ++j) {

@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     tex.vida = loadTexture("resources/life.png",mainWin);
 
     // Instanciar jugador
-    Vector2i pos = { 50, 100 };
+    Vector2i pos = { 250, 300 };
     player_t* player = newPlayer(pos, MAX_VIDAS, tex.vida, tex.player);
     //Iniciar un bot
     Vector2i coordbot = {500,300};

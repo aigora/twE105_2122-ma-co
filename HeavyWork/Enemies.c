@@ -42,6 +42,9 @@ void mov_bot (int num_aleat, bot_struct* bot, const Entity* muros, int num_muros
 {//Añadir la particularidad de que si hay muros no lo haga
     int new_x = bot->texture.x;
     int new_y = bot->texture.y;
+    Vector2f v;
+    v.x = bot->texture.w;
+    v.y = bot->texture.h;
 
     const float velocity=150;
 
@@ -62,7 +65,7 @@ void mov_bot (int num_aleat, bot_struct* bot, const Entity* muros, int num_muros
             new_y -= position;
             break;
     }
-    if(ComprobarMuros(new_x, new_y, bot, muros, num_muros)==1)
+    if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
         return;
 
     bot->texture.x = new_x;
@@ -71,7 +74,9 @@ void mov_bot (int num_aleat, bot_struct* bot, const Entity* muros, int num_muros
 
 void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,float delta_time, int invisibilidad)
 {
-
+    Vector2f v;
+    v.x = v2->texture.w;
+    v.y = v2->texture.h;
     const float velocity=150;
     const int position=(int)(velocity*delta_time);
 
@@ -87,25 +92,25 @@ void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,
     if(vect.x>0)
     {
         new_x-= position;
-        if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
+        if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
             new_x+=position;
     }
     if(vect.x<0)
     {
         new_x+= position;
-        if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
+        if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
             new_x-=position;
     }
     if(vect.y>0)
     {
         new_y-= position;
-        if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
+        if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
             new_y+=position;
     }
     if(vect.y<0)
     {
         new_y+= position;
-        if(ComprobarMuros(new_x, new_y, v2, muros, num_muros)==1)
+        if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
             new_y-=position;
     }
 
