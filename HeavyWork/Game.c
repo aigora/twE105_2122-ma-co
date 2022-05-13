@@ -15,7 +15,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
     SDL_RenderPresent(window.renderer);
 
-    bool update,game=true, A_pres=false;
+    bool update,game=true, A_pres=false, boton=true;
     SDL_Event event;
     M_Lab m_Lab;
     m_Lab.w=10;
@@ -23,7 +23,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     Entity *muros;
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;
     int nmuros=0, i, j, stage=1, last_time, invisibilidad=0,aux_invisibilidad;
-    float delta_time,game_time,t_inicio; //Las dos últimas se utilizan para un contador desde el inicio de juego
+    float delta_time,game_time,t_inicio,tiempo_boton_in,tiempo_boton_fin = 0;
 
     while(game)
     {
@@ -70,6 +70,9 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
             while(update)
             {
                 SDL_RenderClear(window.renderer);
+                //Temporizador desde el comienzo del juego, se usa en la invisibilidad
+                game_time = (SDL_GetTicks()-t_inicio)/1000.0;
+                printf("%.2f\n",game_time);
 
                 //Set positions etc
 
@@ -91,6 +94,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                     case SDL_KEYDOWN:
                     case SDL_KEYUP:
                         UpdateKeys(&KEYS,event,&game,&update);
+
                         break;
                     }
                 }
@@ -109,18 +113,20 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 if(KEYS.D==true)
                     movePlayer(player, muros, nmuros, MOVEMENT_RIGHT,delta_time);
                 if(KEYS.SPACE==true)
-                    printf("Wiiii");//Insertar aquí código util
+                {
+                    boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin);
+                }
                 if(KEYS.ESC==true)
                     printf("Wiiii");//Insertar aquí código util
 
+                if (boton == false)
+                {
+                    boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin);
+                }
 
-
-                //Temporizador desde el comienzo del juego, se usa en la invisibilidad
-                game_time = (SDL_GetTicks()-t_inicio)/1000.0;
-                printf("%.2f\n",game_time);
 
                 //Invisibilidad, 1 activada, 0 desactivada
-                invisibilidad = invisibility(game_time, &aux_invisibilidad, invisibilidad);
+                //invisibilidad = invisibility(game_time, &aux_invisibilidad, invisibilidad);
                 /*if (invisibilidad == 1)
                     printf("Sí\n");
                 else
@@ -145,7 +151,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
 
                 while(SDL_GetTicks()-last_time<1000/60){}
-                printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                //printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
                 delta_time=(SDL_GetTicks()-last_time)/1000.0+1;
                 last_time=SDL_GetTicks();
 

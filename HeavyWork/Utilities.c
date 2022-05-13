@@ -160,3 +160,37 @@ void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
                             break;
                     }
 }
+
+bool boton_invisibilidad (bool boton, float game_time, float *tiempo_boton_in, float *tiempo_boton_fin)
+{
+
+int game_time_int, tiempo_boton_fin_int;
+game_time_int = (int)game_time;
+tiempo_boton_fin_int = (int) *tiempo_boton_fin;
+
+
+    if (boton == true )//Si botón activado
+    {
+        *tiempo_boton_in = game_time;
+        *tiempo_boton_fin = *tiempo_boton_in + 30;
+        //printf("False por primera vez de nuevo------------\n");
+        return false;
+
+    }
+    else //Si boton desactivado
+    {
+        if (game_time_int == tiempo_boton_fin_int)
+        {
+
+            //printf("True de nuevo-----------------------------\n");
+            return true;
+        }
+        else
+        {
+            //printf("False\n");
+            return false;
+
+        }
+    }
+}
+
