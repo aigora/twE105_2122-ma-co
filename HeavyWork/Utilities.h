@@ -55,6 +55,7 @@ typedef struct
     SDL_Texture* png;
     SDL_Texture* bot;
     SDL_Texture* vida;
+    SDL_Texture* vision;
 } Textures; //Estructura de las texturas
 
 typedef struct

@@ -81,6 +81,11 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 renderLab(window,muros,nmuros);
                 renderBot(bot,window);
                 renderPlayer(player, window);
+                if (boton == false)
+                {
+                    SDL_RenderCopy(window.renderer, tex.vision, NULL, NULL);
+                    SDL_RenderPresent(window.renderer);
+                }
 
                 while(SDL_PollEvent(&event))
                 {
@@ -119,6 +124,9 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 if(KEYS.SPACE==true)
                 {
                     boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
+                    SDL_RenderCopy(window.renderer, tex.vision, NULL, NULL);
+                    SDL_RenderPresent(window.renderer);
+
                 }
                 if(KEYS.ESC==true)
                     printf("Wiiii");//Insertar aquí código util
@@ -126,6 +134,8 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 if (boton == false)
                 {
                     boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
+                    SDL_RenderCopy(window.renderer, tex.vision, NULL, NULL);
+                    SDL_RenderPresent(window.renderer);
                 }
                 if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
                 {

@@ -2,39 +2,29 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+	<File name="Player.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="871" topLine="16" />
+		</Cursor>
+	</File>
 	<File name="HeavyWork.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2511" topLine="63" />
+			<Cursor1 position="2509" topLine="53" />
+		</Cursor>
+	</File>
+	<File name="Laberinto.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="655" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="Enemies.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2075" topLine="30" />
 		</Cursor>
 	</File>
 	<File name="Menu.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="4326" topLine="100" />
-		</Cursor>
-	</File>
-	<File name="Game.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4748" topLine="120" />
-		</Cursor>
-	</File>
-	<File name="Enemies.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2075" topLine="72" />
-		</Cursor>
-	</File>
-	<File name="Utilities.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2096" topLine="64" />
-		</Cursor>
-	</File>
-	<File name="Player.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="871" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="Player.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="971" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Menu.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -47,24 +37,34 @@
 			<Cursor1 position="214" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="Laberinto.c" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9741" topLine="148" />
+		</Cursor>
+	</File>
+	<File name="Player.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="971" topLine="113" />
+		</Cursor>
+	</File>
+	<File name="Utilities.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1130" topLine="72" />
+		</Cursor>
+	</File>
+	<File name="Game.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2564" topLine="74" />
+		</Cursor>
+	</File>
 	<File name="Enemies.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="442" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Utilities.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Utilities.c" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2392" topLine="173" />
-		</Cursor>
-	</File>
-	<File name="Laberinto.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="655" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="Laberinto.c" open="1" top="1" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="9996" topLine="299" />
+			<Cursor1 position="5804" topLine="168" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

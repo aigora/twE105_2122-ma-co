@@ -173,7 +173,7 @@ tiempo_fin_invis_int = (int) *tiempo_fin_invisibilidad;
     if (boton == true )//Si botón activado
     {
         *tiempo_boton_in = game_time;
-        *tiempo_boton_fin = *tiempo_boton_in + 15; //Habrá 15 segundos de cooldown del botón, son 10 tras acabar la invisibilidad
+        *tiempo_boton_fin = *tiempo_boton_in + 10; //Habrá 10 segundos de cooldown del botón, son 10 tras acabar la invisibilidad
         *tiempo_fin_invisibilidad = *tiempo_boton_in + 5;
         *invisibilidad = invisibility(game_time, tiempo_fin_invis_int, boton);
         //printf("False por primera vez de nuevo------------\n");
