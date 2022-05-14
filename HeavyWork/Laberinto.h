@@ -27,5 +27,5 @@ typedef struct
 void generarLaberinto(M_Lab m_Lab);
 void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex);
 void DebugLab(M_Lab m_Lab);
-void MovLab(Entity muros[], int num_muros, key_buttons k, player_t player, bot_struct* bot);
+void MovLab(Entity muros[], int num_muros, key_buttons k, player_t player, bot_struct* bot, bool boton);
 

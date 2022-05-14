@@ -83,9 +83,11 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 renderPlayer(player, window);
                 if (boton == false)
                 {
-                    SDL_RenderCopy(window.renderer, tex.vision, NULL, NULL);
-                    SDL_RenderPresent(window.renderer);
+                    renderFondo(window, tex.vision);
                 }
+                SDL_RenderPresent(window.renderer);
+
+
 
                 while(SDL_PollEvent(&event))
                 {
@@ -106,27 +108,21 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 UpdateKeys(&KEYS, event, &game, &update);
 
 
-                SDL_RenderPresent(window.renderer);
-
-
                 if(KEYS.W==true)
                     //movePlayer(player, muros, nmuros, MOVEMENT_UP,delta_time);
-                    MovLab(muros, nmuros, KEYS, *player, bot);
+                    MovLab(muros, nmuros, KEYS, *player, bot, boton);
                 if(KEYS.A==true)
                     //movePlayer(player, muros, nmuros, MOVEMENT_LEFT,delta_time);
-                    MovLab(muros, nmuros, KEYS, *player, bot);
+                    MovLab(muros, nmuros, KEYS, *player, bot, boton);
                 if(KEYS.S==true)
                     //movePlayer(player, muros, nmuros, MOVEMENT_DOWN,delta_time);
-                    MovLab(muros, nmuros, KEYS, *player, bot);
+                    MovLab(muros, nmuros, KEYS, *player, bot, boton);
                 if(KEYS.D==true)
                     //movePlayer(player, muros, nmuros, MOVEMENT_RIGHT,delta_time);
-                    MovLab(muros, nmuros, KEYS, *player, bot);
+                    MovLab(muros, nmuros, KEYS, *player, bot, boton);
                 if(KEYS.SPACE==true)
                 {
                     boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
-                    SDL_RenderCopy(window.renderer, tex.vision, NULL, NULL);
-                    SDL_RenderPresent(window.renderer);
-
                 }
                 if(KEYS.ESC==true)
                     printf("Wiiii");//Insertar aquí código util
@@ -134,8 +130,6 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 if (boton == false)
                 {
                     boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
-                    SDL_RenderCopy(window.renderer, tex.vision, NULL, NULL);
-                    SDL_RenderPresent(window.renderer);
                 }
                 if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
                 {
@@ -156,7 +150,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
 
                 while(SDL_GetTicks()-last_time<1000/60){}
-                //printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
                 delta_time=(SDL_GetTicks()-last_time)/1000.0;
                 last_time=SDL_GetTicks();
 

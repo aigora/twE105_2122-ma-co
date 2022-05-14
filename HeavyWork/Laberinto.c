@@ -273,10 +273,15 @@ void DebugLab(M_Lab m_Lab)
     }
 }
 
-void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot)
+void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot, bool boton)
 {
     int i, j;
-    const float veloz=3;
+    float veloz;
+    if(boton == false) //Velocidad se reduce mientras el botón no está cargado. Por eso se emplea bool boton y no bool invisibilidad
+        veloz = 1;
+    else
+            veloz = 3;
+
     Vector2f v;
     v.x = player.texture.w;
     v.y = player.texture.h;

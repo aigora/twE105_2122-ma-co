@@ -59,7 +59,7 @@ void renderPlayer(player_t* player, Window window) {
 // Mover el jugador en la direccion indicada.
 void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction, float delta_time) {
 
-    const float velocity=150;
+    const float velocity = 150;
     const int position=(int)(velocity*delta_time);
     Vector2f v;
     v.x = player->texture.w;
