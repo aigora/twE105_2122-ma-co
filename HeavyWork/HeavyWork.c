@@ -52,15 +52,16 @@ int main(int argc, char *argv[])
 	//running=loadWin("HeavyWork",mainWin);
 
 	//Cargamos las texturas que vayamos a usar
-	tex.player=loadTexture("Resources/playerdef.png",mainWin);
-    tex.bot=loadTexture("Resources/player_gri2def.png",mainWin);
-    tex.menu=loadTexture("Resources/Menuinicio2.jpg",mainWin);
-	tex.ajustes=loadTexture("Resources/ajustes.jpg",mainWin);
-	tex.ajusnos=loadTexture("Resources/ajustessinson.jpg",mainWin);
-	tex.carga=loadTexture("Resources/carga.jpg",mainWin);
-	tex.personaje1=loadTexture("Resources/personaje1.jpg",mainWin);
-	tex.personaje2=loadTexture("Resources/personaje2.jpg",mainWin);
-	tex.personaje3=loadTexture("Resources/personaje3.jpg",mainWin);
+	tex.player = loadTexture("Resources/playerdef.png",mainWin);
+    tex.playerinv = loadTexture("resources/persinv.png",mainWin);
+    tex.bot = loadTexture("Resources/player_gri2def.png",mainWin);
+    tex.menu = loadTexture("Resources/Menuinicio2.jpg",mainWin);
+	tex.ajustes = loadTexture("Resources/ajustes.jpg",mainWin);
+	tex.ajusnos = loadTexture("Resources/ajustessinson.jpg",mainWin);
+	tex.carga = loadTexture("Resources/carga.jpg",mainWin);
+	tex.personaje1 = loadTexture("Resources/personaje1.jpg",mainWin);
+	tex.personaje2 = loadTexture("Resources/personaje2.jpg",mainWin);
+	tex.personaje3 = loadTexture("Resources/personaje3.jpg",mainWin);
 	tex.wall = loadTexture("resources/Negro.jpg",mainWin);
     tex.fondo = loadTexture("resources/parquetg.jpg",mainWin);
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
@@ -70,7 +71,7 @@ int main(int argc, char *argv[])
 
     // Instanciar jugador
     Vector2i pos = { 250, 300 };
-    player_t* player = newPlayer(pos, MAX_VIDAS, tex.vida, tex.player);
+    player_t* player = newPlayer(pos, MAX_VIDAS, tex.vida, tex.player, tex.playerinv);
     //Iniciar un bot
     Vector2i coordbot = {500,300};
     bot_struct* bot = bot_creator(coordbot,tex.bot);

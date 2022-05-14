@@ -80,7 +80,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 renderFondo(window,tex.fondo);
                 renderLab(window,muros,nmuros);
                 renderBot(bot,window);
-                renderPlayer(player, window);
+                renderPlayer(player, window, invisibilidad);
                 if (boton == false)
                 {
                     renderFondo(window, tex.vision);

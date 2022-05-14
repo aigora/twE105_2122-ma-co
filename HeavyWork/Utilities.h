@@ -51,11 +51,13 @@ typedef struct
     SDL_Texture* wall;
     SDL_Texture* fondo;
     SDL_Texture* player;
+    SDL_Texture* playerinv;
     SDL_Texture* prox;
     SDL_Texture* png;
     SDL_Texture* bot;
     SDL_Texture* vida;
     SDL_Texture* vision;
+
 } Textures; //Estructura de las texturas
 
 typedef struct
@@ -79,6 +81,7 @@ typedef struct {
     Vector2i pos_inicial;
     SDL_Texture* texture_life;
     SDL_Texture* texture_player;
+    SDL_Texture* texture_playerinv;
     int num_vidas;
 } player_t;
 

@@ -21,9 +21,9 @@ typedef enum {
     MOVEMENT_LEFT,
 } player_direction_t;
 
-player_t* newPlayer(Vector2i initial_position, int num_vidas, SDL_Texture* life_texture,SDL_Texture* player_texture);
+player_t* newPlayer(Vector2i initial_position, int num_vidas, SDL_Texture* life_texture, SDL_Texture* player_texture, SDL_Texture* playerinv_texture);
 
-void renderPlayer(player_t* player, Window window);
+void renderPlayer(player_t* player, Window window, bool invisibilidad);
 
 void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction,float delta_time);
 
