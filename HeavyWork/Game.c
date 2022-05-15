@@ -16,14 +16,16 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     SDL_RenderPresent(window.renderer);
 
     bool update,game=true, A_pres=false, boton=true, invisibilidad = false;
+    bool pausa = false;
     SDL_Event event;
     M_Lab m_Lab;
     m_Lab.w=10;
     m_Lab.h=10;
     Entity *muros;
-    key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;
+    key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;KEYS.ESC_PREV=false;
     int nmuros=0, i, j, stage=1, last_time;
     float delta_time,game_time,t_inicio,tiempo_boton_in,tiempo_boton_fin = 0,tiempo_fin_invisibilidad;
+    bool same_press;
 
     while(game)
     {
@@ -77,17 +79,21 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 //Set positions etc
 
                 //Dibujar la imagen
-                renderFondo(window,tex.fondo);
-                renderLab(window,muros,nmuros);
-                renderBot(bot,window);
-                renderPlayer(player, window, invisibilidad);
-                if (boton == false)
-                {
-                    renderFondo(window, tex.vision);
+                if (!pausa) {
+                    renderFondo(window,tex.fondo);
+                    renderLab(window,muros,nmuros);
+                    renderBot(bot,window);
+                    renderPlayer(player, window, invisibilidad);
+                    if (boton == false)
+                    {
+                        renderFondo(window, tex.vision);
+                    }
+
+                } else {
+                    renderPause(window, tex.pause);
                 }
+
                 SDL_RenderPresent(window.renderer);
-
-
 
                 while(SDL_PollEvent(&event))
                 {
@@ -100,65 +106,59 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
                     case SDL_KEYDOWN:
                     case SDL_KEYUP:
-                        UpdateKeys(&KEYS,event,&game,&update);
-
+                        same_press = UpdateKeys(&KEYS,event,&game,&update);
                         break;
                     }
                 }
-                UpdateKeys(&KEYS, event, &game, &update);
+                //! Esto por qué?
+                // same_press = UpdateKeys(&KEYS, event, &game, &update);
 
-
-                if(KEYS.W==true)
-                    //movePlayer(player, muros, nmuros, MOVEMENT_UP,delta_time);
-                    MovLab(muros, nmuros, KEYS, *player, bot, boton);
-                if(KEYS.A==true)
-                    //movePlayer(player, muros, nmuros, MOVEMENT_LEFT,delta_time);
-                    MovLab(muros, nmuros, KEYS, *player, bot, boton);
-                if(KEYS.S==true)
-                    //movePlayer(player, muros, nmuros, MOVEMENT_DOWN,delta_time);
-                    MovLab(muros, nmuros, KEYS, *player, bot, boton);
-                if(KEYS.D==true)
-                    //movePlayer(player, muros, nmuros, MOVEMENT_RIGHT,delta_time);
-                    MovLab(muros, nmuros, KEYS, *player, bot, boton);
-                if(KEYS.SPACE==true)
-                {
-                    boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
+                if (KEYS.ESC && !same_press) {
+                    pausa = !pausa;
+                    same_press = true;
                 }
-                if(KEYS.ESC==true)
-                    printf("Wiiii");//Insertar aquí código util
 
-                if (boton == false)
-                {
-                    boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
-                }
-                if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
-                {
-                    // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
-                    bool alive = playerKill(player);
-                    if (!alive) {
-                        update = false;
-                        game = false;
+                // Si no esta el juego en pausa, podemos mover el jugador.
+                if (!pausa) {
+                    if (KEYS.W || KEYS.A || KEYS.S || KEYS.D) {
+                        MovLab(muros, nmuros, KEYS, *player, bot, boton);
                     }
-                }
 
-                if((playerDist(player, bot, muros, nmuros)<=300)&&(invisibilidad == 0))
-                {
-                    perseguir(player, bot, muros, nmuros, delta_time, invisibilidad);
-                }
-                else
-                    mov_bot (num_al(), bot, muros, nmuros, delta_time);
+                    if (KEYS.SPACE)
+                    {
+                        boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
+                    }
 
+                    if (boton == false)
+                    {
+                        boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
+                    }
+                    if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
+                    {
+                        // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
+                        bool alive = playerKill(player);
+                        if (!alive) {
+                            update = false;
+                            game = false;
+                        }
+                    }
+
+                    if((playerDist(player, bot, muros, nmuros)<=300)&&(invisibilidad == 0))
+                    {
+                        perseguir(player, bot, muros, nmuros, delta_time, invisibilidad);
+                    }
+                    else
+                        mov_bot (num_al(), bot, muros, nmuros, delta_time);
+                }
 
                 while(SDL_GetTicks()-last_time<1000/60){}
                 printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
                 delta_time=(SDL_GetTicks()-last_time)/1000.0;
                 last_time=SDL_GetTicks();
-
             }
 
             free(muros);
             free(player);
-
         }
     }
 return 0;

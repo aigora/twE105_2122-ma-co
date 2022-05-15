@@ -1,8 +1,8 @@
 #pragma once
 #include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h> //Preguntar si su uso está permitido
-#include <time.h> //Preguntar si su uso está permitido
+#include <stdlib.h> //Preguntar si su uso estï¿½ permitido
+#include <time.h> //Preguntar si su uso estï¿½ permitido
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
@@ -24,7 +24,7 @@ void pushStack(Stack stack[],int x, int y)
 
 }
 
-//Quita la última información que se ha sacado
+//Quita la ï¿½ltima informaciï¿½n que se ha sacado
 int popStack(Stack stack[])
 {
     int last=0;
@@ -56,6 +56,11 @@ void renderLab(Window window, Entity muros[], int nmuros)
 }
 
 void renderFondo(Window window, SDL_Texture* tex)
+{
+    SDL_RenderCopy(window.renderer, tex, NULL, NULL);
+}
+
+void renderPause(Window window, SDL_Texture* tex)
 {
     SDL_RenderCopy(window.renderer, tex, NULL, NULL);
 }
@@ -97,7 +102,7 @@ int ComprobarMuros(int new_x, int new_y, Vector2f v2, const Entity* muros, int n
     return;
 }
 
-void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
+bool UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
 {
                     switch(event.type)
                     {
@@ -125,8 +130,13 @@ void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
                                     k->SPACE=true;
                                     break;
                                 case SDL_SCANCODE_ESCAPE:
-                                    k->ESC=true;
-                                    break;
+                                    k->ESC = true;
+                                    if (!k->ESC_PREV) {
+                                        k->ESC_PREV = true;
+                                        return false;
+                                    } else {
+                                        return true;
+                                    }
                             }
                             break;
 
@@ -154,8 +164,9 @@ void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
                                     k->SPACE=false;
                                     break;
                                 case SDL_SCANCODE_ESCAPE:
-                                    k->ESC=false;
-                                    break;
+                                    k->ESC = false;
+                                    k->ESC_PREV = false;
+                                    return false;
                             }
                             break;
                     }
@@ -170,10 +181,10 @@ tiempo_boton_fin_int = (int) *tiempo_boton_fin;
 tiempo_fin_invis_int = (int) *tiempo_fin_invisibilidad;
 
 
-    if (boton == true )//Si botón activado
+    if (boton == true )//Si botï¿½n activado
     {
         *tiempo_boton_in = game_time;
-        *tiempo_boton_fin = *tiempo_boton_in + 10; //Habrá 10 segundos de cooldown del botón, son 3 tras acabar la invisibilidad
+        *tiempo_boton_fin = *tiempo_boton_in + 10; //Habrï¿½ 10 segundos de cooldown del botï¿½n, son 3 tras acabar la invisibilidad
         *tiempo_fin_invisibilidad = *tiempo_boton_in + 7;
         *invisibilidad = invisibility(game_time, tiempo_fin_invis_int, boton);
         //printf("False por primera vez de nuevo------------\n");

@@ -68,6 +68,7 @@ int main(int argc, char *argv[])
     tex.png = loadTexture("resources/PruebaPNG.png",mainWin);
     tex.vida = loadTexture("resources/life.png",mainWin);
     tex.vision = loadTexture("resources/Vision.png",mainWin);
+    tex.pause = loadTexture("resources/pause.jpg",mainWin);
 
     // Instanciar jugador
     Vector2i pos = { 250, 300 };

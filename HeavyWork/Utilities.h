@@ -57,6 +57,7 @@ typedef struct
     SDL_Texture* bot;
     SDL_Texture* vida;
     SDL_Texture* vision;
+    SDL_Texture* pause;
 
 } Textures; //Estructura de las texturas
 
@@ -93,6 +94,7 @@ typedef struct {
     bool D;
     bool SPACE;
     bool ESC;
+    bool ESC_PREV;
 } key_buttons;
 
 void pushStack(Stack stack[],int x, int y);
@@ -100,10 +102,11 @@ int popStack(Stack stack[]);
 SDL_Texture* loadTexture(const char p_file[], Window window);
 void renderLab(Window window, Entity muros[], int nmuros);
 void renderFondo(Window window, SDL_Texture* tex);
+void renderPause(Window window, SDL_Texture* tex);
 void imprimirImagen(Window window, SDL_Texture* tex);
 int num_al (void);
 int ComprobarMuros(int new_x, int new_y, Vector2f v2, const Entity* muros, int num_muros);
-void UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update);
+bool UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update);
 bool boton_invisibilidad (bool boton, float game_time, float *tiempo_boton_in, float *tiempo_boton_fin, float *tiempo_fin_invisibilidad, bool *invisibilidad);
 
 
