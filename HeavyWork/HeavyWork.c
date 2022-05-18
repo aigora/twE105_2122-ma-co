@@ -55,11 +55,11 @@ int main(int argc, char *argv[])
 	tex.player = loadTexture("Resources/playerdef.png",mainWin);
     tex.playerinv = loadTexture("resources/persinv.png",mainWin);
     tex.bot = loadTexture("Resources/player_gri2def.png",mainWin);
-    tex.menu = loadTexture("Resources/Menuinicio2.jpg",mainWin);
-	tex.ajustes = loadTexture("Resources/ajustes.jpg",mainWin);
-	tex.ajusnos = loadTexture("Resources/ajustessinson.jpg",mainWin);
-	tex.carga = loadTexture("Resources/carga.jpg",mainWin);
-	tex.personaje1 = loadTexture("Resources/personaje1.jpg",mainWin);
+    tex.menu = loadTexture("Resources/menu2.jpg",mainWin);
+	tex.ajustes = loadTexture("Resources/ajustes2.jpg",mainWin);
+	tex.ajusnos = loadTexture("Resources/ajustesno2.jpg",mainWin);
+	tex.carga = loadTexture("Resources/carga2.jpg",mainWin);
+	tex.personaje1 = loadTexture("Resources/personajesn.jpg",mainWin);
 	tex.personaje2 = loadTexture("Resources/personaje2.jpg",mainWin);
 	tex.personaje3 = loadTexture("Resources/personaje3.jpg",mainWin);
 	tex.wall = loadTexture("resources/Negro.jpg",mainWin);
