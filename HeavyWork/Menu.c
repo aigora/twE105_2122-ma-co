@@ -18,7 +18,7 @@ int menu(Window window, Textures tex, int *personaje, int sonido)
     int buttons;
     int cierre;
     // Para cargar un archivo de audio, el formato reconocido por la librería básica de SDL es WAV. El clip de audio es cargado:
-    SDL_AudioSpec wavSpec;
+    /*SDL_AudioSpec wavSpec;
     Uint32 wavLength;
     Uint8 *wavBuffer;
 
@@ -34,19 +34,59 @@ int menu(Window window, Textures tex, int *personaje, int sonido)
 
     // Reproducir la pista
 
-    int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength); // SDL_QueueAudio permite enviar la información del WAV directamente al dispositivo
+    int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength);*/ // SDL_QueueAudio permite enviar la información del WAV directamente al dispositivo
+    //La música que se reproducirá
+    Mix_Music *musica = NULL;
+
+    //Efectos de sonido que se usarán
+    Mix_Chunk *recoger = NULL;
+
+    bool success = true;
+
+    //Inicializar SDL_mixer
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+    {
+        printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+        success = false;
+    }
+
+    //Cargar música
+    musica = Mix_LoadMUS( "resources/pruebamus.mp3" );
+    if( musica == NULL )
+    {
+        printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
+        success = false;
+    }
+
+    //Cargar efectoss de sonido
+    recoger = Mix_LoadWAV( "resources/recoger_item.wav" );
+    if( recoger == NULL )
+    {
+        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+        success = false;
+    }
+
+
+    Mix_PlayMusic( musica, -1 );
+    //Resume the music
+    //Mix_ResumeMusic();
+    //Pause the music
+    //Mix_PauseMusic();
+
+    Mix_PlayChannel( -1, recoger, 0 );
+
     int SDL_CaptureMouse(SDL_bool enabled);//Relativo a la detección del ratón
 
     while(true)
     {
-        if(sonido==0)
+        /*if(sonido==0)
         {
             SDL_PauseAudioDevice(deviceId, 0); //Pausa la grabación de audio al darle un número != 0
         }
         if(sonido==1)
         {
             SDL_PauseAudioDevice(deviceId, 1);
-        }
+        }*/
 
         //Bucle del menú
 
@@ -134,12 +174,12 @@ int menu(Window window, Textures tex, int *personaje, int sonido)
                             if (sonido == 1)
                             {
                                 sonido=0;
-                                SDL_PauseAudioDevice(deviceId, 0);
+                                //SDL_PauseAudioDevice(deviceId, 0);
                             }
                             else
                             {
                                 sonido=1;
-                                SDL_PauseAudioDevice(deviceId, 1);
+                                //SDL_PauseAudioDevice(deviceId, 1);
                             }
                         }
                         if(mouse_x > 400 && mouse_y > 450 && mouse_x < 630 && mouse_y < 540) //Selecciona en que parte de la pantalla puedo clickar
@@ -227,6 +267,13 @@ int menu(Window window, Textures tex, int *personaje, int sonido)
             break;
         }
     }
+    //Liberar efectos de sonido
+    Mix_FreeChunk( musica );
+    Mix_FreeChunk( recoger );
+
+
+    //Liberar música
+    Mix_FreeMusic( musica );
 }
 
 

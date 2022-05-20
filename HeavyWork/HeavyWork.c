@@ -97,6 +97,7 @@ int main(int argc, char *argv[])
 
     SDL_DestroyRenderer(mainWin.renderer);
     SDL_DestroyWindow(mainWin.window);
+
     SDL_Quit();
     return 0;
 
