@@ -3,6 +3,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_audio.h>
 #include "Game.h"
 #include "Player.h"
@@ -121,7 +123,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                 // Si no esta el juego en pausa, podemos mover el jugador.
                 if (!pausa) {
                     if (KEYS.W || KEYS.A || KEYS.S || KEYS.D) {
-                        MovLab(muros, nmuros, KEYS, *player, bot, boton);
+                        MovLab(muros, nmuros, KEYS, *player, bot, boton, delta_time);
                     }
 
                     if (KEYS.SPACE)

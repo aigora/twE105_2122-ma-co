@@ -5,6 +5,8 @@
 #include <time.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include "Utilities.h"
 
 typedef struct
@@ -15,7 +17,7 @@ typedef struct
     bool east;
     bool west;
 
-} Cell; //Estructura para ver generar un laberinto a partir de celdas
+} Cell; //Estructura para generar un laberinto a partir de celdas
 
 typedef struct
 {
@@ -27,5 +29,5 @@ typedef struct
 void generarLaberinto(M_Lab m_Lab);
 void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex);
 void DebugLab(M_Lab m_Lab);
-void MovLab(Entity muros[], int num_muros, key_buttons k, player_t player, bot_struct* bot, bool boton);
+void MovLab(Entity muros[], int num_muros, key_buttons k, player_t player, bot_struct* bot, bool boton, float delta_time);
 

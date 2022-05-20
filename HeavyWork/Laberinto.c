@@ -4,10 +4,10 @@
 #include <time.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include "Laberinto.h"
 #include "Utilities.h"
-
-//Falta hacer las funciones del stack (pushStack y popStack)
 
 void generarLaberinto(M_Lab m_Lab)
 {
@@ -273,61 +273,63 @@ void DebugLab(M_Lab m_Lab)
     }
 }
 
-void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot, bool boton)
+void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot, bool boton, float delta_time)
 {
     int i, j;
-    float veloz;
+    float velocity;
+    int position;
     if(boton == false) //Velocidad se reduce mientras el botón no está cargado. Por eso se emplea bool boton y no bool invisibilidadwwwwwwwwwww
-        veloz = 1;
+        velocity = 200;
     else
-            veloz = 3;
+            velocity = 300;
 
     Vector2f v;
     v.x = player.texture.w;
     v.y = player.texture.h;
+    position=(int)(velocity*delta_time);
 
     if(k.W==true)
     {
         for(i=0; i<nmuros; i++)
-            muros[i].dst.y+=veloz;
+            muros[i].dst.y+=position;
 
         if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
                 for(j=0; j<nmuros; j++)
-                    muros[j].dst.y-=veloz;
+                    muros[j].dst.y-=position;
         else
-            bot->texture.y+=veloz;
+            bot->texture.y+=position;
     }
     if(k.A==true)
     {
         for(i=0; i<nmuros; i++)
-            muros[i].dst.x+=veloz;
+            muros[i].dst.x+=position;
 
         if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
                 for(j=0; j<nmuros; j++)
-                    muros[j].dst.x-=veloz;
+                    muros[j].dst.x-=position;
         else
-            bot->texture.x+=veloz;
+            bot->texture.x+=position;
     }
     if(k.D==true)
     {
         for(i=0; i<nmuros; i++)
-            muros[i].dst.x-=veloz;
+            muros[i].dst.x-=position;
 
         if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
                 for(j=0; j<nmuros; j++)
-                    muros[j].dst.x+=veloz;
+                    muros[j].dst.x+=position;
         else
-            bot->texture.x-=veloz;
+            bot->texture.x-=position;
     }
     if(k.S==true)
     {
         for(i=0; i<nmuros; i++)
-            muros[i].dst.y-=veloz;
+            muros[i].dst.y-=position;
 
         if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
                 for(j=0; j<nmuros; j++)
-                    muros[j].dst.y+=veloz;
+                    muros[j].dst.y+=position;
         else
-            bot->texture.y-=veloz;
+            bot->texture.y-=position;
     }
 }
