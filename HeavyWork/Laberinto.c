@@ -278,8 +278,8 @@ void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
     int i, j;
     float velocity;
     int position;
-    if(boton == false) //Velocidad se reduce mientras el botón no está cargado. Por eso se emplea bool boton y no bool invisibilidadwwwwwwwwwww
-        velocity = 200;
+    if(boton == false) //Velocidad se reduce mientras el botón no está cargado. Por eso se emplea bool boton y no bool invisibilidad
+        velocity = 175;
     else
             velocity = 300;
 

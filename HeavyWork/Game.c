@@ -17,7 +17,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
     SDL_RenderPresent(window.renderer);
 
-    bool update,game=true, A_pres=false, boton=true, invisibilidad = false;
+    bool update,game=true, A_pres=false, boton=true, invisibilidad = false, invenc = false;
     bool pausa = false;
     SDL_Event event;
     M_Lab m_Lab;
@@ -26,7 +26,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     Entity *muros;
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;KEYS.ESC_PREV=false;
     int nmuros=0, i, j, stage=1, last_time;
-    float delta_time,game_time,t_inicio,tiempo_boton_in,tiempo_boton_fin = 0,tiempo_fin_invisibilidad;
+    float delta_time,game_time,t_inicio,tiempo_boton_in,tiempo_boton_fin = 0,tiempo_fin_invisibilidad, tiempo_fin_invencibilidad;
     bool same_press;
 
     while(game)
@@ -135,22 +135,28 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
                     {
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
                     }
-                    if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0))//Se le añade la condición de que no sea invisible para perseguir
+                    if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))//Se le añade la condición de que no sea invisible para perseguir
                     {
-                        // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
                         bool alive = playerKill(player);
+                        invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
+
                         if (!alive) {
                             update = false;
                             game = false;
                         }
                     }
 
-                    if((playerDist(player, bot, muros, nmuros)<=300)&&(invisibilidad == 0))
+                    if((playerDist(player, bot, muros, nmuros)<=300)&&(invisibilidad == 0)&&(invenc == false))
                     {
                         perseguir(player, bot, muros, nmuros, delta_time, invisibilidad);
                     }
                     else
                         mov_bot (num_al(), bot, muros, nmuros, delta_time);
+
+                    if (invenc == true) //Si invenc es verdadero se comprueba la igualdad de tiempos para, cuando se cumpla la condición, desactivarse
+                    {
+                        invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
+                    }
                 }
 
                 while(SDL_GetTicks()-last_time<1000/60){}
@@ -165,3 +171,26 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
     }
 return 0;
 }
+
+bool invencibilidad (float time, int *tiempo_fin_invencibilidad, bool invenc)
+{
+    int t_ent,i;
+    t_ent = (int) time;
+
+    if (invenc == false)
+    {
+        *tiempo_fin_invencibilidad = t_ent+5;
+        return true;
+    }
+
+    else if (t_ent == *tiempo_fin_invencibilidad)
+    {
+        return false;
+    }
+
+    else return true;
+}
+//La función invencibilidad sigue el mismo funcionamiento que la invisibilidad, al ser llamada cuando se pierde una vida,
+//se hace verdadero el bool y se crea una variable tiempo_fin_invencibilidad. Esta es la suma del tiempo en el que se
+//cambia el booleano y el tiempo que queremos que dure, 5 segundos. Se comprueba si el tiempo de juego en cada instante
+//es el mismo que tiempo_fin_invencibilidad para entonces desactivar el bool.
