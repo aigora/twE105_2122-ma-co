@@ -55,7 +55,12 @@ int main(int argc, char *argv[])
 	//Cargamos las texturas que vayamos a usar
 	tex.player = loadTexture("Resources/playerdef.png",mainWin);
     tex.playerinv = loadTexture("resources/persinv.png",mainWin);
+    tex.playerdrcha = loadTexture("resources/playerdefdrcha.png",mainWin);
+    tex.playerizqda = loadTexture("resources/playerdefizqda.png",mainWin);
+    tex.playeratras = loadTexture("resources/playerdefatras.png",mainWin);
+
     tex.bot = loadTexture("Resources/player_gri2def.png",mainWin);
+
     tex.menu = loadTexture("Resources/menu2.jpg",mainWin);
 	tex.ajustes = loadTexture("Resources/ajustes2.jpg",mainWin);
 	tex.ajusnos = loadTexture("Resources/ajustesno2.jpg",mainWin);
@@ -63,13 +68,21 @@ int main(int argc, char *argv[])
 	tex.personaje1 = loadTexture("Resources/personajesn.jpg",mainWin);
 	tex.personaje2 = loadTexture("Resources/personaje2.jpg",mainWin);
 	tex.personaje3 = loadTexture("Resources/personaje3.jpg",mainWin);
+
 	tex.wall = loadTexture("resources/Negro.jpg",mainWin);
     tex.fondo = loadTexture("resources/parquetg.jpg",mainWin);
+
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
+
     tex.png = loadTexture("resources/PruebaPNG.png",mainWin);
     tex.vida = loadTexture("resources/life.png",mainWin);
     tex.vision = loadTexture("resources/Vision.png",mainWin);
     tex.pause = loadTexture("resources/pause.jpg",mainWin);
+    tex.billete = loadTexture("resources/Pbillete.png",mainWin);
+    tex.cafe = loadTexture("resources/Taza.png",mainWin);
+    tex.charco = loadTexture("resources/charco.png",mainWin);
+    tex.salida = loadTexture("resources/Escaleras.png",mainWin);
+
 
     // Instanciar jugador
     Vector2i pos = { 250, 300 };
@@ -98,7 +111,7 @@ int main(int argc, char *argv[])
     musica = Mix_LoadMUS( "resources/music2.wav" );
     if( musica == NULL )
     {
-        printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
+        printf( "Fallo al cargar la música, SDL_mixer Error: %s\n", Mix_GetError() );
         success = false;
     }
 
@@ -106,14 +119,14 @@ int main(int argc, char *argv[])
     recoger = Mix_LoadWAV( "resources/recoger2.wav" );
     if( recoger == NULL )
     {
-        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+        printf( "Fallo al cargar el efecto de recoger, SDL_mixer Error: %s\n", Mix_GetError() );
         success = false;
     }
 
     invisi = Mix_LoadWAV( "resources/invisi.wav" );//Efecto de sonido para el superpoder invisibilidad
     if( invisi == NULL )
     {
-        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+        printf( "Fallo al cargar el efecto de la invisibilidad, SDL_mixer Error: %s\n", Mix_GetError() );
         success = false;
     }
 

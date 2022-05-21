@@ -54,12 +54,19 @@ typedef struct
     SDL_Texture* fondo;
     SDL_Texture* player;
     SDL_Texture* playerinv;
+    SDL_Texture* playerdrcha;
+    SDL_Texture* playerizqda;
+    SDL_Texture* playeratras;
     SDL_Texture* prox;
     SDL_Texture* png;
     SDL_Texture* bot;
     SDL_Texture* vida;
     SDL_Texture* vision;
     SDL_Texture* pause;
+    SDL_Texture* billete;
+    SDL_Texture* cafe;
+    SDL_Texture* charco;
+    SDL_Texture* salida;
 
 } Textures; //Estructura de las texturas
 

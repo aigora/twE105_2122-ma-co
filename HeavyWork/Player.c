@@ -176,9 +176,7 @@ bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton, Mix_Chun
         else return false;
 
 }
-//La funci�n invisibility funciona como booleano, si el tiempo desde el inicio de juego (game_time) es divisible por 60 se activa
-//la invisibilidad. Al hacer la conversi�n de float a entero, mientras time se encuentre en [n*60,n*70],
-//la invisibilidad estar� activada (10 segundos de invisibilidad).
+//La función invisibility sigue el mismo principio que la función invencibilidad
 
 
 
