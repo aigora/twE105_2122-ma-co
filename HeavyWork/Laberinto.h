@@ -8,6 +8,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include "Utilities.h"
+#include "Player.h"
 
 typedef struct
 {

@@ -53,8 +53,10 @@ int main(int argc, char *argv[])
 	//running=loadWin("HeavyWork",mainWin);
 
 	//Cargamos las texturas que vayamos a usar
-	tex.player = loadTexture("Resources/playerdef.png",mainWin);
+    //! Cargar las 4 texturas de invisibilidad.
     tex.playerinv = loadTexture("resources/persinv.png",mainWin);
+
+	tex.player = loadTexture("Resources/playerdef.png",mainWin);
     tex.playerdrcha = loadTexture("resources/playerdefdrcha.png",mainWin);
     tex.playerizqda = loadTexture("resources/playerdefizqda.png",mainWin);
     tex.playeratras = loadTexture("resources/playerdefatras.png",mainWin);
@@ -86,15 +88,24 @@ int main(int argc, char *argv[])
 
     // Instanciar jugador
     Vector2i pos = { 250, 300 };
-    player_t* player = newPlayer(pos, MAX_VIDAS, tex.vida, tex.player, tex.playerinv);
+    player_textures_t player_textures = {
+        .player_right = tex.playerdrcha,
+        .player_left = tex.playerizqda,
+        .player_up = tex.playeratras,
+        .player_down = tex.player,
+        .player_invisible = tex.playerinv,
+        //! Meter las 4 de invisibilidad.
+        .life = tex.vida,
+    };
+    player_t* player = newPlayer(pos, MAX_VIDAS, player_textures);
     //Iniciar un bot
     Vector2i coordbot = {500,300};
     bot_struct* bot = bot_creator(coordbot,tex.bot);
 
-        //La música que se reproducirá
+        //La mï¿½sica que se reproducirï¿½
     Mix_Music *musica = NULL;
 
-    //Efectos de sonido que se usarán
+    //Efectos de sonido que se usarï¿½n
     Mix_Chunk *recoger = NULL;
     Mix_Chunk *invisi = NULL;
 
@@ -107,11 +118,11 @@ int main(int argc, char *argv[])
         success = false;
     }
 
-    //Cargar música
+    //Cargar mï¿½sica
     musica = Mix_LoadMUS( "resources/music2.wav" );
     if( musica == NULL )
     {
-        printf( "Fallo al cargar la música, SDL_mixer Error: %s\n", Mix_GetError() );
+        printf( "Fallo al cargar la mï¿½sica, SDL_mixer Error: %s\n", Mix_GetError() );
         success = false;
     }
 
@@ -152,7 +163,7 @@ int main(int argc, char *argv[])
     //Liberar efectos de sonido
     Mix_FreeChunk( recoger );
 
-    //Liberar música
+    //Liberar mï¿½sica
     Mix_FreeMusic( musica );
 
     SDL_Quit();

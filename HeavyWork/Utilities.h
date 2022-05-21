@@ -10,7 +10,6 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_audio.h>
 
-
 typedef struct
 {
     float x;
@@ -85,15 +84,6 @@ typedef struct
     SDL_Texture* texture_bot;
 
 } bot_struct;
-
-typedef struct {
-    SDL_Rect texture;
-    Vector2i pos_inicial;
-    SDL_Texture* texture_life;
-    SDL_Texture* texture_player;
-    SDL_Texture* texture_playerinv;
-    int num_vidas;
-} player_t;
 
 typedef struct {
 

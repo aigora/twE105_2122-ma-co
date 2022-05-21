@@ -123,6 +123,18 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                 // Si no esta el juego en pausa, podemos mover el jugador.
                 if (!pausa) {
                     if (KEYS.W || KEYS.A || KEYS.S || KEYS.D) {
+                        player_direction_t direction;
+                        if (KEYS.W) {
+                            direction = MOVEMENT_UP;
+                        } else if (KEYS.A) {
+                            direction = MOVEMENT_LEFT;
+                        } else if (KEYS.S) {
+                            direction = MOVEMENT_DOWN;
+                        } else if (KEYS.D) {
+                            direction = MOVEMENT_RIGHT;
+                        }
+
+                        playerSetDirection(player, direction);
                         MovLab(muros, nmuros, KEYS, *player, bot, boton, delta_time);
                     }
 

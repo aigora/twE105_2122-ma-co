@@ -21,7 +21,7 @@
 
 #define VIDA_MARGIN     10
 
-player_t* newPlayer(Vector2i initial_position, int num_vidas, SDL_Texture* life_texture,SDL_Texture* player_texture,SDL_Texture* playerinv_texture) {
+player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t textures) {
     player_t* player = (player_t*) malloc(sizeof(player_t));
 
     player->texture.x = initial_position.x;
@@ -34,9 +34,14 @@ player_t* newPlayer(Vector2i initial_position, int num_vidas, SDL_Texture* life_
     player->pos_inicial.y = initial_position.y;
 
     player->num_vidas = num_vidas;
-    player->texture_life = life_texture;
-    player->texture_player = player_texture;
-    player->texture_playerinv = playerinv_texture;
+    player->direction = MOVEMENT_DOWN;
+
+    player->textures.life = textures.life;
+    player->textures.player_right = textures.player_right;
+    player->textures.player_left = textures.player_left;
+    player->textures.player_up = textures.player_up;
+    player->textures.player_down = textures.player_down;
+    player->textures.player_invisible = textures.player_invisible;
 
     return player;
 }
@@ -47,15 +52,32 @@ void renderPlayer(player_t* player, Window window, bool invisibilidad)
     SDL_RenderFillRect(window.renderer, &player->texture);
     SDL_SetRenderDrawBlendMode(window.renderer,  SDL_BLENDMODE_BLEND);
 
+    SDL_Texture* texture_player = NULL;
     if (invisibilidad == true)
     {
-    SDL_RenderCopy(window.renderer, player->texture_playerinv, NULL, &player->texture);
+        //! Exactamente el mismo switch del else, pero usando las texturas
+        //! de invisibilidad que hay en la struct player->textures.
+        texture_player = player->textures.player_invisible;
     }
     else
     {
-    SDL_RenderCopy(window.renderer, player->texture_player, NULL, &player->texture);
-
+        switch (player->direction) {
+            case MOVEMENT_UP:
+                texture_player = player->textures.player_up;
+                break;
+            case MOVEMENT_DOWN:
+                texture_player = player->textures.player_down;
+                break;
+            case MOVEMENT_RIGHT:
+                texture_player = player->textures.player_right;
+                break;
+            case MOVEMENT_LEFT:
+                texture_player = player->textures.player_left;
+                break;
+        }
     }
+
+    SDL_RenderCopy(window.renderer, texture_player, NULL, &player->texture);
 
     // Renderizar el numero de vidas.
     for (int i = 0; i < player->num_vidas; i++) {
@@ -64,43 +86,8 @@ void renderPlayer(player_t* player, Window window, bool invisibilidad)
         dst.h = VIDA_HEIGHT;
         dst.x = VIDA_X_INITIAL + (i * VIDA_MARGIN) + (i * VIDA_WIDTH);
         dst.y = VIDA_Y;
-        SDL_RenderCopy(window.renderer, player->texture_life, NULL, &dst);
+        SDL_RenderCopy(window.renderer, player->textures.life, NULL, &dst);
     }
-}
-
-// Mover el jugador en la direccion indicada.
-void movePlayer(player_t* player, const Entity* muros, int num_muros, player_direction_t direction, float delta_time) {
-
-    const float velocity = 150;
-    const int position=(int)(velocity*delta_time);
-    Vector2f v;
-    v.x = player->texture.w;
-    v.y = player->texture.h;
-
-    int new_x = player->texture.x;
-    int new_y = player->texture.y;
-
-    switch (direction) {
-    case MOVEMENT_UP:
-        new_y-= position;
-        break;
-    case MOVEMENT_DOWN:
-        new_y+= position;
-        break;
-    case MOVEMENT_RIGHT:
-        new_x+= position;
-        break;
-    case MOVEMENT_LEFT:
-        new_x-= position;
-        break;
-            }
-
-        //Creaci�n de un nuevo rectangulo desplazado sobre el que se detectan las colisiones
-        if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
-            return;
-
-        player->texture.x = new_x;
-        player->texture.y = new_y;
 }
 
 float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros)//V1=player v2=IA
@@ -176,7 +163,7 @@ bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton, Mix_Chun
         else return false;
 
 }
-//La función invisibility sigue el mismo principio que la función invencibilidad
 
-
-
+void playerSetDirection(player_t* player, player_direction_t direction) {
+    player->direction = direction;
+}
