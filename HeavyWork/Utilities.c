@@ -173,7 +173,7 @@ bool UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
                     }
 }
 
-bool boton_invisibilidad (bool boton, float game_time, float *tiempo_boton_in, float *tiempo_boton_fin, float *tiempo_fin_invisibilidad, bool *invisibilidad)
+bool boton_invisibilidad (bool boton, float game_time, float *tiempo_boton_in, float *tiempo_boton_fin, float *tiempo_fin_invisibilidad, bool *invisibilidad, Mix_Chunk *invisi)
 {
 
 int game_time_int, tiempo_boton_fin_int, tiempo_fin_invis_int;
@@ -187,7 +187,7 @@ tiempo_fin_invis_int = (int) *tiempo_fin_invisibilidad;
         *tiempo_boton_in = game_time;
         *tiempo_boton_fin = *tiempo_boton_in + 10; //Habr� 10 segundos de cooldown del bot�n, son 3 tras acabar la invisibilidad
         *tiempo_fin_invisibilidad = *tiempo_boton_in + 7;
-        *invisibilidad = invisibility(game_time, tiempo_fin_invis_int, boton);
+        *invisibilidad = invisibility(game_time, tiempo_fin_invis_int, boton, invisi);
         //printf("False por primera vez de nuevo------------\n");
         return false;
 

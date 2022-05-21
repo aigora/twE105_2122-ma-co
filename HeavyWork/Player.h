@@ -33,7 +33,7 @@ float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muro
 
 bool playerKill(player_t* player);
 
-bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton);
+bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton, Mix_Chunk *invisi);
 
 
 

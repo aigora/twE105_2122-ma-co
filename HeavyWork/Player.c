@@ -159,13 +159,14 @@ bool playerKill(player_t* player) {
     return (player->num_vidas > 0);
 }
 
-bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton)
+bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton, Mix_Chunk *invisi)
 {
     int t_ent,i;
     t_ent = (int) time;
 
     if(boton == 1)
     {
+        Mix_PlayChannel( -1, invisi, 0 );
         return true;
     }
     else if (time<tiempo_fin_invisibilidad)

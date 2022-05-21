@@ -18,9 +18,8 @@
 int main(int argc, char *argv[])
 {
     int p;
-    bool running=true;
+    bool running=true, sonido = true;//Indica si el sonido se encuentra habilitado o no, inicialmente encendido
     int stage = 1;  //Indica en que fase del flowchart estamos
-    int sonido = 0; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
     int personaje = 1; //Indica el personaje seleccionado, por defecto el stickman
     Window mainWin;
     Textures tex;
@@ -79,6 +78,45 @@ int main(int argc, char *argv[])
     Vector2i coordbot = {500,300};
     bot_struct* bot = bot_creator(coordbot,tex.bot);
 
+        //La música que se reproducirá
+    Mix_Music *musica = NULL;
+
+    //Efectos de sonido que se usarán
+    Mix_Chunk *recoger = NULL;
+    Mix_Chunk *invisi = NULL;
+
+    bool success = true;
+
+    //Inicializar SDL_mixer
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+    {
+        printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+        success = false;
+    }
+
+    //Cargar música
+    musica = Mix_LoadMUS( "resources/music2.wav" );
+    if( musica == NULL )
+    {
+        printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
+        success = false;
+    }
+
+    //Cargar efectoss de sonido
+    recoger = Mix_LoadWAV( "resources/recoger2.wav" );
+    if( recoger == NULL )
+    {
+        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+        success = false;
+    }
+
+    invisi = Mix_LoadWAV( "resources/invisi.wav" );//Efecto de sonido para el superpoder invisibilidad
+    if( invisi == NULL )
+    {
+        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+        success = false;
+    }
+
 	while(running)
     {
         switch(stage)
@@ -87,16 +125,22 @@ int main(int argc, char *argv[])
             running=false;
             break;
         case 1:
-            stage=menu(mainWin,tex,&personaje, sonido);
+            stage=menu(mainWin,tex,&personaje, sonido, musica);
             break;
         case 2:
-            stage=game(mainWin,tex,player,bot);
+            stage=game(mainWin,tex, player, bot, recoger, invisi);
             break;
         }
     }
 
     SDL_DestroyRenderer(mainWin.renderer);
     SDL_DestroyWindow(mainWin.window);
+
+    //Liberar efectos de sonido
+    Mix_FreeChunk( recoger );
+
+    //Liberar música
+    Mix_FreeMusic( musica );
 
     SDL_Quit();
     return 0;

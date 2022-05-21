@@ -10,83 +10,22 @@
 #include "Utilities.h"
 #define SPEED 300//velocidad en pixeles por segundo
 
-int menu(Window window, Textures tex, int *personaje, int sonido)
+int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *musica)
 {
     int stage=1;
     SDL_Event event; //Creamos una variable de tipo evento
     int mouse_x, mouse_y;
     int buttons;
     int cierre;
-    // Para cargar un archivo de audio, el formato reconocido por la librería básica de SDL es WAV. El clip de audio es cargado:
-    /*SDL_AudioSpec wavSpec;
-    Uint32 wavLength;
-    Uint8 *wavBuffer;
 
-    SDL_LoadWAV("resources/music2.wav", &wavSpec, &wavBuffer, &wavLength);
+    Mix_PlayMusic( musica, -1 );//Reproduce la música inicialmente
 
-    // Con el siguiente comando se abre el dispositivo de audio que lo va a reproducir
-
-    SDL_AudioDeviceID deviceId = SDL_OpenAudioDevice(NULL, 0, &wavSpec, NULL, 0);
-
-    // Los argumentos del comando anterior hacen referencia, el primero al nombre del dispositivo que lo reproducirá (al pasarle NULL
-    // tomará el dispositivo predeterminado, el segundo es relevante en relación a dispositivos de grabación, no de reproducción, el
-    // tercero representa el formato del audio de entrada, el cuarto el formato del audio de salida y el quinto se refiere a escenarios avanzados de audio
-
-    // Reproducir la pista
-
-    int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength);*/ // SDL_QueueAudio permite enviar la información del WAV directamente al dispositivo
-    //La música que se reproducirá
-    Mix_Music *musica = NULL;
-
-    //Efectos de sonido que se usarán
-    Mix_Chunk *recoger = NULL;
-
-    bool success = true;
-
-    //Inicializar SDL_mixer
-    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
-    {
-        printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
-        success = false;
-    }
-
-    //Cargar música
-    musica = Mix_LoadMUS( "resources/pruebamus.mp3" );
-    if( musica == NULL )
-    {
-        printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
-        success = false;
-    }
-
-    //Cargar efectoss de sonido
-    recoger = Mix_LoadWAV( "resources/recoger_item.wav" );
-    if( recoger == NULL )
-    {
-        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
-        success = false;
-    }
-
-
-    Mix_PlayMusic( musica, -1 );
-    //Resume the music
-    //Mix_ResumeMusic();
-    //Pause the music
-    //Mix_PauseMusic();
-
-    Mix_PlayChannel( -1, recoger, 0 );
+    //Mix_PlayChannel( -1, recoger, 0 );
 
     int SDL_CaptureMouse(SDL_bool enabled);//Relativo a la detección del ratón
 
     while(true)
     {
-        /*if(sonido==0)
-        {
-            SDL_PauseAudioDevice(deviceId, 0); //Pausa la grabación de audio al darle un número != 0
-        }
-        if(sonido==1)
-        {
-            SDL_PauseAudioDevice(deviceId, 1);
-        }*/
 
         //Bucle del menú
 
@@ -152,11 +91,11 @@ int menu(Window window, Textures tex, int *personaje, int sonido)
             {
                 buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
-                if (sonido == 0)
+                if (sonido == true)
                 {
                     imprimirImagen(window, tex.ajustes);
                 }
-                if (sonido == 1)
+                if (sonido == false)
                 {
                     imprimirImagen(window, tex.ajusnos);
                 }
@@ -171,15 +110,15 @@ int menu(Window window, Textures tex, int *personaje, int sonido)
                     {
                         if(mouse_x < 290 && mouse_y > 450 && mouse_x > 60 && mouse_y < 540)//SONIDO
                         {
-                            if (sonido == 1)
+                            if (sonido == false)
                             {
-                                sonido=0;
-                                //SDL_PauseAudioDevice(deviceId, 0);
+                                sonido=true;
+                                Mix_ResumeMusic();
                             }
                             else
                             {
-                                sonido=1;
-                                //SDL_PauseAudioDevice(deviceId, 1);
+                                sonido=false;
+                                Mix_PauseMusic();
                             }
                         }
                         if(mouse_x > 400 && mouse_y > 450 && mouse_x < 630 && mouse_y < 540) //Selecciona en que parte de la pantalla puedo clickar
@@ -267,13 +206,7 @@ int menu(Window window, Textures tex, int *personaje, int sonido)
             break;
         }
     }
-    //Liberar efectos de sonido
-    Mix_FreeChunk( musica );
-    Mix_FreeChunk( recoger );
 
-
-    //Liberar música
-    Mix_FreeMusic( musica );
 }
 
 

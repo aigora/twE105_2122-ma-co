@@ -11,7 +11,7 @@
 #include "Utilities.h"
 #include "Laberinto.h"
 
-int game(Window window, Textures tex, player_t* player, player_t* bot)
+int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk *recoger, Mix_Chunk *invisi)
 {
     SDL_RenderClear(window.renderer);
     SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
@@ -128,12 +128,12 @@ int game(Window window, Textures tex, player_t* player, player_t* bot)
 
                     if (KEYS.SPACE)
                     {
-                        boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
+                        boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
                     }
 
                     if (boton == false)
                     {
-                        boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad);
+                        boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
                     }
                     if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))//Se le añade la condición de que no sea invisible para perseguir
                     {
