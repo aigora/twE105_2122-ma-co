@@ -44,13 +44,6 @@ SDL_Texture* loadTexture(const char p_file[], Window window)
     return texture;
 }
 
-void renderLab(Window window, Entity muros[], int nmuros)
-{
-    int i;
-    for(i=0;i<nmuros;i++)
-            SDL_RenderCopy(window.renderer, muros[i].tex, &muros[i].src, &muros[i].dst);
-}
-
 void renderFondo(Window window, SDL_Texture* tex)
 {
     SDL_RenderCopy(window.renderer, tex, NULL, NULL);

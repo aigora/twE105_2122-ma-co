@@ -12,7 +12,7 @@
 #include "Laberinto.h"
 #include "Tokens.h"
 
-int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk *recoger, Mix_Chunk *invisi)
+int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_Chunk *invisi)
 {
     SDL_RenderClear(window.renderer);
     SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
@@ -25,9 +25,10 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
     m_Lab.w=10;
     m_Lab.h=10;
     Entity *muros;
+    Bot* bots;
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;KEYS.ESC_PREV=false;
-    int nmuros=0, i, j, stage=1, last_time;
-    float delta_time,game_time,t_inicio,tiempo_boton_in,tiempo_boton_fin = 0,tiempo_fin_invisibilidad, tiempo_fin_invencibilidad;
+    int nmuros=0, i, j, stage=1, last_time, nbots;
+    float delta_time,game_time,tiempo_boton_in,tiempo_boton_fin = 0,tiempo_fin_invisibilidad,tiempo_fin_invencibilidad;
     bool same_press;
     Entity Tok[1];
     Vector2f v[1];v[0].x=100;v[0].y=100;//!Borrar esto cuando añadamos más tokens
@@ -62,7 +63,25 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
             nmuros+=4;
 
             muros=malloc((nmuros+4)*sizeof(Entity));
+            if(muros==NULL)
+            {
+                printf("Error creando muros");
+                exit(-1);
+            }
+
             drawLab(window,m_Lab,muros,tex.wall);
+
+            nbots=10;
+
+            bots=malloc(nbots*sizeof(Bot));
+            if(bots==NULL)
+            {
+                printf("Error creando bots");
+                exit(-1);
+            }
+
+            generarBots(m_Lab,bots,nbots,tex);
+
             free(m_Lab.esq);
             stage=2;
             update=true;
@@ -73,22 +92,21 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
         case 2: //Bucle del juego
 
             last_time=SDL_GetTicks();
-            t_inicio = SDL_GetTicks();
 
 
             while(update)
             {
                 SDL_RenderClear(window.renderer);
                 //Temporizador desde el comienzo del juego, se usa en la invisibilidad
-                game_time = (SDL_GetTicks()-t_inicio)/1000.0;
-                printf("%.2f\n",game_time);
+                game_time += delta_time;
+                //printf("%.2f\n",game_time);
 
                 if (!pausa)
                 {
                     renderFondo(window,tex.fondo);
                     renderLab(window,muros,nmuros);
-                    renderBot(bot,window);
                     renderToken(Tok,window,1);
+                    renderBot(bots,window,nbots);
                     renderPlayer(player, window, invisibilidad);
                     if (boton == false)
                         renderFondo(window, tex.vision);
@@ -114,8 +132,6 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                         break;
                     }
                 }
-                //! Esto por qué?
-                // same_press = UpdateKeys(&KEYS, event, &game, &update);
 
                 if (KEYS.ESC && !same_press) {
                     pausa = !pausa;
@@ -139,7 +155,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                         }
 
                         playerSetDirection(player, direction);
-                        movLab(muros, nmuros, KEYS, *player, bot, Tok, 1, boton, delta_time);
+                        movLab(muros, nmuros, KEYS, *player, bots, Tok, 1, nbots, boton, delta_time);
                         catchToken(Tok, 1, player, tex);
                     }
 
@@ -149,8 +165,10 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                     if (boton == false)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
 
-                    if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))//Se le añade la condición de que no sea invisible para perseguir
+                    for(i=0;i<nbots;i++)
+                    if((playerDist(player, bots[i], muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))
                     {
+                        // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
                         bool alive = playerKill(player);
                         invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
 
@@ -161,24 +179,30 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                         }
                     }
 
-                    if((playerDist(player, bot, muros, nmuros)<=300)&&(invisibilidad == 0)&&(invenc == false))
-                        perseguir(player, bot, muros, nmuros, delta_time, invisibilidad);
-
+                    for(i=0;i<nbots;i++)
+                    {
+                    if((playerDist(player, bots[i], muros, nmuros)<=300)&&(invisibilidad == 0))
+                    {
+                        perseguir(player, &bots[i], muros, nmuros, delta_time, invisibilidad);
+                    }
                     else
-                        mov_bot (num_al(), bot, muros, nmuros, delta_time);
+                        mov_bot (num_al(), &bots[i], muros, nmuros, delta_time);
+                    }
 
                     if (invenc == true) //Comprueba si ya han pasado el tiempo de invencibilidad
                         invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
+
                 }
 
                 while(SDL_GetTicks()-last_time<1000/60){}
-                printf("Frames: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                //printf("FPS: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
                 delta_time=(SDL_GetTicks()-last_time)/1000.0;
                 last_time=SDL_GetTicks();
             }
 
             free(muros);
             free(player);
+            free(bots);
         }
     }
 return 0;

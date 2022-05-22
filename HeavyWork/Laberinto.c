@@ -8,6 +8,7 @@
 #include <SDL2/SDL_mixer.h>
 #include "Laberinto.h"
 #include "Utilities.h"
+#include "Enemies.h"
 
 void generarLaberinto(M_Lab m_Lab)
 {
@@ -274,7 +275,7 @@ void DebugLab(M_Lab m_Lab)
 }
 
 //Mueve el laberinto dando la sensación de que se mueve el personaje
-void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot,Entity Tok[], int ntokens, bool boton, float delta_time)
+void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bots[],Entity Tok[], int ntokens, int nbots, bool boton, float delta_time)
 {
     int i, j;
     float velocity;
@@ -299,9 +300,11 @@ void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                     muros[j].dst.y-=position;
         else
         {
-            bot->texture.y+=position;
             for(i=0; i<ntokens; i++)
             Tok[i].dst.y+=position;
+
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.y+=position;
         }
     }
     if(k.A==true)
@@ -314,9 +317,11 @@ void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                     muros[j].dst.x-=position;
         else
         {
-            bot->texture.x+=position;
             for(i=0; i<ntokens; i++)
-                Tok[i].dst.x+=position;
+            Tok[i].dst.x+=position;
+
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.x+=position;
         }
     }
     if(k.D==true)
@@ -329,9 +334,11 @@ void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                     muros[j].dst.x+=position;
         else
         {
-            bot->texture.x-=position;
             for(i=0; i<ntokens; i++)
-                Tok[i].dst.x-=position;
+            Tok[i].dst.x-=position;
+
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.x-=position;
         }
     }
     if(k.S==true)
@@ -344,9 +351,30 @@ void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                     muros[j].dst.y+=position;
         else
         {
-            bot->texture.y-=position;
             for(i=0; i<ntokens; i++)
-                Tok[i].dst.y-=position;
+            Tok[i].dst.y-=position;
+
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.y-=position;
         }
     }
+}
+
+void generarBots(M_Lab m_Lab,Bot bots[], int nbots, Textures tex)
+{
+    int i;
+    Vector2i v[nbots];
+    for(i=0;i<nbots;i++)
+    {
+        v[i].x=500+10*i;
+        v[i].y=100;
+    }
+    bot_creator(bots,v,tex.bot,nbots);
+}
+
+void renderLab(Window window, Entity muros[], int nmuros)
+{
+    int i;
+    for(i=0;i<nmuros;i++)
+            SDL_RenderCopy(window.renderer, muros[i].tex, &muros[i].src, &muros[i].dst);
 }

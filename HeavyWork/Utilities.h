@@ -86,11 +86,10 @@ typedef struct
 
 typedef struct
 {
-    SDL_Rect texture;
-    Vector2i pos_inicial;
-    SDL_Texture* texture_bot;
+    Entity entity;
+    SDL_Rect hitBox;
 
-} bot_struct;
+} Bot;
 
 typedef struct {
 
@@ -106,7 +105,6 @@ typedef struct {
 void pushStack(Stack stack[],int x, int y);
 int popStack(Stack stack[]);
 SDL_Texture* loadTexture(const char p_file[], Window window);
-void renderLab(Window window, Entity muros[], int nmuros);
 void renderFondo(Window window, SDL_Texture* tex);
 void renderPause(Window window, SDL_Texture* tex);
 void imprimirImagen(Window window, SDL_Texture* tex);

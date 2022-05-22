@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1653061484 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
+1653256581 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -11,8 +11,9 @@
 	"Game.h"
 	"Menu.h"
 	"Player.h"
+	"Tokens.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -49,12 +50,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_main.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_stdinc.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -83,28 +84,28 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_config.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 	<winsdkver.h>
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_platform.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\begin_code.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\begin_code.h
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\close_code.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\close_code.h
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_assert.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_atomic.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
@@ -112,7 +113,7 @@
 	<mbarrier.h>
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_audio.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -122,12 +123,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_error.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_endian.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_endian.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<endian.h>
@@ -136,13 +137,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_mutex.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_thread.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -153,18 +154,18 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_rwops.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_clipboard.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_cpuinfo.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -184,7 +185,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_events.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -198,7 +199,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_video.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -206,13 +207,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_pixels.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_pixels.h
 	"SDL_stdinc.h"
 	"SDL_endian.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_rect.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -220,7 +221,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_surface.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -229,11 +230,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_blendmode.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_keyboard.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -241,27 +242,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_keycode.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_scancode.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_mouse.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_joystick.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_gamecontroller.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -270,17 +271,17 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_sensor.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_sensor.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_quit.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_gesture.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -288,70 +289,70 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_touch.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_filesystem.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_haptic.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_hidapi.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_hidapi.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_hints.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_loadso.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_log.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_messagebox.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_metal.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_metal.h
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_power.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_render.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_shape.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_shape.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -360,7 +361,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_system.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -368,29 +369,29 @@
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_timer.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_version.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_locale.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_locale.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_misc.h
+1649761488 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_misc.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_image.h
+1649761487 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -1597,7 +1598,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1653061484 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\menu.c
+1653244843 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1609,7 +1610,7 @@
 	"Menu.h"
 	"Utilities.h"
 
-1652298452 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\menu.h
+1653244843 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\menu.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1618,7 +1619,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653061484 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.h
+1653244861 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1630,7 +1631,7 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 
-1653061484 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.c
+1653244861 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1643,7 +1644,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653061724 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.c
+1653256724 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1656,8 +1657,9 @@
 	"Player.h"
 	"Utilities.h"
 	"Laberinto.h"
+	"Tokens.h"
 
-1653061484 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.h
+1653256581 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1670,23 +1672,22 @@
 	"Laberinto.h"
 	"Player.h"
 	"Enemies.h"
+	"Tokens.h"
 
-1653061484 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.h
+1653256581 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
+	<SDL2/SDL_rect.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
-	"Enemies.h"
-	<SDL2/SDL_rect.h>
-	"Utilities.h"
 
-1653061484 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.c
+1653256588 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1699,7 +1700,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1653061724 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\laberinto.h
+1653256581 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\laberinto.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1709,6 +1710,8 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 	"Utilities.h"
+	"Player.h"
+	"Enemies.h"
 
 1653061031 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\laberinto.c
 	<stdio.h>
@@ -3264,7 +3267,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1653061484 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\enemies.h
+1653256643 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\enemies.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3275,11 +3278,10 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
-	<SDL2/SDL_rect.h>
-	"Utilities.h"
 	"Player.h"
+	<SDL2/SDL_rect.h>
 
-1653061484 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\enemies.c
+1653256643 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3290,15 +3292,15 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 	"Enemies.h"
-	"Utilities.h"
 	"Player.h"
+	"Utilities.h"
 
-1641932595 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_ttf.h
+1653244843 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1541001618 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_mixer.h
+1653244843 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl_mixer.h
 	"SDL_stdinc.h"
 	"SDL_rwops.h"
 	"SDL_audio.h"
@@ -3426,6 +3428,31 @@
 	"Player.h"
 
 1653214592 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.c
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
+	<time.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Utilities.h"
+	"Tokens.h"
+	"Player.h"
+
+1653244843 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\tokens.h
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
+	<time.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_timer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_audio.h>
+	"Utilities.h"
+	"Player.h"
+
+1653244843 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\tokens.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>

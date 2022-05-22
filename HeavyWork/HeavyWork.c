@@ -16,7 +16,7 @@
 
 int main(int argc, char *argv[])
 {
-    int p;
+
     bool running=true, sonido = true;//Indica si el sonido se encuentra habilitado o no
     int stage = 1;  //Indica en que fase del flowchart estamos
     int personaje = 1; //Indica el personaje seleccionado, por defecto el stickman
@@ -103,10 +103,6 @@ int main(int argc, char *argv[])
     };
     player_t* player = newPlayer(pos, MAX_VIDAS, player_textures);
 
-    //Iniciar un bot
-    Vector2i coordbot = {500,300};
-    bot_struct* bot = bot_creator(coordbot,tex.bot);
-
     //La m�sica que se reproducir�
     Mix_Music *musica = NULL;
 
@@ -157,7 +153,7 @@ int main(int argc, char *argv[])
             stage=menu(mainWin,tex,&personaje, sonido, musica);
             break;
         case 2:
-            stage=game(mainWin,tex, player, bot, recoger, invisi);
+            stage=game(mainWin,tex,player, recoger, invisi);
             break;
         }
     }
