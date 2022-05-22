@@ -92,8 +92,13 @@ int main(int argc, char *argv[])
         .player_left = tex.playerizqda,
         .player_up = tex.playeratras,
         .player_down = tex.player,
-        .player_invisible = tex.playerinv,
-        //! Meter las 4 de invisibilidad.
+
+        .player_inv_right = tex.playerinvdrcha,
+        .player_inv_left = tex.playerinvizqda,
+        .player_inv_up = tex.playerinvatras,
+        .player_inv_down = tex.playerinv,
+
+
         .life = tex.vida,
     };
     player_t* player = newPlayer(pos, MAX_VIDAS, player_textures);

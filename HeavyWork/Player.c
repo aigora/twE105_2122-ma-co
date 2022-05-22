@@ -42,7 +42,12 @@ player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t 
     player->textures.player_left = textures.player_left;
     player->textures.player_up = textures.player_up;
     player->textures.player_down = textures.player_down;
-    player->textures.player_invisible = textures.player_invisible;
+
+    player->textures.player_inv_right = textures.player_inv_right;
+    player->textures.player_inv_left = textures.player_inv_left;
+    player->textures.player_inv_up = textures.player_inv_up;
+    player->textures.player_inv_down = textures.player_inv_down;
+
 
     return player;
 }
@@ -56,9 +61,19 @@ void renderPlayer(player_t* player, Window window, bool invisibilidad)
     SDL_Texture* texture_player = NULL;
     if (invisibilidad == true)
     {
-        //! Exactamente el mismo switch del else, pero usando las texturas
-        //! de invisibilidad que hay en la struct player->textures.
-        texture_player = player->textures.player_invisible;
+        switch (player->direction) {
+            case MOVEMENT_UP:
+                texture_player = player->textures.player_inv_up;
+                break;
+            case MOVEMENT_DOWN:
+                texture_player = player->textures.player_inv_down;
+                break;
+            case MOVEMENT_RIGHT:
+                texture_player = player->textures.player_inv_right;
+                break;
+            case MOVEMENT_LEFT:
+                texture_player = player->textures.player_inv_left;
+                break;}
     }
     else
     {

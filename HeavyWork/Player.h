@@ -16,9 +16,12 @@ typedef struct {
     SDL_Texture* player_left;
     SDL_Texture* player_up;
     SDL_Texture* player_down;
-    //! Para cuando tengas que añadir las 4 textures de invisibilidad.
-    //! Tienes que tener otras 4 texturas como las que tenemos arriba.
-    SDL_Texture* player_invisible;
+
+    SDL_Texture* player_inv_right;
+    SDL_Texture* player_inv_left;
+    SDL_Texture* player_inv_up;
+    SDL_Texture* player_inv_down;
+
     SDL_Texture* life;
 } player_textures_t;
 
