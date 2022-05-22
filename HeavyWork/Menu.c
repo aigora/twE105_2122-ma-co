@@ -193,7 +193,7 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
             {
                 buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
 
-                imprimirImagen(window, tex.prox);
+                imprimirImagen(window, tex.creditos);
 
                 while(SDL_PollEvent(&event))
                 {

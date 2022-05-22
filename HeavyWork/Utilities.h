@@ -56,6 +56,9 @@ typedef struct
     SDL_Texture* playerdrcha;
     SDL_Texture* playerizqda;
     SDL_Texture* playeratras;
+    SDL_Texture* playerinvatras;
+    SDL_Texture* playerinvdrcha;
+    SDL_Texture* playerinvizqda;
     SDL_Texture* prox;
     SDL_Texture* png;
     SDL_Texture* bot;
@@ -66,6 +69,8 @@ typedef struct
     SDL_Texture* cafe;
     SDL_Texture* charco;
     SDL_Texture* salida;
+    SDL_Texture* creditos;
+
 
 } Textures; //Estructura de las texturas
 

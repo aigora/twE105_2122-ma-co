@@ -53,8 +53,10 @@ int main(int argc, char *argv[])
 	//running=loadWin("HeavyWork",mainWin);
 
 	//Cargamos las texturas que vayamos a usar
-    //! Cargar las 4 texturas de invisibilidad.
     tex.playerinv = loadTexture("resources/persinv.png",mainWin);
+    tex.playerinvdrcha = loadTexture("resources/playerdefinvdrcha.png",mainWin);
+    tex.playerinvizqda = loadTexture("resources/playerdefinvizqda.png",mainWin);
+    tex.playerinvatras = loadTexture("resources/playerdefinvatras.png",mainWin);
 
 	tex.player = loadTexture("Resources/playerdef.png",mainWin);
     tex.playerdrcha = loadTexture("resources/playerdefdrcha.png",mainWin);
@@ -75,6 +77,7 @@ int main(int argc, char *argv[])
     tex.fondo = loadTexture("resources/parquetg.jpg",mainWin);
 
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
+    tex.creditos = loadTexture("resources/creditos.jpg",mainWin);
 
     tex.png = loadTexture("resources/PruebaPNG.png",mainWin);
     tex.vida = loadTexture("resources/life.png",mainWin);
