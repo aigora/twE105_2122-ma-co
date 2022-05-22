@@ -6,6 +6,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "Utilities.h"
+#include "Enemies.h"
 
 typedef struct
 {
@@ -27,5 +28,7 @@ typedef struct
 void generarLaberinto(M_Lab m_Lab);
 void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex);
 void DebugLab(M_Lab m_Lab);
-void MovLab(Entity muros[], int num_muros, key_buttons k, player_t player, bot_struct* bot, bool boton);
+void MovLab(Entity muros[], int num_muros, key_buttons k, player_t player, Bot bot[], int nbots, bool boton);
+void generarBots(M_Lab m_Lab, Bot bots[], int nbots, Textures tex);
+void renderLab(Window window, Entity muros[], int nmuros);
 

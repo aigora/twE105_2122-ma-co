@@ -15,7 +15,6 @@
 
 int main(int argc, char *argv[])
 {
-    int p;
     bool running=true;
     int stage = 1;  //Indica en que fase del flowchart estamos
     int sonido = 0; //Indica si el sonido se encuentra habilitado o no, inicialmente encendido
@@ -73,9 +72,6 @@ int main(int argc, char *argv[])
     // Instanciar jugador
     Vector2i pos = { 250, 300 };
     player_t* player = newPlayer(pos, MAX_VIDAS, tex.vida, tex.player, tex.playerinv);
-    //Iniciar un bot
-    Vector2i coordbot = {500,300};
-    bot_struct* bot = bot_creator(coordbot,tex.bot);
 
 	while(running)
     {
@@ -88,7 +84,7 @@ int main(int argc, char *argv[])
             stage=menu(mainWin,tex,&personaje, sonido);
             break;
         case 2:
-            stage=game(mainWin,tex,player,bot);
+            stage=game(mainWin,tex,player);
             break;
         }
     }

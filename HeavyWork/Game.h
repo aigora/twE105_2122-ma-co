@@ -11,4 +11,4 @@
 #include "Enemies.h"
 
 
-int game(Window window, Textures tex, player_t* player, player_t* bot);
+int game(Window window, Textures tex, player_t* player);

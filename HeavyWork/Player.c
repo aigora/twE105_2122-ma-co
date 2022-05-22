@@ -101,18 +101,18 @@ void movePlayer(player_t* player, const Entity* muros, int num_muros, player_dir
         player->texture.y = new_y;
 }
 
-float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros)//V1=player v2=IA
+float playerDist(player_t* v1, Bot bot, const Entity* muros, int num_muros)
 {
     float mod;
     int i=0;
-    mod = sqrt(pow((v2->texture.x+12 - (v1->texture.x+20)),2) + pow((v2->texture.y+12 - (v1->texture.y+20)), 2));
+    mod = sqrt(pow((bot.entity.dst.x+12 - (v1->texture.x+20)),2) + pow((bot.entity.dst.y+12 - (v1->texture.y+20)), 2));
 
     Vector2f new1, new2;
 
     new1.x= v1->texture.x+20;
     new1.y= v1->texture.y+20;
-    new2.x= v2->texture.x+12;
-    new2.y= v2->texture.y+12;
+    new2.x= bot.entity.dst.x+12;
+    new2.y= bot.entity.dst.y+12;
 
     Vector2f vect, resum;
 
@@ -149,8 +149,6 @@ float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muro
 
 //Por cada vez que el jugador se choque con un enemigo pierde una vida y vuelve a la posicion inicial (Hasta que se le acaban las vidas)
 bool playerKill(player_t* player) {
-    player->texture.x = player->pos_inicial.x;
-    player->texture.y = player->pos_inicial.y;
 
     player->num_vidas--;
 

@@ -7,48 +7,49 @@
 #include <SDL2/SDL_audio.h>
 #include "Enemies.h"
 #include "Utilities.h"
-#include "Player.h"
 
 
-bot_struct* bot_creator(Vector2i initial_position, SDL_Texture* bot_texture)
+void bot_creator(Bot bot[], Vector2i p_initial[], SDL_Texture* tex, int nbots)
 {
-    int const WIDTH = 40;
-    int const HEIGHT = 70;
-
-    bot_struct* bot = (bot_struct*) malloc(sizeof(bot_struct));
-
-
-    bot->texture.x = initial_position.x;
-    bot->texture.y = initial_position.y;
-    bot->texture.w = WIDTH;
-    bot->texture.h = HEIGHT;
-
-    bot->texture_bot = bot_texture;
-
-    return bot;
-}
-
-void renderBot(bot_struct* bot, Window window)
-{
-    SDL_SetRenderDrawColor(window.renderer, 0, 0, 0, 0);
-    SDL_RenderFillRect(window.renderer, &bot->texture);
-    SDL_SetRenderDrawBlendMode(window.renderer,  SDL_BLENDMODE_BLEND);
-    SDL_RenderCopy(window.renderer, bot->texture_bot, NULL, &bot->texture);
+    int i;
+    const int w=40,wh=40;
+    const int h=70,hh=70;
+    for(i=0;i<nbots;i++)
+    {
+        bot[i].entity.tex=tex;
+        SDL_QueryTexture(tex,NULL,NULL,&bot[i].entity.src.w,&bot[i].entity.src.h);
+        bot[i].entity.src.x=0;
+        bot[i].entity.src.y=0;
+        bot[i].entity.dst.x=p_initial[i].x;
+        bot[i].entity.dst.y=p_initial[i].y;
+        bot[i].entity.dst.w=w;
+        bot[i].entity.dst.h=h;
+    }
 
 }
 
+void renderBot(Bot bots[], Window window, int nbots)
+{
+    int i;
+    for(i=0;i<nbots;i++)
+            SDL_RenderCopy(window.renderer, bots[i].entity.tex, &bots[i].entity.src, &bots[i].entity.dst);
+}
 
-void mov_bot (int num_aleat, bot_struct* bot, const Entity* muros, int num_muros,float delta_time)
+
+void mov_bot (int num_aleat, Bot* bot, const Entity* muros, int num_muros, float delta_time)
 {//Añadir la particularidad de que si hay muros no lo haga
-    int new_x = bot->texture.x;
-    int new_y = bot->texture.y;
+    int new_x;
+    int new_y;
     Vector2f v;
-    v.x = bot->texture.w;
-    v.y = bot->texture.h;
 
     const float velocity=150;
 
     const int position=(int)(velocity*delta_time);
+
+    new_x=bot->entity.dst.x;
+    new_y=bot->entity.dst.y;
+    v.x=bot->entity.dst.w;
+    v.y=bot->entity.dst.h;
 
     switch(num_aleat)
     {
@@ -68,23 +69,23 @@ void mov_bot (int num_aleat, bot_struct* bot, const Entity* muros, int num_muros
     if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
         return;
 
-    bot->texture.x = new_x;
-    bot->texture.y = new_y;
+    bot->entity.dst.x=new_x;
+    bot->entity.dst.y=new_y;
 }
 
-void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,float delta_time, int invisibilidad)
+void perseguir(player_t* v1, Bot* bot, const Entity* muros, int num_muros,float delta_time, int invisibilidad)
 {
     Vector2f v;
-    v.x = v2->texture.w;
-    v.y = v2->texture.h;
+    v.x = bot->entity.dst.w;
+    v.y = bot->entity.dst.h;
     const float velocity=150;
     const int position=(int)(velocity*delta_time);
 
     if(invisibilidad == 0)
     {
     Vector2f vect;
-    int new_x = v2->texture.x;
-    int new_y = v2->texture.y;
+    int new_x = bot->entity.dst.x;
+    int new_y = bot->entity.dst.y;
 
     vect.x=new_x - (v1->texture.x);
     vect.y=new_y - (v1->texture.y);
@@ -114,10 +115,8 @@ void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,
             new_y-=position;
     }
 
-    v2->texture.x = new_x;
-    v2->texture.y = new_y;
+    bot->entity.dst.x = new_x;
+    bot->entity.dst.y = new_y;
 }
-else
-    return;
 }
 

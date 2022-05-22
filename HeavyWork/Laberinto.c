@@ -6,6 +6,7 @@
 #include <SDL2/SDL_image.h>
 #include "Laberinto.h"
 #include "Utilities.h"
+#include "Enemies.h"
 
 //Falta hacer las funciones del stack (pushStack y popStack)
 
@@ -273,11 +274,11 @@ void DebugLab(M_Lab m_Lab)
     }
 }
 
-void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot, bool boton)
+void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bots[], int nbots, bool boton)
 {
     int i, j;
     float veloz;
-    if(boton == false) //Velocidad se reduce mientras el botón no está cargado. Por eso se emplea bool boton y no bool invisibilidadwwwwwwwwwww
+    if(boton == false) //Velocidad se reduce mientras el botón no está cargado. Por eso se emplea bool boton y no bool invisibilidad
         veloz = 1;
     else
             veloz = 3;
@@ -295,7 +296,8 @@ void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                 for(j=0; j<nmuros; j++)
                     muros[j].dst.y-=veloz;
         else
-            bot->texture.y+=veloz;
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.y+=veloz;
     }
     if(k.A==true)
     {
@@ -306,7 +308,8 @@ void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                 for(j=0; j<nmuros; j++)
                     muros[j].dst.x-=veloz;
         else
-            bot->texture.x+=veloz;
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.x+=veloz;
     }
     if(k.D==true)
     {
@@ -317,7 +320,8 @@ void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                 for(j=0; j<nmuros; j++)
                     muros[j].dst.x+=veloz;
         else
-            bot->texture.x-=veloz;
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.x+=veloz;
     }
     if(k.S==true)
     {
@@ -328,6 +332,26 @@ void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                 for(j=0; j<nmuros; j++)
                     muros[j].dst.y+=veloz;
         else
-            bot->texture.y-=veloz;
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.y+=veloz;
     }
+}
+
+void generarBots(M_Lab m_Lab,Bot bots[], int nbots, Textures tex)
+{
+    int i;
+    Vector2i v[nbots];
+    for(i=0;i<nbots;i++)
+    {
+        v[i].x=500+10*i;
+        v[i].y=100;
+    }
+    bot_creator(bots,v,tex.bot,nbots);
+}
+
+void renderLab(Window window, Entity muros[], int nmuros)
+{
+    int i;
+    for(i=0;i<nmuros;i++)
+            SDL_RenderCopy(window.renderer, muros[i].tex, &muros[i].src, &muros[i].dst);
 }
