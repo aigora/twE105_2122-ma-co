@@ -30,7 +30,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
     float delta_time,game_time,t_inicio,tiempo_boton_in,tiempo_boton_fin = 0,tiempo_fin_invisibilidad, tiempo_fin_invencibilidad;
     bool same_press;
     Entity Tok[1];
-    Vector2f v[1];v[0].x=100;v[0].y=100;
+    Vector2f v[1];v[0].x=100;v[0].y=100;//!Borrar esto cuando añadamos más tokens
 
     while(game)
     {
@@ -83,23 +83,19 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                 game_time = (SDL_GetTicks()-t_inicio)/1000.0;
                 printf("%.2f\n",game_time);
 
-                //Set positions etc
-
-                //Dibujar la imagen
-                if (!pausa) {
+                if (!pausa)
+                {
                     renderFondo(window,tex.fondo);
                     renderLab(window,muros,nmuros);
                     renderBot(bot,window);
                     renderToken(Tok,window,1);
                     renderPlayer(player, window, invisibilidad);
                     if (boton == false)
-                    {
                         renderFondo(window, tex.vision);
-                    }
-
-                } else {
-                    renderPause(window, tex.pause);
                 }
+                else
+                    renderPause(window, tex.pause);
+
 
                 SDL_RenderPresent(window.renderer);
 
@@ -127,8 +123,10 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                 }
 
                 // Si no esta el juego en pausa, podemos mover el jugador.
-                if (!pausa) {
-                    if (KEYS.W || KEYS.A || KEYS.S || KEYS.D) {
+                if (!pausa)
+                {
+                    if (KEYS.W || KEYS.A || KEYS.S || KEYS.D)
+                    {
                         player_direction_t direction;
                         if (KEYS.W) {
                             direction = MOVEMENT_UP;
@@ -141,41 +139,36 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                         }
 
                         playerSetDirection(player, direction);
-                        MovLab(muros, nmuros, KEYS, *player, bot, Tok, 1, boton, delta_time);
+                        movLab(muros, nmuros, KEYS, *player, bot, Tok, 1, boton, delta_time);
                         catchToken(Tok, 1, player, tex);
                     }
 
                     if (KEYS.SPACE)
-                    {
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
-                    }
 
                     if (boton == false)
-                    {
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
-                    }
+
                     if((playerDist(player, bot, muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))//Se le añade la condición de que no sea invisible para perseguir
                     {
                         bool alive = playerKill(player);
                         invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
 
-                        if (!alive) {
+                        if (!alive)
+                        {
                             update = false;
                             game = false;
                         }
                     }
 
                     if((playerDist(player, bot, muros, nmuros)<=300)&&(invisibilidad == 0)&&(invenc == false))
-                    {
                         perseguir(player, bot, muros, nmuros, delta_time, invisibilidad);
-                    }
+
                     else
                         mov_bot (num_al(), bot, muros, nmuros, delta_time);
 
-                    if (invenc == true) //Si invenc es verdadero se comprueba la igualdad de tiempos para, cuando se cumpla la condición, desactivarse
-                    {
+                    if (invenc == true) //Comprueba si ya han pasado el tiempo de invencibilidad
                         invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
-                    }
                 }
 
                 while(SDL_GetTicks()-last_time<1000/60){}
@@ -203,9 +196,7 @@ bool invencibilidad (float time, int *tiempo_fin_invencibilidad, bool invenc)
     }
 
     else if (t_ent == *tiempo_fin_invencibilidad)
-    {
         return false;
-    }
 
     else return true;
 }

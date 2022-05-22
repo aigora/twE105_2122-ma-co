@@ -273,15 +273,16 @@ void DebugLab(M_Lab m_Lab)
     }
 }
 
-void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot,Entity Tok[], int ntokens, bool boton, float delta_time)
+//Mueve el laberinto dando la sensación de que se mueve el personaje
+void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot,Entity Tok[], int ntokens, bool boton, float delta_time)
 {
     int i, j;
     float velocity;
     int position;
-    if(boton == false) //Velocidad se reduce mientras el botón no está cargado. Por eso se emplea bool boton y no bool invisibilidad
+    if(boton == false) //Velocidad se reduce mientras el botón no está cargado.
         velocity = 175;
     else
-            velocity = 300;
+        velocity = 300;
 
     Vector2f v;
     v.x = player.texture.w;

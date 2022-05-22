@@ -21,7 +21,8 @@
 
 #define VIDA_MARGIN     10
 
-player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t textures) {
+player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t textures)
+{
     player_t* player = (player_t*) malloc(sizeof(player_t));
 
     player->texture.x = initial_position.x;
@@ -90,7 +91,7 @@ void renderPlayer(player_t* player, Window window, bool invisibilidad)
     }
 }
 
-float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros)//V1=player v2=IA
+float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros)
 {
     float mod;
     int i=0;
@@ -98,46 +99,41 @@ float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muro
 
     Vector2f new1, new2;
 
-    new1.x= v1->texture.x+20;
+    new1.x= v1->texture.x+20;//Generamos un punto central en cada entidad
     new1.y= v1->texture.y+20;
     new2.x= v2->texture.x+12;
     new2.y= v2->texture.y+12;
 
-    Vector2f vect, resum;
+    Vector2f vect;
 
     vect.x=new2.x - new1.x;
     vect.y=new2.y - new1.y;
-    resum.x=new1.x;
-    resum.y=new1.y;
 
-
-    while( i<100)
+    for(i=0; i<100; i++)
     {
-        resum.x+=vect.x/100;
-        resum.y+=vect.y/100;
-        i++;
-
+        new1.x+=vect.x/100;
+        new1.y+=vect.y/100;
 
         SDL_Rect target;
-        target.x = resum.x;
-        target.y = resum.y;
+        target.x = new1.x;
+        target.y = new1.y;
         target.w = 1;
         target.h = 1;
 
         // Si el rectangulo NO intersecciona con los muros, se avanza
-        for (int j = 0; j < num_muros; ++j) {
+        for (int j = 0; j < num_muros; ++j)
+        {
             SDL_Rect aux;
-            if (SDL_IntersectRect(&muros[j].dst, &target, &aux) == SDL_TRUE) {
+            if (SDL_IntersectRect(&muros[j].dst, &target, &aux) == SDL_TRUE)
                 return 100000;
-            }
         }
     }
-
     return mod;
 }
 
-//Por cada vez que el jugador se choque con un enemigo pierde una vida y vuelve a la posicion inicial (Hasta que se le acaban las vidas)
-bool playerKill(player_t* player) {
+//El jugador pierde una vida cuando es tocado por un enemigo
+bool playerKill(player_t* player)
+{
     player->texture.x = player->pos_inicial.x;
     player->texture.y = player->pos_inicial.y;
 
@@ -161,7 +157,6 @@ bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton, Mix_Chun
             return true;
         }
         else return false;
-
 }
 
 void playerSetDirection(player_t* player, player_direction_t direction) {

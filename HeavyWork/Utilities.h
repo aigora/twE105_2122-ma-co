@@ -82,7 +82,7 @@ typedef struct
     bool collected; //Solo para Tokens
 
 
-} Entity; //Estructura de los muros
+} Entity; //Estructura de los muros Y tokens
 
 typedef struct
 {

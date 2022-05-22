@@ -13,8 +13,6 @@
 #include "Utilities.h"
 #include "Player.h"
 
-
-
 bot_struct* bot_creator(Vector2i initial_position,SDL_Texture* bot_texture);
 void renderBot(bot_struct* bot, Window window);
 void mov_bot (int num_aleat, bot_struct* v2, const Entity* muros, int num_muros,float delta_time);

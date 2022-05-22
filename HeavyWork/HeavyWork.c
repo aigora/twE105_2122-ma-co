@@ -11,20 +11,19 @@
 #include "Player.h"
 #include "Tokens.h"
 
-//velocidad en pixeles por segundo
-#define SPEED 300
-
+#define SPEED 300    //velocidad en pixeles por segundo
 #define MAX_VIDAS   3
 
 int main(int argc, char *argv[])
 {
     int p;
-    bool running=true, sonido = true;//Indica si el sonido se encuentra habilitado o no, inicialmente encendido
+    bool running=true, sonido = true;//Indica si el sonido se encuentra habilitado o no
     int stage = 1;  //Indica en que fase del flowchart estamos
     int personaje = 1; //Indica el personaje seleccionado, por defecto el stickman
     Window mainWin;
     Textures tex;
-
+    mainWin.h=650;
+	mainWin.w=1000;
 
 
     // Se inicializa SDL, con todos los subsistemas y se comprueba si da error
@@ -33,8 +32,6 @@ int main(int argc, char *argv[])
         printf("Error al iniciar SDL: %s\n", SDL_GetError());
         return 1;
     }
-	mainWin.h=650;
-	mainWin.w=1000;
 
 	Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
     mainWin.window = SDL_CreateWindow("HeavyWork",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,mainWin.w,mainWin.h,0);
@@ -51,7 +48,6 @@ int main(int argc, char *argv[])
         printf("Error al crear el renderer: %s\n", SDL_GetError());
         running=false;
     }
-	//running=loadWin("HeavyWork",mainWin);
 
 	//Cargamos las texturas que vayamos a usar
     tex.playerinv = loadTexture("resources/persinv.png",mainWin);
@@ -76,7 +72,6 @@ int main(int argc, char *argv[])
 
 	tex.wall = loadTexture("resources/Negro.jpg",mainWin);
     tex.fondo = loadTexture("resources/parquetg.jpg",mainWin);
-
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
     tex.creditos = loadTexture("resources/creditos.jpg",mainWin);
 
@@ -102,11 +97,12 @@ int main(int argc, char *argv[])
         .life = tex.vida,
     };
     player_t* player = newPlayer(pos, MAX_VIDAS, player_textures);
+
     //Iniciar un bot
     Vector2i coordbot = {500,300};
     bot_struct* bot = bot_creator(coordbot,tex.bot);
 
-        //La m�sica que se reproducir�
+    //La m�sica que se reproducir�
     Mix_Music *musica = NULL;
 
     //Efectos de sonido que se usar�n
@@ -172,5 +168,4 @@ int main(int argc, char *argv[])
 
     SDL_Quit();
     return 0;
-
 }

@@ -5,13 +5,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_audio.h>
-#include "Utilities.h"
-
-#include <SDL2/SDL_rect.h>
-
 #include "Utilities.h"
 
 typedef struct {
