@@ -91,25 +91,25 @@ void perseguir(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros,
     vect.x=new_x - (v1->texture.x);
     vect.y=new_y - (v1->texture.y);
 
-    if(vect.x>0)
+    if(vect.x>10)
     {
         new_x-= position;
         if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
             new_x+=position;
     }
-    if(vect.x<0)
+    if(vect.x<10)
     {
         new_x+= position;
         if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
             new_x-=position;
     }
-    if(vect.y>0)
+    if(vect.y>10)
     {
         new_y-= position;
         if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)
             new_y+=position;
     }
-    if(vect.y<0)
+    if(vect.y<10)
     {
         new_y+= position;
         if(ComprobarMuros(new_x, new_y, v, muros, num_muros)==1)

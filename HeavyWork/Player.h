@@ -41,13 +41,9 @@ typedef struct {
 } player_t;
 
 player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t textures);
-
 void renderPlayer(player_t* player, Window window, bool invisibilidad);
-
 float playerDist(player_t* v1, bot_struct* v2, const Entity* muros, int num_muros);
-
 bool playerKill(player_t* player);
-
 bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton, Mix_Chunk *invisi);
-
 void playerSetDirection(player_t* player, player_direction_t direction);
+int ColisionPlayer(const player_t player, Entity entity);

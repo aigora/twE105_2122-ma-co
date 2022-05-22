@@ -8,6 +8,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_audio.h>
 #include "Utilities.h"
+#include "Player.h"
 
 typedef struct
 {
@@ -18,4 +19,6 @@ typedef struct
 
 } Tokens_struct;
 
-Tokens* generarToken(SDL_Texture* Textura);
+void TokensCreator(Entity Token[],Textures tex, Vector2f v[], int type, int ntokens);
+void renderToken(Entity Token[], Window window, int ntokens);
+void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex);

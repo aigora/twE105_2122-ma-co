@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Utilities.h"
 #include "Laberinto.h"
+#include "Tokens.h"
 
 int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk *recoger, Mix_Chunk *invisi)
 {
@@ -28,6 +29,8 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
     int nmuros=0, i, j, stage=1, last_time;
     float delta_time,game_time,t_inicio,tiempo_boton_in,tiempo_boton_fin = 0,tiempo_fin_invisibilidad, tiempo_fin_invencibilidad;
     bool same_press;
+    Entity Tok[1];
+    Vector2f v[1];v[0].x=100;v[0].y=100;
 
     while(game)
     {
@@ -63,6 +66,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
             free(m_Lab.esq);
             stage=2;
             update=true;
+            TokensCreator(Tok,tex, v, 0, 1);
 
             break;
 
@@ -70,6 +74,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
 
             last_time=SDL_GetTicks();
             t_inicio = SDL_GetTicks();
+
 
             while(update)
             {
@@ -85,6 +90,7 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                     renderFondo(window,tex.fondo);
                     renderLab(window,muros,nmuros);
                     renderBot(bot,window);
+                    renderToken(Tok,window,1);
                     renderPlayer(player, window, invisibilidad);
                     if (boton == false)
                     {
@@ -135,7 +141,8 @@ int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk
                         }
 
                         playerSetDirection(player, direction);
-                        MovLab(muros, nmuros, KEYS, *player, bot, boton, delta_time);
+                        MovLab(muros, nmuros, KEYS, *player, bot, Tok, 1, boton, delta_time);
+                        catchToken(Tok, 1, player, tex);
                     }
 
                     if (KEYS.SPACE)

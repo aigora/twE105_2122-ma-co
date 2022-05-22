@@ -273,7 +273,7 @@ void DebugLab(M_Lab m_Lab)
     }
 }
 
-void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot, bool boton, float delta_time)
+void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_struct* bot,Entity Tok[], int ntokens, bool boton, float delta_time)
 {
     int i, j;
     float velocity;
@@ -297,7 +297,11 @@ void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                 for(j=0; j<nmuros; j++)
                     muros[j].dst.y-=position;
         else
+        {
             bot->texture.y+=position;
+            for(i=0; i<ntokens; i++)
+            Tok[i].dst.y+=position;
+        }
     }
     if(k.A==true)
     {
@@ -308,7 +312,11 @@ void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                 for(j=0; j<nmuros; j++)
                     muros[j].dst.x-=position;
         else
+        {
             bot->texture.x+=position;
+            for(i=0; i<ntokens; i++)
+                Tok[i].dst.x+=position;
+        }
     }
     if(k.D==true)
     {
@@ -319,7 +327,11 @@ void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                 for(j=0; j<nmuros; j++)
                     muros[j].dst.x+=position;
         else
+        {
             bot->texture.x-=position;
+            for(i=0; i<ntokens; i++)
+                Tok[i].dst.x-=position;
+        }
     }
     if(k.S==true)
     {
@@ -330,6 +342,10 @@ void MovLab(Entity muros[], int nmuros, key_buttons k, player_t player, bot_stru
                 for(j=0; j<nmuros; j++)
                     muros[j].dst.y+=position;
         else
+        {
             bot->texture.y-=position;
+            for(i=0; i<ntokens; i++)
+                Tok[i].dst.y-=position;
+        }
     }
 }

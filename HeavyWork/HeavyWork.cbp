@@ -60,6 +60,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Player.h" />
+		<Unit filename="Tokens.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Tokens.h" />
 		<Unit filename="Utilities.c">
 			<Option compilerVar="CC" />
 		</Unit>

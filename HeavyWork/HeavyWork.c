@@ -9,6 +9,7 @@
 #include "Game.h"
 #include "Menu.h"
 #include "Player.h"
+#include "Tokens.h"
 
 //velocidad en pixeles por segundo
 #define SPEED 300

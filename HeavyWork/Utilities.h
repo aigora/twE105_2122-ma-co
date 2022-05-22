@@ -79,6 +79,8 @@ typedef struct
     SDL_Texture* tex;
     SDL_Rect src;
     SDL_Rect dst;
+    bool collected; //Solo para Tokens
+
 
 } Entity; //Estructura de los muros
 

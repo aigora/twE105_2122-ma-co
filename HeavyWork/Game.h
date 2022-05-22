@@ -11,6 +11,7 @@
 #include "Laberinto.h"
 #include "Player.h"
 #include "Enemies.h"
+#include "Tokens.h"
 
 
 int game(Window window, Textures tex, player_t* player, player_t* bot, Mix_Chunk *recoger, Mix_Chunk *invisi);

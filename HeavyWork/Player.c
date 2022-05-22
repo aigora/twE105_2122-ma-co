@@ -167,3 +167,12 @@ bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton, Mix_Chun
 void playerSetDirection(player_t* player, player_direction_t direction) {
     player->direction = direction;
 }
+
+int ColisionPlayer(const player_t player, Entity entity)
+{
+    SDL_Rect aux;
+    if (SDL_IntersectRect(&player.texture, &entity.dst, &aux) == SDL_TRUE) {
+            return 1;}
+    else
+        return 0;
+}
