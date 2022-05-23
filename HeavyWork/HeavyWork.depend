@@ -413,7 +413,7 @@
 	"Player.h"
 	"Tokens.h"
 
-1653205347 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
+1653323278 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1853,7 +1853,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653212395 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
+1653323722 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1868,7 +1868,7 @@
 	"Laberinto.h"
 	"Tokens.h"
 
-1653205347 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.h
+1653323278 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1883,7 +1883,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653211681 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
+1653324581 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1895,7 +1895,7 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 
-1653210477 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.h
+1653323278 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1906,8 +1906,9 @@
 	<SDL2/SDL_mixer.h>
 	"Utilities.h"
 	"Player.h"
+	"Enemies.h"
 
-1653211681 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
+1653324581 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1920,7 +1921,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653210477 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.c
+1653323278 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1931,8 +1932,9 @@
 	<SDL2/SDL_mixer.h>
 	"Laberinto.h"
 	"Utilities.h"
+	"Enemies.h"
 
-1653211681 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
+1653323278 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1945,7 +1947,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1653211681 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
+1653323278 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1967,7 +1969,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653213312 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
+1653323278 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -3188,7 +3190,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1653210575 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
+1653323278 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3199,10 +3201,10 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 	"Enemies.h"
-	"Utilities.h"
 	"Player.h"
+	"Utilities.h"
 
-1653210575 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
+1653323278 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3213,9 +3215,8 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
-	<SDL2/SDL_rect.h>
-	"Utilities.h"
 	"Player.h"
+	<SDL2/SDL_rect.h>
 
 1653304709 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>
@@ -3372,7 +3373,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1653208467 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.h
+1653324581 c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3384,7 +3385,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1653213312 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.c
+1653324602 source:c:\users\ivano\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
