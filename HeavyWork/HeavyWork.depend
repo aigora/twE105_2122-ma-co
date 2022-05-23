@@ -1201,7 +1201,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1653328000 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
+1653215506 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1214,7 +1214,6 @@
 	"Menu.h"
 	"Player.h"
 	"Tokens.h"
-	"Font.h"
 
 1650279175 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -2482,7 +2481,7 @@
 	"Menu.h"
 	"Utilities.h"
 
-1653304709 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\laberinto.c
+1653214592 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\laberinto.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -2493,7 +2492,6 @@
 	<SDL2/SDL_mixer.h>
 	"Laberinto.h"
 	"Utilities.h"
-	"Enemies.h"
 
 1650279175 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -2879,7 +2877,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1653304709 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\laberinto.h
+1653214592 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\laberinto.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -2890,9 +2888,8 @@
 	<SDL2/SDL_mixer.h>
 	"Utilities.h"
 	"Player.h"
-	"Enemies.h"
 
-1653327994 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\utilities.h
+1653214592 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -2904,7 +2901,7 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 
-1653304709 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\player.c
+1653152220 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -2917,7 +2914,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1653304709 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\player.h
+1653215507 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -2930,7 +2927,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653327993 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\utilities.c
+1653214592 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -2943,11 +2940,10 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653328089 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\game.c
+1653214592 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
-	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -2959,7 +2955,7 @@
 	"Laberinto.h"
 	"Tokens.h"
 
-1653327999 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\game.h
+1653212659 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -2974,7 +2970,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653328000 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\heavywork.c
+1653150150 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -2986,8 +2982,6 @@
 	"Game.h"
 	"Menu.h"
 	"Player.h"
-	"Tokens.h"
-	"Font.h"
 
 1653148263 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\menu.h
 	<stdio.h>
@@ -2998,7 +2992,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653304709 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\menu.c
+1653214592 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -3010,11 +3004,10 @@
 	"Menu.h"
 	"Utilities.h"
 
-1653328089 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
+1653214592 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
-	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -3026,7 +3019,7 @@
 	"Laberinto.h"
 	"Tokens.h"
 
-1653327999 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.h
+1653212659 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -3041,7 +3034,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653327994 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
+1653214592 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3053,7 +3046,7 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 
-1653304709 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.h
+1653214592 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3064,9 +3057,8 @@
 	<SDL2/SDL_mixer.h>
 	"Utilities.h"
 	"Player.h"
-	"Enemies.h"
 
-1653304709 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
+1653215507 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3088,7 +3080,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653304709 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.c
+1653214592 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3099,9 +3091,8 @@
 	<SDL2/SDL_mixer.h>
 	"Laberinto.h"
 	"Utilities.h"
-	"Enemies.h"
 
-1653304709 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
+1653214592 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -3113,7 +3104,7 @@
 	"Menu.h"
 	"Utilities.h"
 
-1653304709 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
+1653215507 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3126,7 +3117,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1653327993 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
+1653214592 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3221,7 +3212,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1653304709 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\enemies.c
+1653214592 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3232,10 +3223,10 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 	"Enemies.h"
-	"Player.h"
 	"Utilities.h"
+	"Player.h"
 
-1653304709 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\enemies.h
+1653214592 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\enemies.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3246,10 +3237,11 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
-	"Player.h"
 	<SDL2/SDL_rect.h>
+	"Utilities.h"
+	"Player.h"
 
-1653304709 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
+1653214592 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3260,10 +3252,10 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 	"Enemies.h"
-	"Player.h"
 	"Utilities.h"
+	"Player.h"
 
-1653304709 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
+1653214592 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\enemies.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3274,8 +3266,9 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
-	"Player.h"
 	<SDL2/SDL_rect.h>
+	"Utilities.h"
+	"Player.h"
 
 1653256643 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\enemies.h
 	<stdio.h>
@@ -3400,7 +3393,7 @@
 	"Tokens.h"
 	"Player.h"
 
-1653327992 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\tokens.h
+1653212659 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\tokens.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3412,22 +3405,20 @@
 	"Utilities.h"
 	"Player.h"
 
-1653328514 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\tokens.c
+1653214592 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\tokens.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
 	<time.h>
 	<SDL2/SDL.h>
-	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 	"Tokens.h"
 	"Player.h"
-	<time.h>
 
-1653327992 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.h
+1653212659 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3439,20 +3430,18 @@
 	"Utilities.h"
 	"Player.h"
 
-1653328514 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.c
+1653214592 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
 	<time.h>
 	<SDL2/SDL.h>
-	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 	"Tokens.h"
 	"Player.h"
-	<time.h>
 
 1653244843 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\tokens.h
 	<stdio.h>
@@ -3503,20 +3492,4 @@
 	"Utilities.h"
 	"Tokens.h"
 	"Player.h"
-
-1653328065 c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\font.h
-	"Utilities.h"
-	<SDL2/SDL.h>
-
-1653327996 source:c:\users\marla\onedrive\escritorio\trabajo independiente\twe105_2122-ma-co\heavywork\font.c
-	"Font.h"
-	<SDL2/SDL_ttf.h>
-
-1653327996 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\font.c
-	"Font.h"
-	<SDL2/SDL_ttf.h>
-
-1653328065 c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\font.h
-	"Utilities.h"
-	<SDL2/SDL.h>
 
