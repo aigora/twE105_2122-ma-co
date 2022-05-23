@@ -74,8 +74,9 @@ void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex, Mix
         if(ColisionPlayer(*player, Token[i])==1)
         {
             if (Token[i].collected==false)
+            {
                 Mix_PlayChannel( -1, efecto, 0 );
-            Token[i].collected=true;
+
             switch(Token[i].type)
             {
             case 0://Taza de café
@@ -83,14 +84,15 @@ void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex, Mix
                 tiempo_fin_rap[i] = gametime_int + 5;
                 break;
             case 1://Moneda
-                *puntos += 20; //Así suma 400 puntos por cada moneda
+                *puntos += 500; //Así suma 500 puntos por cada moneda
                 break;
             case 2:
                 *velocidad = 0;//Velocidad lenta
                 tiempo_fin_lent[i] = gametime_int + 5;
                 break;
             }
+            }
+            Token[i].collected=true;
         }
     }
 }
-

@@ -87,7 +87,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
             free(m_Lab.esq);
             stage=2;
             update=true;
-            TokensCreator(Tok,tex, v, 1, 1); //Tal y como está, al recoger la taza aumenta la velocidad.Si donde pone 0 se pone 1, imprime
+            TokensCreator(Tok,tex, v, 0, 1); //Tal y como está, al recoger la taza aumenta la velocidad.Si donde pone 0 se pone 1, imprime
             //"¡100 ptos!" al recoger el billete, si se pone tipo 1 spawnea el charco y al pasar por él ralentiza durante los 5s
 
             break;
