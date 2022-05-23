@@ -15,8 +15,8 @@
 void bot_creator(Bot bot[], Vector2i p_initial[], SDL_Texture* tex, int nbots)
 {
     int i;
-    const int w=40,wh=40;
-    const int h=70,hh=70;
+    const int w=40;
+    const int h=70;
     for(i=0;i<nbots;i++)
     {
         bot[i].entity.tex=tex;

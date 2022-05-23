@@ -183,7 +183,7 @@ void generarLaberinto(M_Lab m_Lab)
 }
 
 //Una funcion para dar muros y que se puedan dibujar ya en pantalla
-void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
+void drawLab(Window window, M_Lab m_Lab, Entity muros[], Entity *salida, Textures tex)
 {
     int i,j,nmuro=0;
     int width=5;
@@ -199,10 +199,10 @@ void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
                     //Muros verticales
                     if((j%2!=0)&&(m_Lab.esq[i+j*(2*m_Lab.w+1)]=='#'))
                     {
-                        muros[nmuro].tex=wallTex;
+                        muros[nmuro].tex=tex.wall;
                         muros[nmuro].src.x=0;
                         muros[nmuro].src.y=0;
-                        SDL_QueryTexture(wallTex,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
+                        SDL_QueryTexture(tex.wall,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
                         muros[nmuro].dst.h= large;
                         muros[nmuro].dst.w=width;
                         muros[nmuro].dst.x=(large-width)*(i-i/2);
@@ -213,10 +213,10 @@ void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
                     //Muros horizontales
                     if((i%2!=0)&&(j%2==0)&&(m_Lab.esq[i+j*(2*m_Lab.w+1)]=='#'))
                     {
-                        muros[nmuro].tex=wallTex;
+                        muros[nmuro].tex=tex.wall;
                         muros[nmuro].src.x=0;
                         muros[nmuro].src.y=0;
-                        SDL_QueryTexture(wallTex,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
+                        SDL_QueryTexture(tex.wall,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
                         muros[nmuro].dst.h=width;
                         muros[nmuro].dst.w=large;
                         muros[nmuro].dst.x=(large-width)*(i-i/2-1);
@@ -230,10 +230,10 @@ void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
                 {
                     if(((i==0)||(i==m_Lab.w*2))&&(j==0))
                     {
-                        muros[nmuro].tex=wallTex;
+                        muros[nmuro].tex=tex.wall;
                         muros[nmuro].src.x=0;
                         muros[nmuro].src.y=0;
-                        SDL_QueryTexture(wallTex,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
+                        SDL_QueryTexture(tex.wall,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
                         muros[nmuro].dst.h=(large)*m_Lab.h-width;
                         muros[nmuro].dst.w=width;
                         muros[nmuro].dst.x=(large-width)*(i-i/2);
@@ -243,10 +243,10 @@ void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
 
                     if(((j==0)||(j==m_Lab.h*2))&&(i==0))
                     {
-                        muros[nmuro].tex=wallTex;
+                        muros[nmuro].tex=tex.wall;
                         muros[nmuro].src.x=0;
                         muros[nmuro].src.y=0;
-                        SDL_QueryTexture(wallTex,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
+                        SDL_QueryTexture(tex.wall,NULL,NULL,&muros[nmuro].src.w,&muros[nmuro].src.h);
                         muros[nmuro].dst.h=width;
                         muros[nmuro].dst.w=(large-width)*m_Lab.w;
                         muros[nmuro].dst.x=0;
@@ -256,6 +256,15 @@ void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex)
                 }
         }
     }
+
+    salida->tex=tex.salida;
+    salida->src.x=0;
+    salida->src.y=0;
+    SDL_QueryTexture(tex.salida,NULL,NULL,&salida->src.w,&salida->src.h);
+    salida->dst.h=150;
+    salida->dst.w=200;
+    salida->dst.x=(large-width)*(m_Lab.w-1)+30;
+    salida->dst.y=(large-width)*(m_Lab.h-1)+45;
 
 }
 
@@ -275,7 +284,7 @@ void DebugLab(M_Lab m_Lab)
 }
 
 //Mueve el laberinto dando la sensación de que se mueve el personaje
-void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bots[],Entity Tok[], int ntokens, int nbots, bool boton, float delta_time, int velocidad)
+void movLab(Entity muros[], Entity *salida, int nmuros, key_buttons k, player_t player, Bot bots[],Entity Tok[], int ntokens, int nbots, bool boton, float delta_time, int velocidad)
 {
     int i, j;
     float velocity;
@@ -307,6 +316,8 @@ void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bots
 
             for(i=0;i<nbots;i++)
             bots[i].entity.dst.y+=position;
+
+            salida->dst.y+=position;
         }
     }
     if(k.A==true)
@@ -324,6 +335,8 @@ void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bots
 
             for(i=0;i<nbots;i++)
             bots[i].entity.dst.x+=position;
+
+            salida->dst.x+=position;
         }
     }
     if(k.D==true)
@@ -341,6 +354,8 @@ void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bots
 
             for(i=0;i<nbots;i++)
             bots[i].entity.dst.x-=position;
+
+            salida->dst.x-=position;
         }
     }
     if(k.S==true)
@@ -358,25 +373,86 @@ void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bots
 
             for(i=0;i<nbots;i++)
             bots[i].entity.dst.y-=position;
+
+            salida->dst.y-=position;
         }
     }
 }
 
 void generarBots(M_Lab m_Lab,Bot bots[], int nbots, Textures tex)
 {
-    int i;
-    Vector2i v[nbots];
-    for(i=0;i<nbots;i++)
+    int i,j, nx=0, ny=0, put, x[m_Lab.w],y[m_Lab.h];
+    const int w=235;
+    Vector2i p[nbots];
+    put=0;
+    const Vector2i pPlayer={0,0};
+
+    for(i=0;i<m_Lab.w;i++)
+        if(i!=pPlayer.x)
+        {
+        x[i]=i;
+        nx++;
+        }
+        else
+            x[i]=NULL;
+
+    for(i=0;i<m_Lab.h;i++)
+        if(i!=pPlayer.y)
+        {
+        y[i]=i;
+        ny++;
+        }
+        else
+            y[i]=NULL;
+
+    srand(time(NULL));
+
+    while(put<nbots)
     {
-        v[i].x=500+10*i;
-        v[i].y=100;
+        i=rand() % m_Lab.w;
+        j=rand() % m_Lab.h;
+
+        if((x[i]!=NULL)&&(y[j]!=NULL))
+        {
+            p[put].x=i*235+117;
+            p[put].y=j*235+117;
+            put++;
+            x[i]=NULL;
+            nx--;
+            y[i]=NULL;
+            ny--;
+        }
+        else if((nx==0)||(ny==0))
+        {
+            for(i=0;i<m_Lab.w;i++)
+              if(i!=pPlayer.x)
+              {
+                x[i]=i;
+                nx++;
+              }
+              else
+                x[i]=NULL;
+
+            for(i=0;i<m_Lab.h;i++)
+                if(i!=pPlayer.y)
+                {
+                  y[i]=i;
+                  ny++;
+                }
+                else
+                    y[i]=NULL;
+        }
+
     }
-    bot_creator(bots,v,tex.bot,nbots);
+
+    bot_creator(bots,p,tex.bot,nbots);
 }
 
-void renderLab(Window window, Entity muros[], int nmuros)
+void renderLab(Window window, Entity muros[], int nmuros, Entity salida)
 {
     int i;
     for(i=0;i<nmuros;i++)
             SDL_RenderCopy(window.renderer, muros[i].tex, &muros[i].src, &muros[i].dst);
+
+    SDL_RenderCopy(window.renderer, salida.tex, &salida.src, &salida.dst);
 }

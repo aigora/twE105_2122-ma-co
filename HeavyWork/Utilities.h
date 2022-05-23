@@ -90,7 +90,6 @@ typedef struct
 typedef struct
 {
     Entity entity;
-    SDL_Rect hitBox;
 
 } Bot;
 

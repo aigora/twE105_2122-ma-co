@@ -29,10 +29,10 @@ typedef struct
 } M_Lab;
 
 void generarLaberinto(M_Lab m_Lab);
-void drawLab(Window window, M_Lab m_Lab, Entity muros[], SDL_Texture* wallTex);
+void drawLab(Window window, M_Lab m_Lab, Entity muros[], Entity *salida, Textures tex);
 void DebugLab(M_Lab m_Lab);
-void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bot[],Entity Tok[], int ntokens, int nbots, bool boton, float delta_time,int velocidad);
+void movLab(Entity muros[], Entity *salida, int nmuros, key_buttons k, player_t player, Bot bot[],Entity Tok[], int ntokens, int nbots, bool boton, float delta_time,int velocidad);
 void generarBots(M_Lab m_Lab, Bot bots[], int nbots, Textures tex);
-void renderLab(Window window, Entity muros[], int nmuros);
+void renderLab(Window window, Entity muros[], int nmuros, Entity salida);
 
 

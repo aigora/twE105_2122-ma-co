@@ -23,9 +23,8 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
     bool pausa = false;
     SDL_Event event;
     M_Lab m_Lab;
-    m_Lab.w=10;
-    m_Lab.h=10;
     Entity *muros;
+    Entity salida;
     Bot* bots;
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;KEYS.ESC_PREV=false;
     int nmuros=0, i, j, stage=1, last_time, nbots, velocidad = 1;
@@ -45,6 +44,8 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
 
         case 1: //Generaci�n del laberinto
 
+            m_Lab.w=10;
+            m_Lab.h=10;
             m_Lab.esq = malloc((m_Lab.w*2+1)*(m_Lab.h*2+1)*sizeof(char));
             if(m_Lab.esq==NULL)
             {
@@ -72,8 +73,9 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                 exit(-1);
             }
 
-            drawLab(window,m_Lab,muros,tex.wall);
+            drawLab(window,m_Lab,muros,&salida,tex);
 
+            //Generación de los bots y coleccionables(Tokens)
             nbots=10;
 
             bots=malloc(nbots*sizeof(Bot));
@@ -85,6 +87,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
 
             generarBots(m_Lab,bots,nbots,tex);
 
+            //Salida de la generación
             free(m_Lab.esq);
             stage=2;
             update=true;
@@ -108,7 +111,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                 if (!pausa)
                 {
                     renderFondo(window,tex.fondo);
-                    renderLab(window,muros,nmuros);
+                    renderLab(window,muros,nmuros,salida);
                     renderToken(Tok,window,1);
                     renderBot(bots,window,nbots);
                     renderPlayer(player, window, invisibilidad);
@@ -159,7 +162,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                         }
 
                         playerSetDirection(player, direction);
-                        movLab(muros, nmuros, KEYS, *player, bots, Tok, 1, nbots, boton, delta_time, velocidad);
+                        movLab(muros, &salida, nmuros, KEYS, *player, bots, Tok, 1, nbots, boton, delta_time, velocidad);
                         catchToken(Tok, 1, player, tex, recoger,game_time, tiempo_fin_rap, tiempo_fin_lent,&velocidad, &puntos);
                     }
                     //printf("%i\n",velocidad);
