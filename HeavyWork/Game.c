@@ -29,6 +29,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;KEYS.ESC_PREV=false;
     int nmuros=0, i, j, stage=1, last_time, nbots, velocidad = 1;
     int tiempo_fin_rap[1]= {0}, tiempo_fin_lent[1] = {0};
+    long long int puntos=1000;
     float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;
     bool same_press;
     Entity Tok[1];
@@ -86,7 +87,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
             free(m_Lab.esq);
             stage=2;
             update=true;
-            TokensCreator(Tok,tex, v, 0, 1); //Tal y como está, al recoger la taza aumenta la velocidad.Si donde pone 0 se pone 1, imprime
+            TokensCreator(Tok,tex, v, 1, 1); //Tal y como está, al recoger la taza aumenta la velocidad.Si donde pone 0 se pone 1, imprime
             //"¡100 ptos!" al recoger el billete, si se pone tipo 1 spawnea el charco y al pasar por él ralentiza durante los 5s
 
             break;
@@ -158,11 +159,12 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
 
                         playerSetDirection(player, direction);
                         movLab(muros, nmuros, KEYS, *player, bots, Tok, 1, nbots, boton, delta_time, velocidad);
-                        catchToken(Tok, 1, player, tex, recoger,game_time, tiempo_fin_rap, tiempo_fin_lent,&velocidad);
+                        catchToken(Tok, 1, player, tex, recoger,game_time, tiempo_fin_rap, tiempo_fin_lent,&velocidad, &puntos);
                     }
-                    printf("%i\n",velocidad);
+                    //printf("%i\n",velocidad);
                     //printf("%i\n",tiempo_fin_rap[1]);
-                    printf("%i\n",tiempo_fin_lent[1]);
+                    //printf("%i\n",tiempo_fin_lent[1]);
+                    //printf("%lli\n", puntos);
                     if (KEYS.SPACE)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
 

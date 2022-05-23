@@ -65,7 +65,7 @@ void renderToken(Entity Token[], Window window, int ntokens)
 
 }
 
-void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex, Mix_Chunk *efecto, float gametime, int tiempo_fin_rap[1], int tiempo_fin_lent[1], int *velocidad)
+void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex, Mix_Chunk *efecto, float gametime, int tiempo_fin_rap[1], int tiempo_fin_lent[1], int *velocidad, long long int *puntos)
 {
     int gametime_int;
     gametime_int = (int) gametime;
@@ -83,7 +83,7 @@ void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex, Mix
                 tiempo_fin_rap[i] = gametime_int + 5;
                 break;
             case 1://Moneda
-                printf("¡100ptos\n!");
+                *puntos += 20; //Así suma 400 puntos por cada moneda
                 break;
             case 2:
                 *velocidad = 0;//Velocidad lenta
