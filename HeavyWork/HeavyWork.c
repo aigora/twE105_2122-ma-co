@@ -10,6 +10,7 @@
 #include "Menu.h"
 #include "Player.h"
 #include "Tokens.h"
+#include "Font.h"
 
 #define SPEED 300    //velocidad en pixeles por segundo
 #define MAX_VIDAS   3
@@ -49,6 +50,12 @@ int main(int argc, char *argv[])
         running=false;
     }
 
+    bool success = true;
+    if (TTF_Init() == -1) {
+        printf("Error al inicializar SDL_TTF error = %s\n", TTF_GetError());
+        success = false;
+    }
+
 	//Cargamos las texturas que vayamos a usar
     tex.playerinv = loadTexture("resources/playerdefinv.png",mainWin);
     tex.playerinvdrcha = loadTexture("resources/playerdefinvdrcha.png",mainWin);
@@ -82,6 +89,7 @@ int main(int argc, char *argv[])
     tex.charco = loadTexture("resources/charco.png",mainWin);
     tex.salida = loadTexture("resources/Escaleras.png",mainWin);
 
+    tex.titulo_puntuacion = newText("Introduce nombre fichero:", mainWin);
 
     // Instanciar jugador
     Vector2i pos = { 250, 300 };
@@ -107,8 +115,6 @@ int main(int argc, char *argv[])
     //Efectos de sonido que se usar�n
     Mix_Chunk *recoger = NULL;
     Mix_Chunk *invisi = NULL;
-
-    bool success = true;
 
     //Inicializar SDL_mixer
     if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
@@ -152,6 +158,10 @@ int main(int argc, char *argv[])
             break;
         case 2:
             stage=game(mainWin,tex,player, recoger, invisi);
+            break;
+        case 3:
+            // Pantalla de salida
+            stage = exitScreen(mainWin, tex, 2000);
             break;
         }
     }
