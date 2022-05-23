@@ -45,9 +45,7 @@ typedef struct
     SDL_Texture* menu;
     SDL_Texture* ajustes;
     SDL_Texture* ajusnos;
-    SDL_Texture* personaje1;
-    SDL_Texture* personaje2;
-    SDL_Texture* personaje3;
+    SDL_Texture* ayuda;
     SDL_Texture* carga;
     SDL_Texture* wall;
     SDL_Texture* fondo;
@@ -80,6 +78,7 @@ typedef struct
     SDL_Rect src;
     SDL_Rect dst;
     bool collected; //Solo para Tokens
+    int type; //Solo para tipo token
 
 
 } Entity; //Estructura de los muros Y tokens

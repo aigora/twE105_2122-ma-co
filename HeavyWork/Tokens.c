@@ -15,6 +15,7 @@
 void TokensCreator(Entity Token[],Textures tex, Vector2f v[], int type, int ntokens)
 {
     int i;
+    Token[i].type = type;
     for(i=0; i<ntokens; i++)
     {
         Token[i].src.x = 0;
@@ -22,7 +23,7 @@ void TokensCreator(Entity Token[],Textures tex, Vector2f v[], int type, int ntok
         Token[i].dst.x = v[i].x;
         Token[i].dst.y = v[i].y;
 
-        switch(type)
+        switch(Token[i].type)
         {
         case 0://Taza café
 
@@ -64,13 +65,31 @@ void renderToken(Entity Token[], Window window, int ntokens)
 
 }
 
-void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex)
+void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex, Mix_Chunk *efecto, float gametime, int tiempo_fin_rap[1], int tiempo_fin_lent[1], int *velocidad)
 {
+    int gametime_int;
+    gametime_int = (int) gametime;
     for(int i=0; i<ntokens; i++)
     {
         if(ColisionPlayer(*player, Token[i])==1)
         {
+            if (Token[i].collected==false)
+                Mix_PlayChannel( -1, efecto, 0 );
             Token[i].collected=true;
+            switch(Token[i].type)
+            {
+            case 0://Taza de café
+                *velocidad = 2; //Ultra velocidad
+                tiempo_fin_rap[i] = gametime_int + 5;
+                break;
+            case 1://Moneda
+                printf("¡100ptos\n!");
+                break;
+            case 2:
+                *velocidad = 0;//Velocidad lenta
+                tiempo_fin_lent[i] = gametime_int + 5;
+                break;
+            }
         }
     }
 }

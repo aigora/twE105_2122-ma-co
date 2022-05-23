@@ -38,7 +38,7 @@ void renderBot(Bot bots[], Window window, int nbots)
 }
 
 void mov_bot (int num_aleat, Bot* bot, const Entity* muros, int num_muros, float delta_time)
-{//Añadir la particularidad de que si hay muros no lo haga
+{
     int new_x;
     int new_y;
     Vector2f v;

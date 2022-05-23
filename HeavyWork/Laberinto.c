@@ -275,13 +275,15 @@ void DebugLab(M_Lab m_Lab)
 }
 
 //Mueve el laberinto dando la sensación de que se mueve el personaje
-void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bots[],Entity Tok[], int ntokens, int nbots, bool boton, float delta_time)
+void movLab(Entity muros[], int nmuros, key_buttons k, player_t player, Bot bots[],Entity Tok[], int ntokens, int nbots, bool boton, float delta_time, int velocidad)
 {
     int i, j;
     float velocity;
     int position;
-    if(boton == false) //Velocidad se reduce mientras el botón no está cargado.
+    if((boton == false)||(velocidad == 0)) //Velocidad se reduce mientras el botón no está cargado o al pisar el charco
         velocity = 175;
+    else if(velocidad == 2)
+        velocity = 500;
     else
         velocity = 300;
 

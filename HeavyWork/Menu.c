@@ -42,7 +42,7 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                             if(mouse_x < 450 && mouse_y > 420 && mouse_x > 120 && mouse_y < 500) //JUGAR
                             {
                                 imprimirImagen(window, tex.carga);
-                                SDL_Delay(3000);
+                                SDL_Delay(500);
                                 return 2;
                             }
                             if(mouse_x > 550 && mouse_y > 420 && mouse_x < 880 && mouse_y < 500) //SCORES
@@ -121,17 +121,10 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                 }
                 break;
 
-            case 6://PERSONAJE
+            case 6://AYUDA
                 while(stage==6)
                 {
-                    if (*personaje == 1)
-                        imprimirImagen(window, tex.personaje1);
-
-                    else if (*personaje == 2)
-                        imprimirImagen(window, tex.personaje2);
-
-                    else
-                        imprimirImagen(window, tex.personaje3);
+                        imprimirImagen(window, tex.ayuda);
 
                     buttons = SDL_GetMouseState(&mouse_x, &mouse_y);
 
@@ -140,25 +133,16 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                         if(event.type==SDL_QUIT)
                             return 0;
 
-                        if(event.type==SDL_MOUSEBUTTONUP) //Elegir PERSONAJE
+                        if(event.type==SDL_MOUSEBUTTONUP)
                         {
-                            if ( mouse_x > 130 && mouse_x < 315 && mouse_y > 275 && mouse_y < 520)
-                                *personaje = 1;
-
-                            if ( mouse_x > 390 && mouse_x < 570 && mouse_y > 275 && mouse_y < 520)
-                                *personaje = 2;
-
-                            if ( mouse_x > 640 && mouse_x < 820 && mouse_y > 275 && mouse_y < 520)
-                                *personaje = 3;
-
-                            if ( mouse_x > 830 && mouse_x < 980 && mouse_y > 575 && mouse_y < 600)
+                            if ( mouse_x > 770 && mouse_x < 930 && mouse_y > 575 && mouse_y < 600)
                                 stage=1;
                         }
                     }
                 }
                 break;
 
-            case 7://USUARIO
+            case 7://CRÉDITOS
                 while(stage==7)
                 {
                     buttons = SDL_GetMouseState(&mouse_x, &mouse_y); //Adjunta unas coordenadas al mouse
@@ -168,6 +152,12 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                     {
                         if(event.type==SDL_QUIT) //Permite salir de la ventana si se cierra arriba a la derecha
                             return 0;
+
+                            if(event.type==SDL_MOUSEBUTTONUP)
+                        {
+                            if ( mouse_x > 770 && mouse_x < 930 && mouse_y > 575 && mouse_y < 600)
+                                stage=1;
+                        }
                     }
                 }
                 break;

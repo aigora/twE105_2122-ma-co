@@ -27,8 +27,9 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
     Entity *muros;
     Bot* bots;
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;KEYS.ESC_PREV=false;
-    int nmuros=0, i, j, stage=1, last_time, nbots;
-    float delta_time,game_time,tiempo_boton_in,tiempo_boton_fin = 0,tiempo_fin_invisibilidad,tiempo_fin_invencibilidad;
+    int nmuros=0, i, j, stage=1, last_time, nbots, velocidad = 1;
+    int tiempo_fin_rap[1]= {0}, tiempo_fin_lent[1] = {0};
+    float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;
     bool same_press;
     Entity Tok[1];
     Vector2f v[1];v[0].x=100;v[0].y=100;//!Borrar esto cuando añadamos más tokens
@@ -85,7 +86,8 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
             free(m_Lab.esq);
             stage=2;
             update=true;
-            TokensCreator(Tok,tex, v, 0, 1);
+            TokensCreator(Tok,tex, v, 0, 1); //Tal y como está, al recoger la taza aumenta la velocidad.Si donde pone 0 se pone 1, imprime
+            //"¡100 ptos!" al recoger el billete, si se pone tipo 1 spawnea el charco y al pasar por él ralentiza durante los 5s
 
             break;
 
@@ -155,10 +157,12 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                         }
 
                         playerSetDirection(player, direction);
-                        movLab(muros, nmuros, KEYS, *player, bots, Tok, 1, nbots, boton, delta_time);
-                        catchToken(Tok, 1, player, tex);
+                        movLab(muros, nmuros, KEYS, *player, bots, Tok, 1, nbots, boton, delta_time, velocidad);
+                        catchToken(Tok, 1, player, tex, recoger,game_time, tiempo_fin_rap, tiempo_fin_lent,&velocidad);
                     }
-
+                    printf("%i\n",velocidad);
+                    //printf("%i\n",tiempo_fin_rap[1]);
+                    printf("%i\n",tiempo_fin_lent[1]);
                     if (KEYS.SPACE)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
 
@@ -181,7 +185,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
 
                     for(i=0;i<nbots;i++)
                     {
-                    if((playerDist(player, bots[i], muros, nmuros)<=300)&&(invisibilidad == 0))
+                    if((playerDist(player, bots[i], muros, nmuros)<=300)&&(invisibilidad == 0)&&(invenc==false))
                     {
                         perseguir(player, &bots[i], muros, nmuros, delta_time, invisibilidad);
                     }
@@ -191,6 +195,10 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
 
                     if (invenc == true) //Comprueba si ya han pasado el tiempo de invencibilidad
                         invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
+                    if (velocidad != 1)
+                    {
+                        velocidad =  finvelo (game_time, 1, tiempo_fin_rap, tiempo_fin_lent, velocidad);
+                    }
 
                 }
 
@@ -228,3 +236,26 @@ bool invencibilidad (float time, int *tiempo_fin_invencibilidad, bool invenc)
 //se hace verdadero el bool y se crea una variable tiempo_fin_invencibilidad. Esta es la suma del tiempo en el que se
 //cambia el booleano y el tiempo que queremos que dure, 5 segundos. Se comprueba si el tiempo de juego en cada instante
 //es el mismo que tiempo_fin_invencibilidad para entonces desactivar el bool.
+
+int finvelo (float gametime, int ntokens, int tiempo_fin_rap[], int tiempo_fin_lent[], int velocidad)
+{
+    int gametime_int,i;
+    gametime_int = (int) gametime;
+    for (i=0;i<ntokens;i++)
+    {
+       if ((gametime_int == tiempo_fin_rap[i])&&(velocidad == 2))
+       {
+           return 1;
+       }
+       else if ((velocidad == 2))
+       {
+           return 2;
+       }
+       else if ((gametime_int == tiempo_fin_lent[i])&&(velocidad == 0))
+       {
+           return 1;
+       }
+       else return 0;
+    }
+
+}

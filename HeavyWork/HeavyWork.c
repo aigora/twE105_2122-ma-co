@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     }
 
 	//Cargamos las texturas que vayamos a usar
-    tex.playerinv = loadTexture("resources/persinv.png",mainWin);
+    tex.playerinv = loadTexture("resources/playerdefinv.png",mainWin);
     tex.playerinvdrcha = loadTexture("resources/playerdefinvdrcha.png",mainWin);
     tex.playerinvizqda = loadTexture("resources/playerdefinvizqda.png",mainWin);
     tex.playerinvatras = loadTexture("resources/playerdefinvatras.png",mainWin);
@@ -66,9 +66,7 @@ int main(int argc, char *argv[])
 	tex.ajustes = loadTexture("Resources/ajustes2.jpg",mainWin);
 	tex.ajusnos = loadTexture("Resources/ajustesno2.jpg",mainWin);
 	tex.carga = loadTexture("Resources/carga2.jpg",mainWin);
-	tex.personaje1 = loadTexture("Resources/personajesn.jpg",mainWin);
-	tex.personaje2 = loadTexture("Resources/personaje2.jpg",mainWin);
-	tex.personaje3 = loadTexture("Resources/personaje3.jpg",mainWin);
+	tex.ayuda = loadTexture("Resources/Ayuda.jpg",mainWin);
 
 	tex.wall = loadTexture("resources/Negro.jpg",mainWin);
     tex.fondo = loadTexture("resources/parquetg.jpg",mainWin);
