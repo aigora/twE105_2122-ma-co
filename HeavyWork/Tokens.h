@@ -19,6 +19,6 @@ typedef struct
 
 } Tokens_struct;
 
-void TokensCreator(Entity Token[],Textures tex, Vector2f v[], int type, int ntokens);
-void renderToken(Entity Token[], Window window, int ntokens);
-void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex, Mix_Chunk *efecto, float gametime, int tiempo_fin_rap[1], int tiempo_fin_lent[1], int *velocidad, long long int *puntos);
+void TokensCreator(Tokens Token[],Textures tex, Vector2f v[], int type, int ntokens);
+void renderToken(Tokens Token[], Window window, int ntokens);
+void catchToken(Tokens Token[], int ntokens, player_t* player, Textures tex, Mix_Chunk *efecto, float gametime, int tiempo_fin_rap[1], int tiempo_fin_lent[1], int *velocidad, long long int *puntos);
