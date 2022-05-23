@@ -77,11 +77,16 @@ typedef struct
     SDL_Texture* tex;
     SDL_Rect src;
     SDL_Rect dst;
+
+} Entity; //Estructura de los muros Y tokens
+
+typedef struct
+{
+    Entity entity;
     bool collected; //Solo para Tokens
     int type; //Solo para tipo token
 
-
-} Entity; //Estructura de los muros Y tokens
+} Tokens;
 
 typedef struct
 {
