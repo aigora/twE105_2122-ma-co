@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
@@ -213,9 +214,12 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
             free(muros);
             free(player);
             free(bots);
+            stage = 3;
+            break;
         }
     }
-return 0;
+
+    return stage;
 }
 
 bool invencibilidad (float time, int *tiempo_fin_invencibilidad, bool invenc)
@@ -260,4 +264,12 @@ int finvelo (float gametime, int ntokens, int tiempo_fin_rap[], int tiempo_fin_l
        else return 0;
     }
 
+}
+
+int exitScreen(Window window, Textures tex, long long int score) {
+    while (true) {
+        renderScoreScreen(window, tex.titulo_puntuacion);
+    }
+
+    return 0;
 }
