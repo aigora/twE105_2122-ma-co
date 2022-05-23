@@ -41,10 +41,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Enemies.h" />
-		<Unit filename="Font.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Font.h" />
 		<Unit filename="Game.c">
 			<Option compilerVar="CC" />
 		</Unit>

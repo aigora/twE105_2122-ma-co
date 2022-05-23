@@ -68,7 +68,8 @@ typedef struct
     SDL_Texture* charco;
     SDL_Texture* salida;
     SDL_Texture* creditos;
-    SDL_Texture* titulo_puntuacion;
+
+
 } Textures; //Estructura de las texturas
 
 typedef struct
@@ -76,16 +77,11 @@ typedef struct
     SDL_Texture* tex;
     SDL_Rect src;
     SDL_Rect dst;
-
-} Entity; //Estructura de los muros Y tokens
-
-typedef struct
-{
-    Entity entity;
     bool collected; //Solo para Tokens
     int type; //Solo para tipo token
 
-} Tokens;
+
+} Entity; //Estructura de los muros Y tokens
 
 typedef struct
 {
