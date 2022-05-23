@@ -68,8 +68,7 @@ typedef struct
     SDL_Texture* charco;
     SDL_Texture* salida;
     SDL_Texture* creditos;
-
-
+    SDL_Texture* titulo_puntuacion;
 } Textures; //Estructura de las texturas
 
 typedef struct

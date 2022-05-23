@@ -4,13 +4,14 @@
 #include <stdlib.h> //Preguntar si su uso est� permitido
 #include <time.h> //Preguntar si su uso est� permitido
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_audio.h>
 #include "Utilities.h"
 #include "Tokens.h"
 #include "Player.h"
-
+#include <time.h>
 
 void TokensCreator(Entity Token[],Textures tex, Vector2f v[], int type, int ntokens)
 {
@@ -95,4 +96,49 @@ void catchToken(Entity Token[], int ntokens, player_t* player, Textures tex, Mix
             Token[i].collected=true;
         }
     }
+}
+
+void renderScoreScreen(Window window, SDL_Texture* text) {
+    SDL_RenderClear(window.renderer);
+    SDL_Rect title_rect;
+    title_rect.x = 50;
+    title_rect.y = 50;
+    title_rect.w = 300;
+    title_rect.h = 100;
+    SDL_RenderCopy(window.renderer, text, NULL, &title_rect);
+
+    SDL_Rect input_background;
+    input_background.x = 50;
+    input_background.y = 200;
+    input_background.w = 300;
+    input_background.h = 100;
+    SDL_SetRenderDrawColor(window.renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(window.renderer, &input_background);
+    SDL_SetRenderDrawColor(window.renderer, 0, 0, 0, 255);
+
+    SDL_RenderPresent(window.renderer);
+}
+
+static void formatFilename(char *output) {
+    time_t rawtime;
+    struct tm * timeinfo;
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    sprintf(output, "score_%d%d%d-%d%d%d.txt", timeinfo->tm_mday,
+            timeinfo->tm_mon + 1, timeinfo->tm_year + 1900,
+            timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
+}
+
+void writeScoreToFile(long long int score) {
+    char* filename = malloc(64);
+    formatFilename(filename);
+    FILE* fd = fopen(filename, "w");
+    if (fd != NULL) {
+        fprintf(fd, "Score: %d\n", score);
+    }
+
+    free(filename);
+    fclose(fd);
 }
