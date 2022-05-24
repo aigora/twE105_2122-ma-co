@@ -115,8 +115,6 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                     renderToken(Tok,window,1);
                     renderBot(bots,window,nbots);
                     renderPlayer(player, window, invisibilidad);
-                    if (boton == false)
-                        renderFondo(window, tex.vision);
                 }
                 else
                     renderPause(window, tex.pause);

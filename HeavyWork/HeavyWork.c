@@ -76,13 +76,12 @@ int main(int argc, char *argv[])
 	tex.ayuda = loadTexture("Resources/Ayuda.jpg",mainWin);
 
 	tex.wall = loadTexture("resources/Negro.jpg",mainWin);
-    tex.fondo = loadTexture("resources/parquetg.jpg",mainWin);
+    tex.fondo = loadTexture("resources/gris.jpg",mainWin);
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
     tex.creditos = loadTexture("resources/creditos.jpg",mainWin);
 
     tex.png = loadTexture("resources/PruebaPNG.png",mainWin);
     tex.vida = loadTexture("resources/life.png",mainWin);
-    tex.vision = loadTexture("resources/Vision.png",mainWin);
     tex.pause = loadTexture("resources/pause.jpg",mainWin);
     tex.billete = loadTexture("resources/Pbillete.png",mainWin);
     tex.cafe = loadTexture("resources/Taza.png",mainWin);
