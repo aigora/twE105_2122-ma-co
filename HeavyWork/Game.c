@@ -372,11 +372,11 @@ int exitScreen(Window window, Textures tex, long long int score) {
         }
 
         //! TODO cambiar charco por boton de aceptar.
-        renderScoreScreen(window, tex.titulo_puntuacion, tex.charco, text_filename);
+        renderScoreScreen(window, tex.titulo_puntuacion, tex.boton, text_filename);
         // SDL_DestroyTexture(text_filename.texture);
     }
 
     free(filename);
 
-    return 0;
+    return 1;
 }

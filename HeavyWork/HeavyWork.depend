@@ -400,7 +400,7 @@
 
 1649752732 ated upstream
 
-1653397279 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
+1653433296 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1731,7 +1731,7 @@
 	"Utilities.h"
 	"Enemies.h"
 
-1653397279 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.c
+1653431532 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1746,6 +1746,7 @@
 	"Utilities.h"
 	"Laberinto.h"
 	"Tokens.h"
+	"Font.h"
 
 1653343150 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.h
 	<stdio.h>
@@ -1762,7 +1763,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653397626 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\utilities.h
+1653431161 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3489,7 +3490,7 @@
 	"Player.h"
 	<time.h>
 
-1653343150 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\tokens.h
+1653430486 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\tokens.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3501,7 +3502,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1653343150 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\tokens.c
+1653430486 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\tokens.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3532,11 +3533,11 @@
 	"Utilities.h"
 	<SDL2/SDL.h>
 
-1653343150 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\font.c
+1653430486 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\font.c
 	"Font.h"
 	<SDL2/SDL_ttf.h>
 
-1653343150 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\font.h
+1653430486 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\font.h
 	"Utilities.h"
 	<SDL2/SDL.h>
 

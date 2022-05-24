@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
     tex.cafe = loadTexture("resources/Taza.png",mainWin);
     tex.charco = loadTexture("resources/charco.png",mainWin);
     tex.salida = loadTexture("resources/Escaleras.png",mainWin);
+    tex.boton = loadTexture("resources/aceptar.png",mainWin);
 
     SDL_Color colour = { .r=255, .g=255, .b=255, .a=255 };
     font_texture_t titulo = newText("Introduce nombre fichero:", colour, 24, mainWin);
