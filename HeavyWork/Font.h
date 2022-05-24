@@ -4,6 +4,12 @@
 
 #include <SDL2/SDL.h>
 
-SDL_Texture* newText(const char* text, Window window);
+typedef struct {
+    SDL_Texture* texture;
+    int w;
+    int h;
+} font_texture_t;
+
+font_texture_t newText(const char* text, SDL_Color colour, int font_size, Window window);
 
 #endif

@@ -98,47 +98,15 @@ void catchToken(Tokens Token[], int ntokens, player_t* player, Textures tex, Mix
     }
 }
 
-void renderScoreScreen(Window window, SDL_Texture* text) {
-    SDL_RenderClear(window.renderer);
-    SDL_Rect title_rect;
-    title_rect.x = 50;
-    title_rect.y = 50;
-    title_rect.w = 300;
-    title_rect.h = 100;
-    SDL_RenderCopy(window.renderer, text, NULL, &title_rect);
-
-    SDL_Rect input_background;
-    input_background.x = 50;
-    input_background.y = 200;
-    input_background.w = 300;
-    input_background.h = 100;
-    SDL_SetRenderDrawColor(window.renderer, 255, 255, 255, 255);
-    SDL_RenderFillRect(window.renderer, &input_background);
-    SDL_SetRenderDrawColor(window.renderer, 0, 0, 0, 255);
-
-    SDL_RenderPresent(window.renderer);
-}
-
-static void formatFilename(char *output) {
-    time_t rawtime;
-    struct tm * timeinfo;
-
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
-
-    sprintf(output, "score_%d%d%d-%d%d%d.txt", timeinfo->tm_mday,
-            timeinfo->tm_mon + 1, timeinfo->tm_year + 1900,
-            timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
-}
-
-void writeScoreToFile(long long int score) {
-    char* filename = malloc(64);
-    formatFilename(filename);
+void writeScoreToFile(const char* filename, long long int score) {
+    printf("write file %s...\n", filename);
     FILE* fd = fopen(filename, "w");
     if (fd != NULL) {
         fprintf(fd, "Score: %d\n", score);
+        printf("success!\n");
+    } else {
+        printf("error!\n");
     }
 
-    free(filename);
     fclose(fd);
 }

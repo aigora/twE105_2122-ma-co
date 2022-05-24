@@ -12,6 +12,10 @@
 #include "Utilities.h"
 #include "Laberinto.h"
 #include "Tokens.h"
+#include "Font.h"
+
+#define BOTON_ACEPTAR_W 200
+#define BOTON_ACEPTAR_H 125
 
 int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_Chunk *invisi)
 {
@@ -261,10 +265,118 @@ int finvelo (float gametime, int ntokens, int tiempo_fin_rap[], int tiempo_fin_l
 
 }
 
+static void renderScoreScreen(Window window, SDL_Texture* text, SDL_Texture* boton_aceptar, font_texture_t tex_filename) {
+    SDL_RenderClear(window.renderer);
+    // Titulo
+    SDL_Rect title_rect;
+    title_rect.x = 50;
+    title_rect.y = 50;
+    title_rect.w = 300;
+    title_rect.h = 100;
+    SDL_RenderCopy(window.renderer, text, NULL, &title_rect);
+
+    // Boton de aceptar
+    SDL_Rect button_rect;
+    button_rect.x = window.w - BOTON_ACEPTAR_W - 50;
+    button_rect.y = window.h - BOTON_ACEPTAR_H - 50;
+    button_rect.w = BOTON_ACEPTAR_W;
+    button_rect.h = BOTON_ACEPTAR_H;
+    SDL_RenderCopy(window.renderer, boton_aceptar, NULL, &button_rect);
+
+    // Input box
+    SDL_Rect input_background;
+    input_background.x = 50;
+    input_background.y = 200;
+    input_background.w = window.w - 100;
+    input_background.h = 60;
+    SDL_SetRenderDrawColor(window.renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(window.renderer, &input_background);
+    SDL_SetRenderDrawColor(window.renderer, 0, 0, 0, 255);
+
+    // Filename
+    SDL_Rect filename_rect;
+    filename_rect.x = 50 + 10;
+    filename_rect.y = 200 + 20;
+    filename_rect.w = tex_filename.w;
+    filename_rect.h = tex_filename.h;
+    SDL_RenderCopy(window.renderer, tex_filename.texture, NULL, &filename_rect);
+
+    SDL_RenderPresent(window.renderer);
+}
+
 int exitScreen(Window window, Textures tex, long long int score) {
-    while (true) {
-        renderScoreScreen(window, tex.titulo_puntuacion);
+    bool exit = false;
+    char* filename = NULL;
+    int length = 1;
+    int mouse_x;
+    int mouse_y;
+    SDL_Event event;
+    font_texture_t text_filename;
+
+    while (!exit) {
+        SDL_GetMouseState(&mouse_x, &mouse_y);
+        while (SDL_PollEvent(&event)) {
+            switch (event.type)
+            {
+                case SDL_QUIT:
+                {
+                    exit = true;
+                } break;
+
+                case SDL_KEYDOWN:
+                {
+                    char character = 0;
+                    if ((event.key.keysym.scancode >= SDL_SCANCODE_A) &&
+                        (event.key.keysym.scancode <= SDL_SCANCODE_Z))
+                    {
+                        character = event.key.keysym.scancode + 61;
+                    }
+                    else if ((event.key.keysym.scancode >= SDL_SCANCODE_1) &&
+                             (event.key.keysym.scancode <= SDL_SCANCODE_9))
+                    {
+                        character = event.key.keysym.scancode + 19;
+                    } else if (event.key.keysym.scancode >= SDL_SCANCODE_0)
+                    {
+                        character = '0';
+                    }
+
+                    printf("Tecla presionada = %c\n", character);
+                    length += sizeof(char);
+                    if (filename == NULL) {
+                        // Reservamos espacio para dos char (la letra que queremos guardar, más el null-terminator)
+                        filename = malloc(sizeof(char) * 2);
+                    } else {
+                        filename = realloc(filename, length + sizeof(char));
+                    }
+
+                    filename[length - 2] = character;
+                    filename[length - 1] = '\0';
+
+                    SDL_Color colour = { .r=0, .g=0, .b=0, .a=255 };
+                    text_filename = newText(filename, colour, 20, window);
+
+                } break;
+
+                case SDL_MOUSEBUTTONUP:
+                {
+                    printf("Click x=%d y=%d\n", mouse_x, mouse_y);
+                    if (((mouse_x >= (window.w - BOTON_ACEPTAR_W - 50)) && (mouse_x <= (window.w - 50))) &&
+                        ((mouse_y >= (window.h - BOTON_ACEPTAR_H - 50)) && (mouse_y <= (window.h - 50))))
+                    {
+                        // Se ha clickado en el boton de aceptar
+                        writeScoreToFile(filename, score);
+                        exit = true;
+                    }
+                } break;
+            }
+        }
+
+        //! TODO cambiar charco por boton de aceptar.
+        renderScoreScreen(window, tex.titulo_puntuacion, tex.charco, text_filename);
+        // SDL_DestroyTexture(text_filename.texture);
     }
+
+    free(filename);
 
     return 0;
 }

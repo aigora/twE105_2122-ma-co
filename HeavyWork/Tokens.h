@@ -24,5 +24,4 @@ void renderToken(Tokens Token[], Window window, int ntokens);
 void catchToken(Tokens Token[], int ntokens, player_t* player, Textures tex, Mix_Chunk *efecto, float gametime, int tiempo_fin_rap[1], int tiempo_fin_lent[1], int *velocidad, long long int *puntos);
 
 long long int readScoreFromFile(void);
-void renderScoreScreen(Window window, SDL_Texture* title);
-void writeScoreToFile(long long int score);
+void writeScoreToFile(const char* filename, long long int score);
