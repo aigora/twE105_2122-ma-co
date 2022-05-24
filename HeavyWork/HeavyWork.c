@@ -80,7 +80,6 @@ int main(int argc, char *argv[])
     tex.prox = loadTexture("resources/Proximamente.jpg",mainWin);
     tex.creditos = loadTexture("resources/creditos.jpg",mainWin);
 
-    tex.png = loadTexture("resources/PruebaPNG.png",mainWin);
     tex.vida = loadTexture("resources/life.png",mainWin);
     tex.pause = loadTexture("resources/pause.jpg",mainWin);
     tex.billete = loadTexture("resources/Pbillete.png",mainWin);
@@ -130,7 +129,7 @@ int main(int argc, char *argv[])
         success = false;
     }
 
-    //Cargar efectoss de sonido
+    //Cargar efectos de sonido
     recoger = Mix_LoadWAV( "resources/recoger2.wav" );
     if( recoger == NULL )
     {

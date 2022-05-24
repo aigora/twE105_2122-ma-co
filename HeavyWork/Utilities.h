@@ -58,10 +58,8 @@ typedef struct
     SDL_Texture* playerinvdrcha;
     SDL_Texture* playerinvizqda;
     SDL_Texture* prox;
-    SDL_Texture* png;
     SDL_Texture* bot;
     SDL_Texture* vida;
-    SDL_Texture* vision;
     SDL_Texture* pause;
     SDL_Texture* billete;
     SDL_Texture* cafe;

@@ -30,7 +30,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
     int nmuros=0, i, j, stage=1, last_time, nbots, velocidad = 1;
     int tiempo_fin_rap[1]= {0}, tiempo_fin_lent[1] = {0};
     long long int puntos=1000;
-    float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;
+    float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;//Todos los contadores utilizados para finalizar los superpoderes
     bool same_press;
     Entity Tok[1];
     Vector2f v[1];v[0].x=100;v[0].y=100;//!Borrar esto cuando añadamos más tokens
@@ -106,7 +106,6 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                 SDL_RenderClear(window.renderer);
                 //Temporizador desde el comienzo del juego, se usa en la invisibilidad
                 game_time += delta_time;
-                //printf("%.2f\n",game_time);
 
                 if (!pausa)
                 {
@@ -163,10 +162,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                         movLab(muros, &salida, nmuros, KEYS, *player, bots, Tok, 1, nbots, boton, delta_time, velocidad);
                         catchToken(Tok, 1, player, tex, recoger,game_time, tiempo_fin_rap, tiempo_fin_lent,&velocidad, &puntos);
                     }
-                    //printf("%i\n",velocidad);
-                    //printf("%i\n",tiempo_fin_rap[1]);
-                    //printf("%i\n",tiempo_fin_lent[1]);
-                    //printf("%lli\n", puntos);
+
                     if (KEYS.SPACE)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
 
@@ -197,13 +193,11 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                         mov_bot (num_al(), &bots[i], muros, nmuros, delta_time);
                     }
 
-                    if (invenc == true) //Comprueba si ya han pasado el tiempo de invencibilidad
+                    if (invenc == true) //Comprueba si ya ha pasado el tiempo de invencibilidad (5s)
                         invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
-                    if (velocidad != 1)
-                    {
-                        velocidad =  finvelo (game_time, 1, tiempo_fin_rap, tiempo_fin_lent, velocidad);
-                    }
 
+                    if (velocidad != 1)//Comprueba si ya ha pasado el tiempo de rapidez/lentitud (5s)
+                        velocidad =  finvelo (game_time, 1, tiempo_fin_rap, tiempo_fin_lent, velocidad);
                 }
 
                 while(SDL_GetTicks()-last_time<1000/60){}

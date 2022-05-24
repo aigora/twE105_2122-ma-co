@@ -1,8 +1,8 @@
 #pragma once
 #include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h> //Preguntar si su uso est� permitido
-#include <time.h> //Preguntar si su uso est� permitido
+#include <stdlib.h>
+#include <time.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_timer.h>
@@ -76,7 +76,7 @@ void catchToken(Tokens Token[], int ntokens, player_t* player, Textures tex, Mix
         {
             if (Token[i].collected==false)
             {
-                Mix_PlayChannel( -1, efecto, 0 );
+                Mix_PlayChannel( -1, efecto, 0 );//Reproduce efecto
 
             switch(Token[i].type)
             {
