@@ -31,10 +31,10 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
     Entity salida;
     Bot* bots;
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;KEYS.ESC_PREV=false;
-    int nmuros, i, j, stage=1, last_time, nbots, velocidad = 1, ncharcos ,ncafe, ndine, ntok;
+    int nmuros, i, j, stage=1, last_time, nbots, velocidad = 1, ncharcos ,ncafe, ndine, ntok,aux;
     int tiempo_fin_rap= 0, tiempo_fin_lent = 0;
     int vidas;
-    long long int puntos=1000;
+    long long int puntos=0;
     float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;//Todos los contadores utilizados para finalizar los superpoderes
     bool same_press;
     Tokens *tok;
@@ -53,7 +53,21 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
     };
 
 
-    while(game)
+    //Generación del laberinto
+    m_Lab.w=10; //Tamaño lab
+    m_Lab.h=10;
+
+    int plantas=4;//Número de plantas
+    int maxVidas=5;//Numero de vidas
+    //Generación de los coleccionables(Tokens)
+    ncafe=10;
+    ncharcos=10;
+    ndine=10;
+
+    //Generación de los bots
+    nbots=10;//Numero de bots
+
+    while(game && plantas>0)
     {
         switch(stage)
         {
@@ -65,9 +79,6 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
 
             //Semilla aleatoria de generación
             srand(time(NULL));
-
-            m_Lab.w=10;
-            m_Lab.h=10;
             m_Lab.esq = malloc((m_Lab.w*2+1)*(m_Lab.h*2+1)*sizeof(char));
             if(m_Lab.esq==NULL)
             {
@@ -98,19 +109,14 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
             drawLab(window,m_Lab,muros,tex);
 
             //Generación del personage
-            vidas=5;
+
+            vidas=maxVidas;//Numero de vidas
             inip.x=rand() % m_Lab.w;
             inip.y=rand() % m_Lab.h;
-            inip.x=1;
-            inip.y=0;
-
             player_t* player = newPlayer(inip, vidas, player_textures,window,&desfase,m_Lab.w,m_Lab.h);
 
             //Generación de salida
             generarSalida(&salida,m_Lab,inip,tex,&inis,desfase);
-
-            //Generación de los bots
-            nbots=10;
 
             bots=malloc(nbots*sizeof(Bot));
             if(bots==NULL)
@@ -121,10 +127,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
 
             generarBots(m_Lab,bots,nbots,tex,inip,desfase);
 
-            //Generación de los coleccionables(Tokens)
-            ncafe=10;
-            ncharcos=10;
-            ndine=10;
+
             ntok=ncafe+ncharcos+ndine;
 
             tok=malloc(ntok*sizeof(Tokens));
@@ -144,12 +147,13 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
             stage=2;
             update=true;
 
+
             break;
 
         case 2: //Bucle del juego
-
+            game_time=0;
+            velocidad=1;
             last_time=SDL_GetTicks();
-
 
             while(update)
             {
@@ -176,6 +180,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                     switch(event.type)
                     {
                     case SDL_QUIT:
+                        stage=0;
                         update=false;
                         game=false;
                         break;
@@ -209,11 +214,28 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                         }
 
                         playerSetDirection(player, direction);
-                        movement(window,muros, &salida, nmuros, KEYS, player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
+                        //movement(window,muros, &salida, nmuros, KEYS, player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
+                        movLab1(muros,&salida,nmuros,KEYS,*player,bots,tok,ntok,nbots,boton,delta_time,velocidad);
                         catchToken(tok, ntok, player, tex, recoger,game_time, &tiempo_fin_rap, &tiempo_fin_lent, &velocidad, &puntos);
                     }
-                    //printf("%i\n", tiempo_fin_lent);
-                    //printf("%i\n", tiempo_fin_rap);
+
+                    if(ColisionPlayer(*player, salida)==1)
+                    {
+                        nbots+=11;
+                        ncafe+=5;
+                        ncharcos+=5;
+                        ndine+=5;
+                        m_Lab.w+=1;
+                        m_Lab.h+=1;
+                        plantas-=1;
+                        //maxVidas-=1;
+                        stage=1;
+                        update=false;
+                        puntos+=calcPuntos(tok, ntok, game_time);
+                        printf("%i", puntos);
+                        //if(plantas==0)
+                            //stage=3;
+                    }
                     if (KEYS.SPACE)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
 
@@ -241,7 +263,10 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                         perseguir(player, &bots[i], muros, nmuros, delta_time, invisibilidad);
                     }
                     else
-                        mov_bot (num_al(), &bots[i], muros, nmuros, delta_time);
+                    {
+                        aux=rand()%5;
+                        mov_bot (aux, &bots[i], muros, nmuros, delta_time);
+                    }
                     }
 
                     if (invenc == true) //Comprueba si ya ha pasado el tiempo de invencibilidad (5s)
@@ -259,13 +284,15 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                         if (!alive)
                         {
                             update = false;
-                            game = true;
+                            game = false;
+                            stage=3;
                         }
                     }
                 }
 
                 while(SDL_GetTicks()-last_time<1000/60){}
                 //printf("FPS: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                //printf("%.2f\n", game_time);
                 delta_time=(SDL_GetTicks()-last_time)/1000.0;
                 last_time=SDL_GetTicks();
             }
@@ -274,7 +301,6 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
             free(player);
             free(bots);
             free(tok);
-            stage = 0;
             break;
         }
     }
@@ -296,6 +322,30 @@ bool invencibilidad (float time, int *tiempo_fin_invencibilidad, bool invenc)
         return false;
 
     else return true;
+}
+
+int calcPuntos(Tokens tok[],int ntok,float game_time)
+{
+    int puntos=0;
+    for(int i=0; i<ntok; i++)
+    {
+        if(tok[i].type==1 && tok[i].collected==true)
+            puntos+=100;
+    }
+    if(game_time>50)
+        puntos+=30;//Premio de consolación
+    else if(game_time>60)
+        puntos+=30;
+    else if(game_time>50 && game_time<60)
+        puntos+=100;
+    else if(game_time>40 && game_time<50)
+        puntos+=150;
+    else if(game_time>30 && game_time<40)
+        puntos+=250;
+    else if(game_time<30)
+        puntos+=500;
+        //printf("%i", puntos);
+    return puntos;
 }
 //La función invencibilidad sigue el mismo funcionamiento que la invisibilidad, al ser llamada cuando se pierde una vida,
 //se hace verdadero el bool y se crea una variable tiempo_fin_invencibilidad. Esta es la suma del tiempo en el que se

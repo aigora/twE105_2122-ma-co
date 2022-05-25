@@ -68,6 +68,7 @@ typedef struct
     SDL_Texture* creditos;
     SDL_Texture* titulo_puntuacion;
     SDL_Texture* boton;
+    SDL_Texture* escaleras;
 
 } Textures; //Estructura de las texturas
 
@@ -110,7 +111,6 @@ SDL_Texture* loadTexture(const char p_file[], Window window);
 void renderFondo(Window window, SDL_Texture* tex);
 void renderPause(Window window, SDL_Texture* tex);
 void imprimirImagen(Window window, SDL_Texture* tex);
-int num_al (void);
 int ComprobarMuros(int new_x, int new_y, Vector2f v2, const Entity* muros, int num_muros);
 bool UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update);
 bool boton_invisibilidad (bool boton, float game_time, float *tiempo_boton_in, float *tiempo_boton_fin, float *tiempo_fin_invisibilidad, bool *invisibilidad, Mix_Chunk *invisi);

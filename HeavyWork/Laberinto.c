@@ -277,6 +277,102 @@ void DebugLab(M_Lab m_Lab)
     }
 }
 
+//Mueve el laberinto dando la sensación de que se mueve el personaje
+void movLab1(Entity muros[], Entity *salida, int nmuros, key_buttons k, player_t player, Bot bots[],Tokens Tok[], int ntokens, int nbots, bool boton, float delta_time, int velocidad)
+{
+    int i, j;
+    float velocity;
+    int position;
+    if((boton == false)||(velocidad == 0)) //Velocidad se reduce mientras el botón no está cargado o al pisar el charco
+        velocity = 175;
+    else if(velocidad == 2)
+        velocity = 500;
+    else
+        velocity = 300;
+
+    Vector2f v;
+    v.x = player.texture.w;
+    v.y = player.texture.h;
+    position=(int)(velocity*delta_time);
+
+    if(k.W==true)
+    {
+        for(i=0; i<nmuros; i++)
+            muros[i].dst.y+=position;
+
+        /*if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+                for(j=0; j<nmuros; j++)
+                    muros[j].dst.y-=position;*/
+        //else
+        {
+            for(i=0; i<ntokens; i++)
+            Tok[i].entity.dst.y+=position;
+
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.y+=position;
+
+            salida->dst.y+=position;
+        }
+    }
+    if(k.A==true)
+    {
+        for(i=0; i<nmuros; i++)
+            muros[i].dst.x+=position;
+
+        /*if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+                for(j=0; j<nmuros; j++)
+                    muros[j].dst.x-=position;*/
+        //else
+        {
+            for(i=0; i<ntokens; i++)
+            Tok[i].entity.dst.x+=position;
+
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.x+=position;
+
+            salida->dst.x+=position;
+        }
+    }
+    if(k.D==true)
+    {
+        for(i=0; i<nmuros; i++)
+            muros[i].dst.x-=position;
+
+        /*if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+                for(j=0; j<nmuros; j++)
+                    muros[j].dst.x+=position;*/
+        //else
+        {
+            for(i=0; i<ntokens; i++)
+            Tok[i].entity.dst.x-=position;
+
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.x-=position;
+
+            salida->dst.x-=position;
+        }
+    }
+    if(k.S==true)
+    {
+        for(i=0; i<nmuros; i++)
+            muros[i].dst.y-=position;
+
+        /*if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+                for(j=0; j<nmuros; j++)
+                    muros[j].dst.y+=position;*/
+        //else
+        {
+            for(i=0; i<ntokens; i++)
+            Tok[i].entity.dst.y-=position;
+
+            for(i=0;i<nbots;i++)
+            bots[i].entity.dst.y-=position;
+
+            salida->dst.y-=position;
+        }
+    }
+}
+
 void generarBots(M_Lab m_Lab,Bot bots[], int nbots, Textures tex, const Vector2i pPlayer, Vector2i desfase)
 {
     int i,j, ncells, put;
