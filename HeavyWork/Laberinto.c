@@ -298,10 +298,10 @@ void movLab(Entity muros[], Entity *salida, int nmuros, key_buttons k, player_t 
         for(i=0; i<nmuros; i++)
             muros[i].dst.y+=position;
 
-        if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+        /*if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
                 for(j=0; j<nmuros; j++)
-                    muros[j].dst.y-=position;
-        else
+                    muros[j].dst.y-=position;*/
+        //else
         {
             for(i=0; i<ntokens; i++)
             Tok[i].entity.dst.y+=position;
@@ -317,10 +317,10 @@ void movLab(Entity muros[], Entity *salida, int nmuros, key_buttons k, player_t 
         for(i=0; i<nmuros; i++)
             muros[i].dst.x+=position;
 
-        if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+        /*if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
                 for(j=0; j<nmuros; j++)
-                    muros[j].dst.x-=position;
-        else
+                    muros[j].dst.x-=position;*/
+        //else
         {
             for(i=0; i<ntokens; i++)
             Tok[i].entity.dst.x+=position;
@@ -336,10 +336,10 @@ void movLab(Entity muros[], Entity *salida, int nmuros, key_buttons k, player_t 
         for(i=0; i<nmuros; i++)
             muros[i].dst.x-=position;
 
-        if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+        /*if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
                 for(j=0; j<nmuros; j++)
-                    muros[j].dst.x+=position;
-        else
+                    muros[j].dst.x+=position;*/
+        //else
         {
             for(i=0; i<ntokens; i++)
             Tok[i].entity.dst.x-=position;
@@ -355,10 +355,10 @@ void movLab(Entity muros[], Entity *salida, int nmuros, key_buttons k, player_t 
         for(i=0; i<nmuros; i++)
             muros[i].dst.y-=position;
 
-        if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
+        /*if(ComprobarMuros(player.texture.x, player.texture.y, v, muros, nmuros)==1)
                 for(j=0; j<nmuros; j++)
-                    muros[j].dst.y+=position;
-        else
+                    muros[j].dst.y+=position;*/
+        //else
         {
             for(i=0; i<ntokens; i++)
             Tok[i].entity.dst.y-=position;

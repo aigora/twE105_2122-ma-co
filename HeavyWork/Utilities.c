@@ -67,14 +67,6 @@ int Cerrax (SDL_Event event)
     return 0;
 }
 
-int num_al (void) //Movimiento aleatorio de los bots
-{
-    int n;
-    srand(time(NULL)); //Genera semilla aleatoria a partir de la hora del equipo
-    n = rand() % 4 + 1;//Numero aleatorio entero entre 1 y 4
-    return n;
-}
-
 int ComprobarMuros(int new_x, int new_y, Vector2f v2, const Entity* muros, int num_muros)//Comprueba que no haya muros delante
 {
     SDL_Rect target;
