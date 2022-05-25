@@ -12,9 +12,6 @@
 #include "Tokens.h"
 #include "Font.h"
 
-#define SPEED 300    //velocidad en pixeles por segundo
-#define MAX_VIDAS   3
-
 int main(int argc, char *argv[])
 {
 
@@ -92,24 +89,6 @@ int main(int argc, char *argv[])
     font_texture_t titulo = newText("Introduce nombre fichero:", colour, 24, mainWin);
     tex.titulo_puntuacion = titulo.texture;
 
-    // Instanciar jugador
-    Vector2i pos = { 250, 300 };
-    player_textures_t player_textures = {
-        .player_right = tex.playerdrcha,
-        .player_left = tex.playerizqda,
-        .player_up = tex.playeratras,
-        .player_down = tex.player,
-
-        .player_inv_right = tex.playerinvdrcha,
-        .player_inv_left = tex.playerinvizqda,
-        .player_inv_up = tex.playerinvatras,
-        .player_inv_down = tex.playerinv,
-
-
-        .life = tex.vida,
-    };
-    player_t* player = newPlayer(pos, MAX_VIDAS, player_textures);
-
     //La m�sica que se reproducir�
     Mix_Music *musica = NULL;
 
@@ -158,7 +137,7 @@ int main(int argc, char *argv[])
             stage=menu(mainWin,tex,&personaje, sonido, musica);
             break;
         case 2:
-            stage=game(mainWin,tex,player, recoger, invisi);
+            stage=game(mainWin,tex, recoger, invisi);
             break;
         case 3:
             // Pantalla de salida

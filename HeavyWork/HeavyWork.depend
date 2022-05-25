@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1653347467 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
+1653437425 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1623,7 +1623,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653347467 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.h
+1653471810 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1635,7 +1635,7 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 
-1653257038 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.c
+1653471781 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1648,7 +1648,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653347467 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.c
+1653473143 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1663,8 +1663,9 @@
 	"Utilities.h"
 	"Laberinto.h"
 	"Tokens.h"
+	"Font.h"
 
-1653347462 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.h
+1653437425 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1679,7 +1680,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653257038 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.h
+1653437425 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1692,7 +1693,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653257038 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.c
+1653437425 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1705,10 +1706,11 @@
 	"Player.h"
 	"Utilities.h"
 
-1653347467 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\laberinto.h
+1653472136 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\laberinto.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
+	<math.h>
 	<time.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
@@ -1717,12 +1719,14 @@
 	"Utilities.h"
 	"Player.h"
 	"Enemies.h"
+	"Tokens.h"
 
-1653347467 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\laberinto.c
+1653473277 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\laberinto.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
 	<time.h>
+	<math.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -1730,6 +1734,7 @@
 	"Laberinto.h"
 	"Utilities.h"
 	"Enemies.h"
+	"Tokens.h"
 
 1653431532 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
@@ -3463,7 +3468,7 @@
 	"Player.h"
 	<time.h>
 
-1653347462 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\tokens.h
+1653437425 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\tokens.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3475,7 +3480,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1653347462 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\tokens.c
+1653437425 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\tokens.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3525,11 +3530,11 @@
 	"Font.h"
 	<SDL2/SDL_ttf.h>
 
-1653347462 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\font.c
+1653426157 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\font.c
 	"Font.h"
 	<SDL2/SDL_ttf.h>
 
-1653347462 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\font.h
+1653426157 c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\font.h
 	"Utilities.h"
 	<SDL2/SDL.h>
 

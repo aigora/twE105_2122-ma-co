@@ -23,16 +23,13 @@
 
 player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t textures)
 {
+    const int w=235;
     player_t* player = (player_t*) malloc(sizeof(player_t));
 
-    player->texture.x = initial_position.x;
-    player->texture.y = initial_position.y;
+    player->texture.x = initial_position.x*w+20;
+    player->texture.y = initial_position.y*w+20;
     player->texture.w = WIDTH;
     player->texture.h = HEIGHT;
-
-    //Conserva la posicion inicial del personaje
-    player->pos_inicial.x = initial_position.x;
-    player->pos_inicial.y = initial_position.y;
 
     player->num_vidas = num_vidas;
     player->direction = MOVEMENT_DOWN;

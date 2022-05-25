@@ -17,7 +17,7 @@
 #define BOTON_ACEPTAR_W 200
 #define BOTON_ACEPTAR_H 125
 
-int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_Chunk *invisi)
+int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
 {
     SDL_RenderClear(window.renderer);
     SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
@@ -31,13 +31,26 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
     Entity salida;
     Bot* bots;
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;KEYS.ESC_PREV=false;
-    int nmuros=0, i, j, stage=1, last_time, nbots, velocidad = 1;
+    int nmuros, i, j, stage=1, last_time, nbots, velocidad = 1, ncharcos ,ncafe, ndine, ntok;
     int tiempo_fin_rap[1]= {0}, tiempo_fin_lent[1] = {0};
+    int vidas;
     long long int puntos=1000;
     float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;//Todos los contadores utilizados para finalizar los superpoderes
     bool same_press;
-    Entity Tok[1];
-    Vector2f v[1];v[0].x=100;v[0].y=100;//!Borrar esto cuando añadamos más tokens
+    Tokens *tok;
+    Vector2i inip;
+
+    player_textures_t player_textures = {
+        .player_right = tex.playerdrcha,
+        .player_left = tex.playerizqda,
+        .player_up = tex.playeratras,
+        .player_down = tex.player,
+        .player_inv_right = tex.playerinvdrcha,
+        .player_inv_left = tex.playerinvizqda,
+        .player_inv_up = tex.playerinvatras,
+        .player_inv_down = tex.playerinv,
+        .life = tex.vida,
+    };
 
     while(game)
     {
@@ -46,7 +59,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
         case 0:
             return 0;
 
-        case 1: //Generaci�n del laberinto
+        case 1: //Generaci�n del nivel
 
             m_Lab.w=10;
             m_Lab.h=10;
@@ -77,9 +90,21 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                 exit(-1);
             }
 
-            drawLab(window,m_Lab,muros,&salida,tex);
+            drawLab(window,m_Lab,muros,tex);
 
-            //Generación de los bots y coleccionables(Tokens)
+            //Generación del personage
+            vidas=5;
+            srand(time(NULL));
+            inip.x=rand() % m_Lab.w;
+            inip.y=rand() % m_Lab.h;
+            inip.x=1;
+            inip.y=1;
+            player_t* player = newPlayer(inip, vidas, player_textures);
+
+            //Generación de salida
+            generarSalida(&salida,m_Lab,inip,tex);
+
+            //Generación de los bots
             nbots=10;
 
             bots=malloc(nbots*sizeof(Bot));
@@ -89,14 +114,27 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                 exit(-1);
             }
 
-            generarBots(m_Lab,bots,nbots,tex);
+            generarBots(m_Lab,bots,nbots,tex,inip);
+
+            //Generación de los coleccionables(Tokens)
+            ncafe=10;
+            ncharcos=10;
+            ndine=10;
+            ntok=ncafe+ncharcos+ndine;
+
+            tok=malloc(ntok*sizeof(Tokens));
+            if(tok==NULL)
+            {
+                printf("Error creando tokens");
+                exit(-1);
+            }
+
+            generarTokens(m_Lab,tok,ncafe,ndine,ncharcos,tex,inip);
 
             //Salida de la generación
             free(m_Lab.esq);
             stage=2;
             update=true;
-            TokensCreator(Tok,tex, v, 0, 1); //Tal y como está, al recoger la taza aumenta la velocidad.Si donde pone 0 se pone 1, imprime
-            //"¡100 ptos!" al recoger el billete, si se pone tipo 1 spawnea el charco y al pasar por él ralentiza durante los 5s
 
             break;
 
@@ -115,7 +153,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                 {
                     renderFondo(window,tex.fondo);
                     renderLab(window,muros,nmuros,salida);
-                    renderToken(Tok,window,1);
+                    renderToken(tok,window,ntok);
                     renderBot(bots,window,nbots);
                     renderPlayer(player, window, invisibilidad);
                 }
@@ -163,8 +201,8 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                         }
 
                         playerSetDirection(player, direction);
-                        movLab(muros, &salida, nmuros, KEYS, *player, bots, Tok, 1, nbots, boton, delta_time, velocidad);
-                        catchToken(Tok, 1, player, tex, recoger,game_time, tiempo_fin_rap, tiempo_fin_lent,&velocidad, &puntos);
+                        movLab(muros, &salida, nmuros, KEYS, *player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
+                        catchToken(tok, ntok, player, tex, recoger,game_time, tiempo_fin_rap, tiempo_fin_lent,&velocidad, &puntos);
                     }
 
                     if (KEYS.SPACE)
@@ -183,7 +221,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
                         if (!alive)
                         {
                             update = false;
-                            game = false;
+                            game = true;
                         }
                     }
 
@@ -213,6 +251,7 @@ int game(Window window, Textures tex, player_t* player, Mix_Chunk *recoger, Mix_
             free(muros);
             free(player);
             free(bots);
+            free(tok);
             stage = 3;
             break;
         }

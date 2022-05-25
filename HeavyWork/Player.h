@@ -34,7 +34,6 @@ typedef enum {
 
 typedef struct {
     SDL_Rect texture;
-    Vector2i pos_inicial;
     int num_vidas;
     player_direction_t direction;
     player_textures_t textures;

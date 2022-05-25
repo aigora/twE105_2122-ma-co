@@ -198,3 +198,14 @@ tiempo_fin_invis_int = (int) *tiempo_fin_invisibilidad;
     }
 }
 
+int max(int v[],int n)
+{
+    int i, aux;
+    aux=v[0];
+    for(i=1;i<n;i++)
+    {
+        if(aux<v[i])
+            aux=v[i];
+    }
+    return aux;
+}

@@ -1,4 +1,3 @@
-#pragma once
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -13,48 +12,52 @@
 #include "Player.h"
 #include <time.h>
 
-void TokensCreator(Tokens Token[],Textures tex, Vector2f v[], int type, int ntokens)
+void TokensCreator(Tokens Token[],Textures tex, Vector2i v[], int ncafe, int ndine, int ncharcos)
 {
-    int i;
-    Token[i].type = type;
+    int i, ntokens=ncafe+ndine+ncharcos;
     for(i=0; i<ntokens; i++)
     {
         Token[i].entity.src.x = 0;
         Token[i].entity.src.y = 0;
-        Token[i].entity.dst.x = v[i].x;
-        Token[i].entity.dst.y = v[i].y;
-
-        switch(Token[i].type)
-        {
-        case 0://Taza café
-
-            Token[i].entity.dst.w = 100;
-            Token[i].entity.dst.h = 100;
-            Token[i].entity.tex = tex.cafe;
-            SDL_QueryTexture(tex.cafe,NULL, NULL, &Token[i].entity.src.w, &Token[i].entity.src.h);
-
-
-        break;
-
-        case 1://Coin
-
-            Token[i].entity.dst.w = 100;
-            Token[i].entity.dst.h = 100;
-            Token[i].entity.tex = tex.billete;
-            SDL_QueryTexture(tex.billete,NULL, NULL, &Token[i].entity.src.w, &Token[i].entity.src.h);
-        break;
-
-        case 2://Suelo  mojado
-
-            Token[i].entity.dst.w = 100;
-            Token[i].entity.dst.h = 100;
-            Token[i].entity.tex = tex.charco;
-            SDL_QueryTexture(tex.charco,NULL, NULL, &Token[i].entity.src.w, &Token[i].entity.src.h);
-        break;
-        }
-
         Token[i].collected=false;
     }
+
+
+    for(i=0;i<ncafe;i++)//Taza café
+    {
+        Token[i].entity.dst.w = 100;
+        Token[i].entity.dst.h = 100;
+        Token[i].entity.dst.x = v[i].x+80;
+        Token[i].entity.dst.y = v[i].y+80;
+        Token[i].entity.tex = tex.cafe;
+        SDL_QueryTexture(tex.cafe,NULL, NULL, &Token[i].entity.src.w, &Token[i].entity.src.h);
+        Token[i].type=0;
+    }
+
+
+    for(i=ncafe;i<ncafe+ndine;i++)//Coin
+    {
+        Token[i].entity.dst.w = 100;
+        Token[i].entity.dst.h = 100;
+        Token[i].entity.dst.x = v[i].x+130;
+        Token[i].entity.dst.y = v[i].y;
+        Token[i].entity.tex = tex.billete;
+        SDL_QueryTexture(tex.billete,NULL, NULL, &Token[i].entity.src.w, &Token[i].entity.src.h);
+        Token[i].type=1;
+    }
+
+    for(i=ncafe+ndine;i<ncafe+ndine+ncharcos;i++)//Suelo  mojado
+    {
+        Token[i].entity.dst.w = 100;
+        Token[i].entity.dst.h = 100;
+        Token[i].entity.dst.x = v[i].x+10;
+        Token[i].entity.dst.y = v[i].y;
+        Token[i].entity.tex = tex.charco;
+        SDL_QueryTexture(tex.charco,NULL, NULL, &Token[i].entity.src.w, &Token[i].entity.src.h);
+        Token[i].type=2;
+    }
+
+
 }
 
 void renderToken(Tokens Token[], Window window, int ntokens)
