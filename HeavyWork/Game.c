@@ -32,7 +32,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
     Bot* bots;
     key_buttons KEYS;KEYS.W=false;KEYS.A=false;KEYS.S=false;KEYS.D=false;KEYS.SPACE=false;KEYS.ESC=false;KEYS.ESC_PREV=false;
     int nmuros, i, j, stage=1, last_time, nbots, velocidad = 1, ncharcos ,ncafe, ndine, ntok;
-    int tiempo_fin_rap[1]= {0}, tiempo_fin_lent[1] = {0};
+    int tiempo_fin_rap= 0, tiempo_fin_lent = 0;
     int vidas;
     long long int puntos=1000;
     float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;//Todos los contadores utilizados para finalizar los superpoderes
@@ -58,6 +58,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
         {
         case 0:
             return 0;
+            break;
 
         case 1: //Generaci�n del nivel
 
@@ -202,28 +203,16 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
 
                         playerSetDirection(player, direction);
                         movLab(muros, &salida, nmuros, KEYS, *player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
-                        catchToken(tok, ntok, player, tex, recoger,game_time, tiempo_fin_rap, tiempo_fin_lent,&velocidad, &puntos);
+                        catchToken(tok, ntok, player, tex, recoger,game_time, &tiempo_fin_rap, &tiempo_fin_lent, &velocidad, &puntos);
                     }
-
+                    //printf("%i\n", tiempo_fin_lent);
+                    //printf("%i\n", tiempo_fin_rap);
                     if (KEYS.SPACE)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
 
                     if (boton == false)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
 
-                    for(i=0;i<nbots;i++)
-                    if((playerDist(player, bots[i], muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))
-                    {
-                        // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
-                        bool alive = playerKill(player);
-                        invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
-
-                        if (!alive)
-                        {
-                            update = false;
-                            game = true;
-                        }
-                    }
 
                     for(i=0;i<nbots;i++)
                     {
@@ -240,6 +229,19 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
 
                     if (velocidad != 1)//Comprueba si ya ha pasado el tiempo de rapidez/lentitud (5s)
                         velocidad =  finvelo (game_time, 1, tiempo_fin_rap, tiempo_fin_lent, velocidad);
+                        for(i=0;i<nbots;i++)
+                    if((playerDist(player, bots[i], muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))
+                    {
+                        // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
+                        bool alive = playerKill(player);
+                        invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
+
+                        if (!alive)
+                        {
+                            update = false;
+                            game = true;
+                        }
+                    }
                 }
 
                 while(SDL_GetTicks()-last_time<1000/60){}
@@ -252,11 +254,10 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
             free(player);
             free(bots);
             free(tok);
-            stage = 3;
+            stage = 0;
             break;
         }
     }
-
     return stage;
 }
 
@@ -281,13 +282,13 @@ bool invencibilidad (float time, int *tiempo_fin_invencibilidad, bool invenc)
 //cambia el booleano y el tiempo que queremos que dure, 5 segundos. Se comprueba si el tiempo de juego en cada instante
 //es el mismo que tiempo_fin_invencibilidad para entonces desactivar el bool.
 
-int finvelo (float gametime, int ntokens, int tiempo_fin_rap[], int tiempo_fin_lent[], int velocidad)
+int finvelo (float gametime, int ntokens, int tiempo_fin_rap, int tiempo_fin_lent, int velocidad)
 {
     int gametime_int,i;
     gametime_int = (int) gametime;
     for (i=0;i<ntokens;i++)
     {
-       if ((gametime_int == tiempo_fin_rap[i])&&(velocidad == 2))
+       if ((gametime_int == tiempo_fin_rap)&&(velocidad == 2))
        {
            return 1;
        }
@@ -295,7 +296,7 @@ int finvelo (float gametime, int ntokens, int tiempo_fin_rap[], int tiempo_fin_l
        {
            return 2;
        }
-       else if ((gametime_int == tiempo_fin_lent[i])&&(velocidad == 0))
+       else if ((gametime_int == tiempo_fin_lent)&&(velocidad == 0))
        {
            return 1;
        }
@@ -410,12 +411,11 @@ int exitScreen(Window window, Textures tex, long long int score) {
             }
         }
 
-        //! TODO cambiar charco por boton de aceptar.
         renderScoreScreen(window, tex.titulo_puntuacion, tex.boton, text_filename);
         // SDL_DestroyTexture(text_filename.texture);
     }
 
     free(filename);
 
-    return 1;
+    return 0;
 }
