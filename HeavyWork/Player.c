@@ -21,13 +21,50 @@
 
 #define VIDA_MARGIN     10
 
-player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t textures)
+player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t textures, Window win, Vector2i *desfase, int w, int h)
 {
-    const int w=235;
+    const int wm=235,ww=5;
+    float aux;
     player_t* player = (player_t*) malloc(sizeof(player_t));
 
-    player->texture.x = initial_position.x*w+20;
-    player->texture.y = initial_position.y*w+20;
+    aux= win.w/(2.0*wm);
+
+    //Casillas de la izquierda
+    if(initial_position.x+0.5<aux)
+    {
+        player->texture.x = initial_position.x*wm+wm/2-WIDTH/2;
+        desfase->x=0;
+    //Casillas de la derecha
+    }else if(w-(initial_position.x+1-0.5)<aux)
+    {
+        player->texture.x = win.w-(w-(initial_position.x+1))*wm-wm/2-ww+WIDTH/2;
+        desfase->x=(initial_position.x+1)*(wm-ww)+ww-win.w;
+    //El resto de casillas
+    }else
+    {
+        player->texture.x = win.w/2-WIDTH/2;
+        desfase->x=initial_position.x*(wm-ww)+wm/2-win.w/2;
+    }
+
+    aux=win.h/(2.0*wm);
+
+    //Casillas de arriba
+    if(initial_position.y+0.5<aux)
+    {
+        player->texture.y = initial_position.y*wm+wm/2-HEIGHT/2;
+        desfase->y=0;
+    //Casillas de abajo
+    }else if(h-(initial_position.y+1-0.5)<aux)
+    {
+        player->texture.y = win.h-(h-(initial_position.y+1))*wm-wm/2-ww+HEIGHT/2;
+        desfase->y=(initial_position.y+1)*(wm-ww)+ww-win.h;
+    //El resto de casillas
+    }else
+    {
+        player->texture.y = win.h/2-HEIGHT/2;
+        desfase->y=initial_position.y*(wm-ww)+wm/2-win.h/2;
+    }
+
     player->texture.w = WIDTH;
     player->texture.h = HEIGHT;
 
@@ -152,7 +189,7 @@ bool playerKill(player_t* player)
 
 bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton, Mix_Chunk *invisi)
 {
-    int t_ent,i;
+    int t_ent;
     t_ent = (int) time;
 
     if(boton == 1)
@@ -160,7 +197,7 @@ bool invisibility(float time, int tiempo_fin_invisibilidad, bool boton, Mix_Chun
         Mix_PlayChannel( -1, invisi, 0 );
         return true;
     }
-    else if (time<tiempo_fin_invisibilidad)
+    else if (t_ent<tiempo_fin_invisibilidad)
         {
             return true;
         }

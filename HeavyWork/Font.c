@@ -1,4 +1,5 @@
 #include "Font.h"
+#include "Utilities.h"
 
 #include <SDL2/SDL_ttf.h>
 

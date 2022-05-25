@@ -38,7 +38,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
     float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;//Todos los contadores utilizados para finalizar los superpoderes
     bool same_press;
     Tokens *tok;
-    Vector2i inip;
+    Vector2i inip,inis,desfase;
 
     player_textures_t player_textures = {
         .player_right = tex.playerdrcha,
@@ -52,6 +52,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
         .life = tex.vida,
     };
 
+
     while(game)
     {
         switch(stage)
@@ -61,6 +62,9 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
             break;
 
         case 1: //Generaci�n del nivel
+
+            //Semilla aleatoria de generación
+            srand(time(NULL));
 
             m_Lab.w=10;
             m_Lab.h=10;
@@ -95,15 +99,15 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
 
             //Generación del personage
             vidas=5;
-            srand(time(NULL));
             inip.x=rand() % m_Lab.w;
             inip.y=rand() % m_Lab.h;
             inip.x=1;
-            inip.y=1;
-            player_t* player = newPlayer(inip, vidas, player_textures);
+            inip.y=0;
+
+            player_t* player = newPlayer(inip, vidas, player_textures,window,&desfase,m_Lab.w,m_Lab.h);
 
             //Generación de salida
-            generarSalida(&salida,m_Lab,inip,tex);
+            generarSalida(&salida,m_Lab,inip,tex,&inis,desfase);
 
             //Generación de los bots
             nbots=10;
@@ -115,7 +119,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                 exit(-1);
             }
 
-            generarBots(m_Lab,bots,nbots,tex,inip);
+            generarBots(m_Lab,bots,nbots,tex,inip,desfase);
 
             //Generación de los coleccionables(Tokens)
             ncafe=10;
@@ -130,7 +134,10 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                 exit(-1);
             }
 
-            generarTokens(m_Lab,tok,ncafe,ndine,ncharcos,tex,inip);
+            generarTokens(m_Lab,tok,ncafe,ndine,ncharcos,tex,inip,inis,desfase);
+
+            //Desfasa los muros para centrar la camara en el personaje
+            desfasarMuros(muros,nmuros,desfase);
 
             //Salida de la generación
             free(m_Lab.esq);
@@ -202,7 +209,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                         }
 
                         playerSetDirection(player, direction);
-                        movLab(muros, &salida, nmuros, KEYS, *player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
+                        movement(window,muros, &salida, nmuros, KEYS, player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
                         catchToken(tok, ntok, player, tex, recoger,game_time, &tiempo_fin_rap, &tiempo_fin_lent, &velocidad, &puntos);
                     }
                     //printf("%i\n", tiempo_fin_lent);
@@ -213,6 +220,19 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                     if (boton == false)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
 
+                    for(i=0;i<nbots;i++)
+                    if((playerDist(player, bots[i], muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))
+                    {
+                        // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
+                        bool alive = playerKill(player);
+                        invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
+
+                        if (!alive)
+                        {
+                            update = false;
+                            game = false;
+                        }
+                    }
 
                     for(i=0;i<nbots;i++)
                     {

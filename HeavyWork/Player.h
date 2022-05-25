@@ -39,7 +39,7 @@ typedef struct {
     player_textures_t textures;
 } player_t;
 
-player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t textures);
+player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t textures, Window win,  Vector2i *desfase, int w, int h);
 void renderPlayer(player_t* player, Window window, bool invisibilidad);
 float playerDist(player_t* v1, Bot bot, const Entity* muros, int num_muros);
 bool playerKill(player_t* player);
