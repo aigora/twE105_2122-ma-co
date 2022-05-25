@@ -27,6 +27,7 @@ void bot_creator(Bot bot[], Vector2i p_initial[], SDL_Texture* tex, int nbots)
         bot[i].entity.dst.y=p_initial[i].y;
         bot[i].entity.dst.w=w;
         bot[i].entity.dst.h=h;
+        bot[i].ran=rand()%5;
     }
 }
 
@@ -37,7 +38,7 @@ void renderBot(Bot bots[], Window window, int nbots)
             SDL_RenderCopy(window.renderer, bots[i].entity.tex, &bots[i].entity.src, &bots[i].entity.dst);
 }
 
-void mov_bot (int num_aleat, Bot* bot, const Entity* muros, int num_muros, float delta_time)
+void mov_bot (Bot* bot, const Entity* muros, int num_muros, float delta_time)
 {
     int new_x;
     int new_y;
@@ -52,7 +53,7 @@ void mov_bot (int num_aleat, Bot* bot, const Entity* muros, int num_muros, float
     v.x=bot->entity.dst.w;
     v.y=bot->entity.dst.h;
 
-    switch(num_aleat)
+    switch(bot->ran)
     {
         case 1://Derecha
             new_x += position;

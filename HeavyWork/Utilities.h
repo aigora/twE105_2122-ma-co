@@ -91,6 +91,7 @@ typedef struct
 typedef struct
 {
     Entity entity;
+    int ran;
 
 } Bot;
 

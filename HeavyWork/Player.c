@@ -37,7 +37,7 @@ player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t 
     //Casillas de la derecha
     }else if(w-(initial_position.x+1-0.5)<aux)
     {
-        player->texture.x = win.w-(w-(initial_position.x+1))*wm-wm/2-ww+WIDTH/2;
+        player->texture.x = win.w-(w-(initial_position.x+1))*wm-wm/2-ww-WIDTH/2;
         desfase->x=(initial_position.x+1)*(wm-ww)+ww-win.w;
     //El resto de casillas
     }else
@@ -56,7 +56,7 @@ player_t* newPlayer(Vector2i initial_position, int num_vidas, player_textures_t 
     //Casillas de abajo
     }else if(h-(initial_position.y+1-0.5)<aux)
     {
-        player->texture.y = win.h-(h-(initial_position.y+1))*wm-wm/2-ww+HEIGHT/2;
+        player->texture.y = win.h-(h-(initial_position.y+1))*wm-wm/2-ww-HEIGHT/2;
         desfase->y=(initial_position.y+1)*(wm-ww)+ww-win.h;
     //El resto de casillas
     }else

@@ -39,7 +39,7 @@ void generarSalida(Entity *salida, M_Lab m_Lab, const Vector2i pPlayer, Textures
 void desfasarMuros(Entity muros[],int nmuros, Vector2i desfase);
 void renderLab(Window window, Entity muros[], int nmuros, Entity salida);
 void movement(Window win,Entity muros[], Entity *salida, int nmuros, key_buttons k, player_t *player, Bot bots[],Tokens Tok[], int ntokens, int nbots, bool boton, float delta_time, int velocidad);
-void movLab(int inc,Entity muros[],int nmuros,Entity *salida,Bot bots[],int nbots,Tokens Tok[],int ntokens,int d);
 void movPlayer(int inc,player_t *player,int d);
+void movLab(const int inc,Entity muros[],int nmuros,Entity *salida,Bot bots[],int nbots,Tokens Tok[],int ntokens,int d);
 
 

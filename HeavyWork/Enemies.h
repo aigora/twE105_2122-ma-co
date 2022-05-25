@@ -14,5 +14,5 @@
 
 void bot_creator(Bot bot[], Vector2i p_initial[], SDL_Texture* tex, int nbots);
 void renderBot(Bot bots[], Window window, int nbots);
-void mov_bot (int num_aleat, Bot* bot, const Entity* muros, int num_muros, float delta_time);
+void mov_bot (Bot* bot, const Entity* muros, int num_muros, float delta_time);
 void perseguir(player_t* v1, Bot* bot, const Entity* muros, int num_muros,float delta_time, int invisibilidad);

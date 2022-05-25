@@ -39,7 +39,7 @@ void TokensCreator(Tokens Token[],Textures tex, Vector2i v[], int ncafe, int ndi
     {
         Token[i].entity.dst.w = 80;
         Token[i].entity.dst.h = 100;
-        Token[i].entity.dst.x = v[i].x+130;
+        Token[i].entity.dst.x = v[i].x+150;
         Token[i].entity.dst.y = v[i].y;
         Token[i].entity.tex = tex.billete;
         SDL_QueryTexture(tex.billete,NULL, NULL, &Token[i].entity.src.w, &Token[i].entity.src.h);

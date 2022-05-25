@@ -36,6 +36,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
     int vidas;
     long long int puntos=0;
     float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;//Todos los contadores utilizados para finalizar los superpoderes
+    float temp;
     bool same_press;
     Tokens *tok;
     Vector2i inip,inis,desfase;
@@ -153,6 +154,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
         case 2: //Bucle del juego
             game_time=0;
             velocidad=1;
+            temp=0;
             last_time=SDL_GetTicks();
 
             while(update)
@@ -214,8 +216,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                         }
 
                         playerSetDirection(player, direction);
-                        //movement(window,muros, &salida, nmuros, KEYS, player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
-                        movLab1(muros,&salida,nmuros,KEYS,*player,bots,tok,ntok,nbots,boton,delta_time,velocidad);
+                        movement(window,muros, &salida, nmuros, KEYS, player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
                         catchToken(tok, ntok, player, tex, recoger,game_time, &tiempo_fin_rap, &tiempo_fin_lent, &velocidad, &puntos);
                     }
 
@@ -264,8 +265,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                     }
                     else
                     {
-                        aux=rand()%5;
-                        mov_bot (aux, &bots[i], muros, nmuros, delta_time);
+                        mov_bot (&bots[i], muros, nmuros, delta_time);
                     }
                     }
 
@@ -291,9 +291,16 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                 }
 
                 while(SDL_GetTicks()-last_time<1000/60){}
-                //printf("FPS: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                printf("FPS: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
                 //printf("%.2f\n", game_time);
+                if(temp>1)
+                {
+                    for(i=0;i<nbots;i++)
+                        bots[i].ran=rand()%5;
+                    temp=0;
+                }
                 delta_time=(SDL_GetTicks()-last_time)/1000.0;
+                temp+=delta_time;
                 last_time=SDL_GetTicks();
             }
 
