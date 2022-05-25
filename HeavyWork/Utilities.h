@@ -115,5 +115,4 @@ int ComprobarMuros(int new_x, int new_y, Vector2f v2, const Entity* muros, int n
 bool UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update);
 bool boton_invisibilidad (bool boton, float game_time, float *tiempo_boton_in, float *tiempo_boton_fin, float *tiempo_fin_invisibilidad, bool *invisibilidad, Mix_Chunk *invisi);
 int max(int v[],int n);
-
-
+int numDigits(long long int x);

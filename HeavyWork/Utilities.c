@@ -201,3 +201,13 @@ int max(int v[],int n)
     }
     return aux;
 }
+
+int numDigits(long long int x) {
+    int digits = 0;
+    while (x > 0) {
+        x /= 10;
+        digits++;
+    }
+
+    return digits;
+}

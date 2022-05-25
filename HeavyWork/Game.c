@@ -17,7 +17,7 @@
 #define BOTON_ACEPTAR_W 200
 #define BOTON_ACEPTAR_H 125
 
-int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
+int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi, long long int* score)
 {
     SDL_RenderClear(window.renderer);
     SDL_RenderCopy(window.renderer, tex.carga, NULL, NULL);
@@ -34,7 +34,6 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
     int nmuros, i, j, stage=1, last_time, nbots, velocidad = 1, ncharcos ,ncafe, ndine, ntok;
     int tiempo_fin_rap= 0, tiempo_fin_lent = 0;
     int vidas;
-    long long int puntos=0;
     float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;//Todos los contadores utilizados para finalizar los superpoderes
     bool same_press;
     Tokens *tok;
@@ -213,7 +212,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
 
                         playerSetDirection(player, direction);
                         movLab(muros, &salida, nmuros, KEYS, *player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
-                        catchToken(tok, ntok, player, tex, recoger,game_time, &tiempo_fin_rap, &tiempo_fin_lent, &velocidad, &puntos);
+                        catchToken(tok, ntok, player, tex, recoger,game_time, &tiempo_fin_rap, &tiempo_fin_lent, &velocidad, score);
                     }
 
                     if(ColisionPlayer(*player, salida)==1)
@@ -228,8 +227,8 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                         //maxVidas-=1;
                         stage=1;
                         update=false;
-                        puntos+=calcPuntos(tok, ntok, game_time);
-                        printf("%i", puntos);
+                        *score+=calcPuntos(tok, ntok, game_time);
+                        printf("%i", *score);
                         //if(plantas==0)
                             //stage=3;
                     }
@@ -288,7 +287,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
             break;
         }
     }
-    return stage;
+    return 3;
 }
 
 bool invencibilidad (float time, int *tiempo_fin_invencibilidad, bool invenc)
@@ -388,24 +387,31 @@ static void renderScoreScreen(Window window, SDL_Texture* text, SDL_Texture* bot
     SDL_SetRenderDrawColor(window.renderer, 0, 0, 0, 255);
 
     // Filename
-    SDL_Rect filename_rect;
-    filename_rect.x = 50 + 10;
-    filename_rect.y = 200 + 20;
-    filename_rect.w = tex_filename.w;
-    filename_rect.h = tex_filename.h;
-    SDL_RenderCopy(window.renderer, tex_filename.texture, NULL, &filename_rect);
+    if (tex_filename.texture)
+    {
+        SDL_Rect filename_rect;
+        filename_rect.x = 50 + 10;
+        filename_rect.y = 200 + 20;
+        filename_rect.w = tex_filename.w;
+        filename_rect.h = tex_filename.h;
+        SDL_RenderCopy(window.renderer, tex_filename.texture, NULL, &filename_rect);
+    }
 
     SDL_RenderPresent(window.renderer);
 }
 
-int exitScreen(Window window, Textures tex, long long int score) {
+void exitScreen(Window window, Textures tex, long long int score) {
     bool exit = false;
     char* filename = NULL;
     int length = 1;
     int mouse_x;
     int mouse_y;
     SDL_Event event;
-    font_texture_t text_filename;
+    font_texture_t text_filename = {
+        .texture=NULL,
+        .w=0,
+        .h=0,
+    };
 
     while (!exit) {
         SDL_GetMouseState(&mouse_x, &mouse_y);
@@ -470,6 +476,4 @@ int exitScreen(Window window, Textures tex, long long int score) {
     }
 
     free(filename);
-
-    return 0;
 }
