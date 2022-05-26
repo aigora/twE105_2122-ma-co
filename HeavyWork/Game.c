@@ -517,6 +517,8 @@ void exitScreen(Window window, Textures tex, long long int score) {
                 {
                     if (filename)
                     {
+                        if(length>3)
+                        {
                         //printf("Click x=%d y=%d\n", mouse_x, mouse_y);
                         if (((mouse_x >= (window.w - BOTON_ACEPTAR_W - 50)) && (mouse_x <= (window.w - 50))) &&
                             ((mouse_y >= (window.h - BOTON_ACEPTAR_H - 50)) && (mouse_y <= (window.h - 50))))
@@ -525,6 +527,7 @@ void exitScreen(Window window, Textures tex, long long int score) {
                             writeScoreToFile(filename, score);
                             exit = true;
                         }
+                    }
                     }
                 } break;
             }
