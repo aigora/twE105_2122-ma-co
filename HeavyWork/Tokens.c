@@ -125,7 +125,7 @@ void catchToken(Tokens Token[], int ntokens, player_t* player, Textures tex, Mix
 }
 
 void writeScoreToFile(const char* filename, long long int score) {
-    printf("write file %s...\n", filename);
+    //printf("write file %s...\n", filename);
     int ret = _mkdir("scores");
 
     char *path = malloc(strlen(filename) + 6 + 1); // +1 for the null-terminator
