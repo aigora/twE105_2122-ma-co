@@ -371,72 +371,72 @@ void generarTokens(M_Lab m_Lab,Tokens tokens[], int ncafe, int ndine, int ncharc
     for(k=0;k<3;k++)
     {
 
-    switch(k)
-    {
-    case 0:
-        ntoken=ncafe;
-        break;
-
-    case 1:
-        ntoken+=ndine;
-        break;
-
-    case 2:
-        ntoken+=ncharcos;
-        break;
-    }
-
-    //Comprueba las casillas que no nos sirven
-    ncells=0;
-
-    for(i=0;i<m_Lab.w;i++)
-    {
-        for(j=0;j<m_Lab.h;j++)
+        switch(k)
         {
-            if(((i!=pPlayer.x)||(j!=pPlayer.y))&&((i!=pSalida.x)||(j!=pSalida.y)))
-            {
-                cell_info[i+j*m_Lab.w].visited=false;
-                ncells++;
-            }
-            else
-                cell_info[i+j*m_Lab.w].visited=true;
+            case 0:
+                ntoken=ncafe;
+                break;
+
+            case 1:
+                ntoken+=ndine;
+                break;
+
+            case 2:
+                ntoken+=ncharcos;
+                break;
         }
-    }
 
+        //Comprueba las casillas que no nos sirven
+        ncells=0;
 
-    //Pone todos los tokens, intentando que estén lo más separado posible
-    while(put<ntoken)
-    {
-        i=rand() % m_Lab.w;
-        j=rand() % m_Lab.h;
-
-        if(cell_info[i+j*m_Lab.w].visited==false)
+        for(i=0;i<m_Lab.w;i++)
         {
-            p[put].x=i*(w-5)-desfase.x;
-            p[put].y=j*(w-5)-desfase.y;
-            cell_info[i+j*m_Lab.w].visited=true;
-            put++;
-            ncells--;
-
-        }
-        else if(ncells==0)
-        {
-            for(i=0;i<m_Lab.w;i++)
+            for(j=0;j<m_Lab.h;j++)
             {
-                for(j=0;j<m_Lab.h;j++)
+                if(((i!=pPlayer.x)||(j!=pPlayer.y))&&((i!=pSalida.x)||(j!=pSalida.y)))
                 {
-                    if(((i!=pPlayer.x)||(j!=pPlayer.y))&&((i!=pSalida.x)||(j!=pSalida.y)))
+                    cell_info[i+j*m_Lab.w].visited=false;
+                    ncells++;
+                }
+                else
+                    cell_info[i+j*m_Lab.w].visited=true;
+            }
+        }
+
+
+        //Pone todos los tokens, intentando que estén lo más separado posible
+        while(put<ntoken)
+        {
+            i=rand() % m_Lab.w;
+            j=rand() % m_Lab.h;
+
+            if(cell_info[i+j*m_Lab.w].visited==false)
+            {
+                p[put].x=i*(w-5)-desfase.x;
+                p[put].y=j*(w-5)-desfase.y;
+                cell_info[i+j*m_Lab.w].visited=true;
+                put++;
+                ncells--;
+
+            }
+            else if(ncells==0)
+            {
+                for(i=0;i<m_Lab.w;i++)
+                {
+                    for(j=0;j<m_Lab.h;j++)
                     {
-                        cell_info[i+j*m_Lab.w].visited=false;
-                        ncells++;
+                        if(((i!=pPlayer.x)||(j!=pPlayer.y))&&((i!=pSalida.x)||(j!=pSalida.y)))
+                        {
+                            cell_info[i+j*m_Lab.w].visited=false;
+                            ncells++;
+                        }
+                        else
+                            cell_info[i+j*m_Lab.w].visited=true;
                     }
-                    else
-                        cell_info[i+j*m_Lab.w].visited=true;
                 }
             }
-        }
 
-    }
+        }
     }
 
     free(cell_info);

@@ -38,7 +38,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
     float delta_time,game_time,tiempo_boton_in = 0,tiempo_boton_fin = 0,tiempo_fin_invisibilidad = 0,tiempo_fin_invencibilidad = 0;//Todos los contadores utilizados para finalizar los superpoderes
     float temp;
     bool same_press;
-    Tokens *tok;
+    Tokens *tok; //Vector de Tokens
     Vector2i inip,inis,desfase;
 
     player_textures_t player_textures = {
@@ -55,11 +55,12 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
 
 
     //Generación del laberinto
-    m_Lab.w=10; //Tamaño lab
+    m_Lab.w=10; //Tamaño del laberinto
     m_Lab.h=10;
 
     int plantas=4;//Número de plantas
     int maxVidas=5;//Numero de vidas
+
     //Generación de los coleccionables(Tokens)
     ncafe=10;
     ncharcos=10;
@@ -155,6 +156,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
             game_time=0;
             velocidad=1;
             temp=0;
+            invisibilidad = false; invenc = false;
             last_time=SDL_GetTicks();
 
             while(update)
@@ -194,7 +196,8 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                     }
                 }
 
-                if (KEYS.ESC && !same_press) {
+                if (KEYS.ESC && !same_press)
+                {
                     pausa = !pausa;
                     same_press = true;
                 }
@@ -205,15 +208,15 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                     if (KEYS.W || KEYS.A || KEYS.S || KEYS.D)
                     {
                         player_direction_t direction;
-                        if (KEYS.W) {
+                        if (KEYS.W)
                             direction = MOVEMENT_UP;
-                        } else if (KEYS.A) {
+                         else if (KEYS.A)
                             direction = MOVEMENT_LEFT;
-                        } else if (KEYS.S) {
+                         else if (KEYS.S)
                             direction = MOVEMENT_DOWN;
-                        } else if (KEYS.D) {
+                         else if (KEYS.D)
                             direction = MOVEMENT_RIGHT;
-                        }
+
 
                         playerSetDirection(player, direction);
                         movement(window,muros, &salida, nmuros, KEYS, player, bots, tok, ntok, nbots, boton, delta_time, velocidad);
@@ -244,29 +247,26 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
 
                     for(i=0;i<nbots;i++)
-                    if((playerDist(player, bots[i], muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))
-                    {
-                        // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
-                        bool alive = playerKill(player);
-                        invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
-
-                        if (!alive)
+                        if((playerDist(player, bots[i], muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))
                         {
-                            update = false;
-                            game = false;
+                            // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
+                            bool alive = playerKill(player);
+                            invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
+
+                            if (!alive)
+                            {
+                                update = false;
+                                game = false;
+                            }
                         }
-                    }
 
                     for(i=0;i<nbots;i++)
                     {
-                    if((playerDist(player, bots[i], muros, nmuros)<=300)&&(invisibilidad == 0)&&(invenc==false))
-                    {
-                        perseguir(player, &bots[i], muros, nmuros, delta_time, invisibilidad);
-                    }
-                    else
-                    {
-                        mov_bot (&bots[i], muros, nmuros, delta_time);
-                    }
+                        if((playerDist(player, bots[i], muros, nmuros)<=300)&&(invisibilidad == 0)&&(invenc==false))
+                            perseguir(player, &bots[i], muros, nmuros, delta_time, invisibilidad);
+
+                        else
+                            mov_bot (&bots[i], muros, nmuros, delta_time);
                     }
 
                     if (invenc == true) //Comprueba si ya ha pasado el tiempo de invencibilidad (5s)
@@ -274,20 +274,21 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi)
 
                     if (velocidad != 1)//Comprueba si ya ha pasado el tiempo de rapidez/lentitud (5s)
                         velocidad =  finvelo (game_time, 1, tiempo_fin_rap, tiempo_fin_lent, velocidad);
-                        for(i=0;i<nbots;i++)
-                    if((playerDist(player, bots[i], muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))
-                    {
-                        // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
-                        bool alive = playerKill(player);
-                        invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
 
-                        if (!alive)
+                    for(i=0;i<nbots;i++)
+                        if((playerDist(player, bots[i], muros, nmuros)<=28)&&(invisibilidad == 0)&&(invenc == false))
                         {
-                            update = false;
-                            game = false;
-                            stage=3;
+                            // Reiniciar la posicion del jugador a la posicion inicial si ha chocado con el enemigo.
+                            bool alive = playerKill(player);
+                            invenc = invencibilidad (game_time, &tiempo_fin_invencibilidad, invenc);
+
+                            if (!alive)
+                            {
+                                update = false;
+                                game = false;
+                                stage=3;
+                            }
                         }
-                    }
                 }
 
                 while(SDL_GetTicks()-last_time<1000/60){}
@@ -366,17 +367,14 @@ int finvelo (float gametime, int ntokens, int tiempo_fin_rap, int tiempo_fin_len
     for (i=0;i<ntokens;i++)
     {
        if ((gametime_int == tiempo_fin_rap)&&(velocidad == 2))
-       {
            return 1;
-       }
+
        else if ((velocidad == 2))
-       {
            return 2;
-       }
+
        else if ((gametime_int == tiempo_fin_lent)&&(velocidad == 0))
-       {
            return 1;
-       }
+
        else return 0;
     }
 
@@ -432,39 +430,37 @@ int exitScreen(Window window, Textures tex, long long int score) {
 
     while (!exit) {
         SDL_GetMouseState(&mouse_x, &mouse_y);
-        while (SDL_PollEvent(&event)) {
+        while (SDL_PollEvent(&event))
+        {
             switch (event.type)
             {
                 case SDL_QUIT:
-                {
                     exit = true;
-                } break;
+                    break;
 
                 case SDL_KEYDOWN:
                 {
                     char character = 0;
-                    if ((event.key.keysym.scancode >= SDL_SCANCODE_A) &&
-                        (event.key.keysym.scancode <= SDL_SCANCODE_Z))
-                    {
+                    if ((event.key.keysym.scancode >= SDL_SCANCODE_A) && (event.key.keysym.scancode <= SDL_SCANCODE_Z))
                         character = event.key.keysym.scancode + 61;
-                    }
-                    else if ((event.key.keysym.scancode >= SDL_SCANCODE_1) &&
-                             (event.key.keysym.scancode <= SDL_SCANCODE_9))
-                    {
+
+                    else if ((event.key.keysym.scancode >= SDL_SCANCODE_1) && (event.key.keysym.scancode <= SDL_SCANCODE_9))
                         character = event.key.keysym.scancode + 19;
-                    } else if (event.key.keysym.scancode >= SDL_SCANCODE_0)
-                    {
+
+                    else if (event.key.keysym.scancode >= SDL_SCANCODE_0)
                         character = '0';
-                    }
+
 
                     printf("Tecla presionada = %c\n", character);
                     length += sizeof(char);
-                    if (filename == NULL) {
+                    if (filename == NULL)
+                    {
                         // Reservamos espacio para dos char (la letra que queremos guardar, más el null-terminator)
                         filename = malloc(sizeof(char) * 2);
-                    } else {
-                        filename = realloc(filename, length + sizeof(char));
                     }
+                    else
+                        filename = realloc(filename, length + sizeof(char));
+
 
                     filename[length - 2] = character;
                     filename[length - 1] = '\0';

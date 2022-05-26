@@ -81,43 +81,43 @@ void catchToken(Tokens Token[], int ntokens, player_t* player, Textures tex, Mix
             {
                 Mix_PlayChannel( -1, efecto, 0 );//Reproduce efecto
 
-            switch(Token[i].type)
-            {
-            case 0://Taza de café
-                if (*velocidad == 1)
+                switch(Token[i].type)
                 {
-                   *velocidad = 2; //Ultra velocidad
-                   *tiempo_fin_rap = gametime_int + 5;
-                }
-                if (*velocidad == 2)
-                {
-                    *tiempo_fin_rap = *tiempo_fin_rap + 2;
-                }
-                else
-                {
-                    *velocidad = 1;
-                }
+                case 0://Taza de café
+                    if (*velocidad == 1)
+                    {
+                       *velocidad = 2; //Ultra velocidad
+                       *tiempo_fin_rap = gametime_int + 5;
+                    }
+                    if (*velocidad == 2)
+                    {
+                        *tiempo_fin_rap = *tiempo_fin_rap + 2;
+                    }
+                    else
+                    {
+                        *velocidad = 1;
+                    }
 
-                break;
-            case 1://Moneda
-                //*puntos += 500; //Así suma 500 puntos por cada moneda
-                //printf("%lli\n", *puntos);
-                break;
-            case 2:
-                if (*velocidad == 1)
-                {
-                   *velocidad = 0;//Velocidad lenta
-                   *tiempo_fin_lent = gametime_int + 5;
-                }
-                if (*velocidad == 0)
-                {
-                    *tiempo_fin_lent = *tiempo_fin_lent + 2;
-                }
-                else
-                    *velocidad = 1;
+                    break;
+                case 1://Moneda
+                    //*puntos += 500; //Así suma 500 puntos por cada moneda
+                    //printf("%lli\n", *puntos);
+                    break;
+                case 2:
+                    if (*velocidad == 1)
+                    {
+                       *velocidad = 0;//Velocidad lenta
+                       *tiempo_fin_lent = gametime_int + 5;
+                    }
+                    if (*velocidad == 0)
+                    {
+                        *tiempo_fin_lent = *tiempo_fin_lent + 2;
+                    }
+                    else
+                        *velocidad = 1;
 
-                break;
-            }
+                    break;
+                }
             }
             Token[i].collected=true;
         }

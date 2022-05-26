@@ -113,12 +113,14 @@ bool UpdateKeys(key_buttons* k, SDL_Event event, bool* game, bool* update)
                     break;
                 case SDL_SCANCODE_ESCAPE:
                     k->ESC = true;
-                    if (!k->ESC_PREV) {
+                    if (!k->ESC_PREV)
+                    {
                         k->ESC_PREV = true;
                         return false;
-                    } else {
-                        return true;
                     }
+                    else
+                        return true;
+
             }
             break;
 
@@ -176,17 +178,14 @@ tiempo_fin_invis_int = (int) *tiempo_fin_invisibilidad;
     else //Si botón desactivado
     {
         if (game_time_int == tiempo_fin_invis_int)
-        {
             *invisibilidad = false;
-        }
+
         if (game_time_int == tiempo_boton_fin_int)
-        {
             return true;
-        }
+
         else
-        {
             return false;
-        }
+
     }
 }
 

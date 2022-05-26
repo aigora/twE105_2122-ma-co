@@ -211,8 +211,9 @@ void playerSetDirection(player_t* player, player_direction_t direction) {
 int ColisionPlayer(const player_t player, Entity entity)
 {
     SDL_Rect aux;
-    if (SDL_IntersectRect(&player.texture, &entity.dst, &aux) == SDL_TRUE) {
-            return 1;}
+    if (SDL_IntersectRect(&player.texture, &entity.dst, &aux) == SDL_TRUE)
+        return 1;
+
     else
         return 0;
 }
