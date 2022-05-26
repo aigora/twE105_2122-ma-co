@@ -19,6 +19,11 @@ typedef struct
 
 } Tokens_struct;
 
+typedef struct {
+    const char* filename;
+    long long int score;
+} score_file_t;
+
 void TokensCreator(Tokens Token[],Textures tex, Vector2i v[], int ncafe, int ndine, int ncharcos);
 void renderToken(Tokens Token[], Window window, int ntokens);
 void catchToken(Tokens Token[], int ntokens, player_t* player, Textures tex, Mix_Chunk *efecto, float gametime, int *tiempo_fin_rap, int *tiempo_fin_lent, int *velocidad, long long int *puntos);

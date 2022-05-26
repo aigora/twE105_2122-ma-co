@@ -127,6 +127,7 @@ int main(int argc, char *argv[])
         success = false;
     }
 
+    long long int score = 0;
 	while(running)
     {
         switch(stage)
@@ -138,11 +139,12 @@ int main(int argc, char *argv[])
             stage=menu(mainWin,tex,&personaje, sonido, musica);
             break;
         case 2:
-            stage=game(mainWin,tex, recoger, invisi);
+            stage=game(mainWin,tex, recoger, invisi, &score);
             break;
         case 3:
             // Pantalla de salida
-            stage = exitScreen(mainWin, tex, 2000);
+            exitScreen(mainWin, tex, score);
+            stage = 1;
             break;
         }
     }

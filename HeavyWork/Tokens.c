@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
+#include <direct.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_timer.h>
@@ -97,25 +98,24 @@ void catchToken(Tokens Token[], int ntokens, player_t* player, Textures tex, Mix
                     {
                         *velocidad = 1;
                     }
+                       break;
 
-                    break;
-                case 1://Moneda
-                    //*puntos += 500; //Así suma 500 puntos por cada moneda
-                    //printf("%lli\n", *puntos);
-                    break;
-                case 2:
-                    if (*velocidad == 1)
-                    {
-                       *velocidad = 0;//Velocidad lenta
-                       *tiempo_fin_lent = gametime_int + 5;
-                    }
-                    if (*velocidad == 0)
-                    {
-                        *tiempo_fin_lent = *tiempo_fin_lent + 2;
-                    }
-                    else
-                        *velocidad = 1;
-
+            case 1://Moneda
+                *puntos += 500; //Así suma 500 puntos por cada moneda
+                //printf("%lli\n", *puntos);
+                break;
+            case 2:
+                if (*velocidad == 1)
+                {
+                   *velocidad = 0;//Velocidad lenta
+                   *tiempo_fin_lent = gametime_int + 5;
+                }
+                if (*velocidad == 0)
+                {
+                    *tiempo_fin_lent = *tiempo_fin_lent + 2;
+                }
+                else
+                    *velocidad = 1;
                     break;
                 }
             }
@@ -126,13 +126,20 @@ void catchToken(Tokens Token[], int ntokens, player_t* player, Textures tex, Mix
 
 void writeScoreToFile(const char* filename, long long int score) {
     printf("write file %s...\n", filename);
-    FILE* fd = fopen(filename, "w");
+    int ret = _mkdir("scores");
+
+    char *path = malloc(strlen(filename) + 6 + 1); // +1 for the null-terminator
+    strcpy(path, "scores/");
+    strcat(path, filename);
+
+    FILE* fd = fopen(path, "w");
     if (fd != NULL) {
-        fprintf(fd, "Score: %d\n", score);
+        fprintf(fd, "%d", score);
         printf("success!\n");
     } else {
         printf("error!\n");
     }
 
+    free(path);
     fclose(fd);
 }
