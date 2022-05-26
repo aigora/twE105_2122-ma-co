@@ -330,6 +330,10 @@ bool invencibilidad (float time, int *tiempo_fin_invencibilidad, bool invenc)
 
     else return true;
 }
+//La función invencibilidad sigue el mismo funcionamiento que la invisibilidad, al ser llamada cuando se pierde una vida,
+//se hace verdadero el bool y se crea una variable tiempo_fin_invencibilidad. Esta es la suma del tiempo en el que se
+//cambia el booleano y el tiempo que queremos que dure, 5 segundos. Se comprueba si el tiempo de juego en cada instante
+//es el mismo que tiempo_fin_invencibilidad para entonces hacer el bool falso.
 
 int calcPuntos(Tokens tok[],int ntok,float game_time)
 {
@@ -354,10 +358,6 @@ int calcPuntos(Tokens tok[],int ntok,float game_time)
         //printf("%i", puntos);
     return puntos;
 }
-//La función invencibilidad sigue el mismo funcionamiento que la invisibilidad, al ser llamada cuando se pierde una vida,
-//se hace verdadero el bool y se crea una variable tiempo_fin_invencibilidad. Esta es la suma del tiempo en el que se
-//cambia el booleano y el tiempo que queremos que dure, 5 segundos. Se comprueba si el tiempo de juego en cada instante
-//es el mismo que tiempo_fin_invencibilidad para entonces desactivar el bool.
 
 int finvelo (float gametime, int ntokens, int tiempo_fin_rap, int tiempo_fin_lent, int velocidad)
 {

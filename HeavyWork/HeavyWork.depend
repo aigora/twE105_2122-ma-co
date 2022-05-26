@@ -400,7 +400,7 @@
 
 1649752732 ated upstream
 
-1653477690 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
+1653515870 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1737,7 +1737,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653484636 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.c
+1653552445 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1754,7 +1754,7 @@
 	"Tokens.h"
 	"Font.h"
 
-1653478531 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.h
+1653515870 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1768,8 +1768,9 @@
 	"Player.h"
 	"Enemies.h"
 	"Tokens.h"
+	"Font.h"
 
-1653477690 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\utilities.h
+1653552445 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1781,7 +1782,7 @@
 	<SDL2/SDL_mixer.h>
 	<SDL2/SDL_audio.h>
 
-1653477690 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\laberinto.h
+1653552445 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\laberinto.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1796,7 +1797,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653477690 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.h
+1653515870 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1818,7 +1819,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653477690 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\laberinto.c
+1653552445 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\laberinto.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1845,7 +1846,7 @@
 	"Menu.h"
 	"Utilities.h"
 
-1653477690 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.c
+1653552445 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -1858,7 +1859,7 @@
 	"Player.h"
 	"Utilities.h"
 
-1653477690 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\utilities.c
+1653515870 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3158,7 +3159,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653257778 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\enemies.h
+1653552445 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\enemies.h
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3172,7 +3173,7 @@
 	"Player.h"
 	<SDL2/SDL_rect.h>
 
-1653388336 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\enemies.c
+1653552445 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\enemies.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -3512,7 +3513,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1653480074 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\tokens.c
+1653552445 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\tokens.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3544,8 +3545,9 @@
 	"Utilities.h"
 	<SDL2/SDL.h>
 
-1653430486 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\font.c
+1653515870 source:c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\font.c
 	"Font.h"
+	"Utilities.h"
 	<SDL2/SDL_ttf.h>
 
 1653430486 c:\users\julio\documents\github\twe105_2122-ma-co\heavywork\font.h
