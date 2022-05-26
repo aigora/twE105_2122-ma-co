@@ -505,7 +505,7 @@ void renderLab(Window window, Entity muros[], int nmuros, Entity salida)
 void movement(Window win, Entity muros[], Entity *salida, int nmuros, key_buttons k, player_t *player, Bot bots[],Tokens Tok[], int ntokens, int nbots, bool boton, float delta_time, int velocidad)
 {
     float velocity;
-    int inc,ghx,ghy,aux,ww=5;
+    int inc,ghx,ghy,aux,ww=5,a;
     int WIDTH=40,HEIGTH=70;
     Vector2f v;
     v.x = player->texture.w;
@@ -524,28 +524,34 @@ void movement(Window win, Entity muros[], Entity *salida, int nmuros, key_button
         ghy=player->texture.y+HEIGTH/2-inc;
         if(ComprobarMuros(player->texture.x,player->texture.y-inc,v,muros,nmuros)!=1)
         {
-            if((muros[1].dst.y>=0)&&(ghy<win.h/2+5))
+            if((muros[1].dst.y>=0)&&(ghy<win.h/2))
             {
                 movPlayer(inc,player,0);
             }
-            else if((muros[3].dst.y+ww<=win.h)&&(ghy>win.h/2-5))
+            else if((muros[3].dst.y+ww<=win.h)&&(ghy>win.h/2))
             {
-                if(ghy-inc<win.h/2)
-                {
-                    aux=-ghy+win.h/2;
-                    inc=inc-aux;
-                    movLab(aux,muros,nmuros,salida,bots,nbots,Tok,ntokens,0);
-                }
                 movPlayer(inc,player,0);
             }
             else
             {
-                if(muros[1].dst.y+inc>-inc)
+                if(ghy<win.h/2)
                 {
-                    aux=-muros[1].dst.y;
-                    if(aux<=inc)
+                    aux=win.h/2-ghy;
+                    if(aux<inc)
                     {
                         inc=inc-aux;
+                        movPlayer(aux,player,0);
+                    }
+                }
+                if(muros[1].dst.y+inc>0)
+                {
+                    aux=-muros[1].dst.y;
+                    if(aux<inc)
+                    {
+                        a=inc-aux;
+                        inc=aux;
+                        aux=a;
+                        movPlayer(aux,player,0);
                     }
                 }
                 movLab(inc,muros,nmuros,salida,bots,nbots,Tok,ntokens,0);
@@ -558,28 +564,34 @@ void movement(Window win, Entity muros[], Entity *salida, int nmuros, key_button
         ghy=player->texture.y+HEIGTH/2+inc;
         if(ComprobarMuros(player->texture.x,player->texture.y+inc,v,muros,nmuros)!=1)
         {
-            if((muros[1].dst.y>=0)&&(ghy<=win.h/2+5))
+            if((muros[1].dst.y>=0)&&(ghy<=win.h/2))
             {
-                if(ghy+inc>win.h/2)
-                {
-                    aux=ghy-win.h/2;
-                    inc=inc-aux;
-                    movLab(aux,muros,nmuros,salida,bots,nbots,Tok,ntokens,1);
-                }
                 movPlayer(inc,player,1);
             }
-            else if((muros[3].dst.y+ww<=win.h)&&(ghy>win.h/2-5))
+            else if((muros[3].dst.y+ww<=win.h)&&(ghy>win.h/2))
             {
                 movPlayer(inc,player,1);
             }
             else
             {
-                if(muros[3].dst.y+ww-inc<win.h+inc)
+                if(ghy>win.h/2)
                 {
-                    aux=-win.h-ww+muros[3].dst.y;
-                    if(aux<=inc)
+                    aux=ghy-win.h/2;
+                    if(aux<inc)
                     {
-                    inc=inc-aux;
+                        inc=inc-aux;
+                        movPlayer(aux,player,1);
+                    }
+                }
+                if(muros[3].dst.y+ww-inc<win.h)
+                {
+                    aux=muros[3].dst.y+ww-win.h;
+                    if(aux<inc)
+                    {
+                        a=inc-aux;
+                        inc=aux;
+                        aux=a;
+                        movPlayer(aux,player,1);
                     }
                 }
                 movLab(inc,muros,nmuros,salida,bots,nbots,Tok,ntokens,1);
@@ -592,28 +604,34 @@ void movement(Window win, Entity muros[], Entity *salida, int nmuros, key_button
         ghx=player->texture.x+WIDTH/2-inc;
         if(ComprobarMuros(player->texture.x-inc,player->texture.y,v,muros,nmuros)!=1)
         {
-            if((muros[0].dst.x>=0)&&(ghx<win.w/2+5))
+            if((muros[0].dst.x>=0)&&(ghx<win.w/2))
             {
                 movPlayer(inc,player,2);
             }
-            else if((muros[2].dst.x+ww<=win.w)&&(ghx>win.w/2-5))
+            else if((muros[2].dst.x+ww<=win.w)&&(ghx>win.w/2))
             {
-                if(ghx-inc<win.w/2)
-                {
-                    aux=-ghx+win.w/2;
-                    inc=inc-aux;
-                    movLab(aux,muros,nmuros,salida,bots,nbots,Tok,ntokens,2);
-                }
                 movPlayer(inc,player,2);
             }
             else
             {
-                if(muros[0].dst.x+inc>-inc)
+                if(ghx<win.w/2)
                 {
-                    aux=-muros[0].dst.x;
-                    if(aux<=inc)
+                    aux=win.w/2-ghx;
+                    if(aux<inc)
                     {
                         inc=inc-aux;
+                        movPlayer(aux,player,2);
+                    }
+                }
+                if(muros[0].dst.x+inc>0)
+                {
+                    aux=-muros[0].dst.x;
+                    if(aux<inc)
+                    {
+                        a=inc-aux;
+                        inc=aux;
+                        aux=a;
+                        movPlayer(aux,player,2);
                     }
                 }
                 movLab(inc,muros,nmuros,salida,bots,nbots,Tok,ntokens,2);
@@ -626,28 +644,34 @@ void movement(Window win, Entity muros[], Entity *salida, int nmuros, key_button
         ghx=player->texture.x+WIDTH/2+inc;
         if(ComprobarMuros(player->texture.x+inc,player->texture.y,v,muros,nmuros)!=1)
         {
-            if((muros[0].dst.x>=0)&&(ghx<=win.w/2+5))
+            if((muros[0].dst.x>=0)&&(ghx<=win.w/2))
             {
-                if(ghx+inc>win.w/2)
-                {
-                    aux=ghx-win.w/2;
-                    inc=inc-aux;
-                    movLab(aux,muros,nmuros,salida,bots,nbots,Tok,ntokens,3);
-                }
                 movPlayer(inc,player,3);
             }
-            else if((muros[2].dst.x+ww<=win.w)&&(ghx>win.w/2-5))
+            else if((muros[2].dst.x+ww<=win.w)&&(ghx>win.w/2))
             {
                 movPlayer(inc,player,3);
             }
             else
             {
-                if(muros[2].dst.x+ww-inc<win.w+inc)
+                if(ghx>win.w/2)
                 {
-                    aux=-win.w-ww+muros[2].dst.x;
-                    if(aux<=inc)
+                    aux=ghx-win.w/2;
+                    if(aux<inc)
                     {
-                    inc=inc-aux;
+                        inc=inc-aux;
+                        movPlayer(aux,player,3);
+                    }
+                }
+                if(muros[2].dst.x+ww-inc<win.w)
+                {
+                    aux=muros[2].dst.x+ww-win.w;
+                    if(aux<inc)
+                    {
+                        a=inc-aux;
+                        inc=aux;
+                        aux=a;
+                        movPlayer(aux,player,3);
                     }
                 }
                 movLab(inc,muros,nmuros,salida,bots,nbots,Tok,ntokens,3);

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1653565700 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
+1653583513 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1602,7 +1602,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1653565700 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\menu.c
+1653586566 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -1653,7 +1653,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653573319 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.c
+1653586493 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -1727,7 +1727,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653565676 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\laberinto.c
+1653586116 source:c:\users\aleja\documents\github\twe105_2122-ma-co\heavywork\laberinto.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>

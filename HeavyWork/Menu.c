@@ -16,7 +16,6 @@
 #include "Utilities.h"
 #include "Font.h"
 
-#define SPEED 300//velocidad en pixeles por segundo
 // Solo mostramos las 5 mejores puntuaciones
 #define SCORE_LIST_SIZE 5
 #define BOTON_ACEPTAR_W 200
@@ -101,7 +100,7 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                     struct stat stbuf;
                     sprintf(filename_qfd, "%s/%s", path, dp->d_name);
                     if (stat(filename_qfd, &stbuf) == -1) {
-                        printf("Unable to stat file: %s\n", filename_qfd);
+                        //printf("Unable to stat file: %s\n", filename_qfd);
                         continue;
                     }
 
@@ -109,7 +108,7 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                         // Skip directories
                         continue;
                     } else {
-                        printf("File found - %s\n", filename_qfd);
+                        //printf("File found - %s\n", filename_qfd);
                         FILE * fp;
                         fp = fopen(filename_qfd, "r");
                         if (fp == NULL) {
@@ -141,7 +140,7 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                 }
 
                 for (int i = 0; i < num_scores; ++i) {
-                    printf("%s -> %d\n", scores[i]->filename, scores[i]->score);
+                    //printf("%s -> %d\n", scores[i]->filename, scores[i]->score);
                 }
 
                 // Step 2: Ordenarlos
@@ -156,7 +155,7 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                 }
 
                 for (int i = 0; i < num_scores; ++i) {
-                    printf("%s -> %d\n", scores[i]->filename, scores[i]->score);
+                    //printf("%s -> %d\n", scores[i]->filename, scores[i]->score);
                 }
 
                 while (true) {
@@ -178,7 +177,7 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
 
                             case SDL_MOUSEBUTTONUP:
                             {
-                                printf("Click x=%d y=%d\n", mouse_x, mouse_y);
+                                //printf("Click x=%d y=%d\n", mouse_x, mouse_y);
                                 if (((mouse_x >= (window.w - BOTON_ACEPTAR_W - 50)) && (mouse_x <= (window.w - 50))) &&
                                     ((mouse_y >= (window.h - BOTON_ACEPTAR_H - 50)) && (mouse_y <= (window.h - 50))))
                                 {

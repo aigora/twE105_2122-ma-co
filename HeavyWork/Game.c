@@ -292,7 +292,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi, lon
                 }
 
                 while(SDL_GetTicks()-last_time<1000/60){}
-                printf("FPS: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
+                //printf("FPS: %.2f\n",1000.0/(SDL_GetTicks()-last_time));
                 //printf("%.2f\n", game_time);
                 if(temp>1)
                 {
@@ -463,7 +463,7 @@ void exitScreen(Window window, Textures tex, long long int score) {
                         borrar = true;
                     }
 
-                    printf("Tecla presionada = %c\n", character);
+                    //printf("Tecla presionada = %c\n", character);
                     if (insertar) {
                         length++;
                         if (filename == NULL)
@@ -476,7 +476,7 @@ void exitScreen(Window window, Textures tex, long long int score) {
                             filename = realloc(filename, length);
                         }
 
-                        printf("Insertar: length=%d\n", length);
+                        //printf("Insertar: length=%d\n", length);
                         filename[length - 2] = character;
                         filename[length - 1] = '\0';
 
@@ -489,7 +489,7 @@ void exitScreen(Window window, Textures tex, long long int score) {
                     } else if (borrar) {
                         if (filename) {
                             length--;
-                            printf("Borrar: length=%d\n", length);
+                            //printf("Borrar: length=%d\n", length);
                             // Si length es 1, entonces el array está vacio (nul-terminator)
                             if (length <= 1) {
                                 free(filename);
@@ -517,7 +517,7 @@ void exitScreen(Window window, Textures tex, long long int score) {
                 {
                     if (filename)
                     {
-                        printf("Click x=%d y=%d\n", mouse_x, mouse_y);
+                        //printf("Click x=%d y=%d\n", mouse_x, mouse_y);
                         if (((mouse_x >= (window.w - BOTON_ACEPTAR_W - 50)) && (mouse_x <= (window.w - 50))) &&
                             ((mouse_y >= (window.h - BOTON_ACEPTAR_H - 50)) && (mouse_y <= (window.h - 50))))
                         {
