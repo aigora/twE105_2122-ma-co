@@ -14,6 +14,8 @@ font_texture_t newText(const char* text, SDL_Color colour, int font_size, Window
         .w=w,
         .h=h,
     };
+    SDL_FreeSurface(surfaceMessage);
+    TTF_CloseFont (font);
     return font_texture;
 }
 

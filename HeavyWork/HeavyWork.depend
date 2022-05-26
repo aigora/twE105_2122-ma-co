@@ -3034,7 +3034,7 @@
 	"Menu.h"
 	"Utilities.h"
 
-1653582855 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
+1653594978 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -3116,7 +3116,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653573287 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.c
+1653594978 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\laberinto.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3131,7 +3131,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653518459 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
+1653597171 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3474,7 +3474,7 @@
 	"Utilities.h"
 	"Player.h"
 
-1653573287 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.c
+1653594978 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\tokens.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -3571,7 +3571,7 @@
 	"Utilities.h"
 	<SDL2/SDL.h>
 
-1653573287 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\font.c
+1653597046 source:c:\users\marla\onedrive\documentos\github\twe105_2122-ma-co\heavywork\font.c
 	"Font.h"
 	"Utilities.h"
 	<SDL2/SDL_ttf.h>

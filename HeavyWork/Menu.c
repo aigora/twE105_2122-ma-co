@@ -201,6 +201,7 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                     title_rect.w = title.w;
                     title_rect.h = title.h;
                     SDL_RenderCopy(window.renderer, title.texture, NULL, &title_rect);
+                    SDL_DestroyTexture(title.texture);
 
                     // Renderizar puntuaciones.
                     for (int i = 0; i < ((num_scores > 5) ? 5 : num_scores); ++i) {
@@ -224,6 +225,7 @@ int menu(Window window, Textures tex, int *personaje, bool sonido, Mix_Music *mu
                         title_rect.w = score_texture.w;
                         title_rect.h = score_texture.h;
                         SDL_RenderCopy(window.renderer, score_texture.texture, NULL, &title_rect);
+                        SDL_DestroyTexture(score_texture.texture);
                     }
 
                     // Boton de aceptar
