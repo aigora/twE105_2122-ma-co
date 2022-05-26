@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     tex.escaleras = loadTexture("resources/carganivel.jpg",mainWin);
 
     SDL_Color colour = { .r=255, .g=255, .b=255, .a=255 };
-    font_texture_t titulo = newText("Introduce nombre fichero:", colour, 24, mainWin);
+    font_texture_t titulo = newText("Nombre de la partida:", colour, 24, mainWin);
     tex.titulo_puntuacion = titulo.texture;
 
     //La m�sica que se reproducir�

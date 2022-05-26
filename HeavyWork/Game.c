@@ -425,7 +425,7 @@ static void renderScoreScreen(Window window, SDL_Texture* text, SDL_Texture* bot
 void exitScreen(Window window, Textures tex, long long int score) {
     bool exit = false;
     char* filename = NULL;
-    int length = 1;
+    int length = 0;
     int mouse_x;
     int mouse_y;
     SDL_Event event;
@@ -448,52 +448,93 @@ void exitScreen(Window window, Textures tex, long long int score) {
                 case SDL_KEYDOWN:
                 {
                     char character = 0;
-                    if ((event.key.keysym.scancode >= SDL_SCANCODE_A) && (event.key.keysym.scancode <= SDL_SCANCODE_Z))
+                    bool insertar = false;
+                    bool borrar = false;
+                    if ((event.key.keysym.scancode >= SDL_SCANCODE_A) && (event.key.keysym.scancode <= SDL_SCANCODE_Z)) {
                         character = event.key.keysym.scancode + 61;
-
-                    else if ((event.key.keysym.scancode >= SDL_SCANCODE_1) && (event.key.keysym.scancode <= SDL_SCANCODE_9))
+                        insertar = true;
+                    } else if ((event.key.keysym.scancode >= SDL_SCANCODE_1) && (event.key.keysym.scancode <= SDL_SCANCODE_9)) {
                         character = event.key.keysym.scancode + 19;
-
-                    else if (event.key.keysym.scancode >= SDL_SCANCODE_0)
+                        insertar = true;
+                    } else if (event.key.keysym.scancode == SDL_SCANCODE_0) {
                         character = '0';
-
+                        insertar = true;
+                    } else if (event.key.keysym.scancode == SDL_SCANCODE_BACKSPACE) {
+                        borrar = true;
+                    }
 
                     printf("Tecla presionada = %c\n", character);
-                    length += sizeof(char);
-                    if (filename == NULL)
-                    {
-                        // Reservamos espacio para dos char (la letra que queremos guardar, más el null-terminator)
-                        filename = malloc(sizeof(char) * 2);
+                    if (insertar) {
+                        length++;
+                        if (filename == NULL)
+                        {
+                            length++;
+                            // Reservamos espacio para dos char (la letra que queremos guardar, más el null-terminator)
+                            filename = malloc(length);
+                        }
+                        else {
+                            filename = realloc(filename, length);
+                        }
+
+                        printf("Insertar: length=%d\n", length);
+                        filename[length - 2] = character;
+                        filename[length - 1] = '\0';
+
+                        SDL_Color colour = { .r=0, .g=0, .b=0, .a=255 };
+                        if (text_filename.texture) {
+                            SDL_DestroyTexture(text_filename.texture);
+                        }
+                        text_filename = newText(filename, colour, 20, window);
+
+                    } else if (borrar) {
+                        if (filename) {
+                            length--;
+                            printf("Borrar: length=%d\n", length);
+                            // Si length es 1, entonces el array está vacio (nul-terminator)
+                            if (length <= 1) {
+                                free(filename);
+                                filename = NULL;
+                                length = 0;
+                                text_filename.w = 0;
+                                text_filename.h = 0;
+                            } else {
+                                filename = realloc(filename, length);
+                                // Sobrescribir la ultima letra con el nul
+                                filename[length - 1] = '\0';
+
+                                SDL_Color colour = { .r=0, .g=0, .b=0, .a=255 };
+                                if (text_filename.texture) {
+                                    SDL_DestroyTexture(text_filename.texture);
+                                }
+                                text_filename = newText(filename, colour, 20, window);
+                            }
+                        }
                     }
-                    else
-                        filename = realloc(filename, length + sizeof(char));
-
-
-                    filename[length - 2] = character;
-                    filename[length - 1] = '\0';
-
-                    SDL_Color colour = { .r=0, .g=0, .b=0, .a=255 };
-                    text_filename = newText(filename, colour, 20, window);
 
                 } break;
 
                 case SDL_MOUSEBUTTONUP:
                 {
-                    printf("Click x=%d y=%d\n", mouse_x, mouse_y);
-                    if (((mouse_x >= (window.w - BOTON_ACEPTAR_W - 50)) && (mouse_x <= (window.w - 50))) &&
-                        ((mouse_y >= (window.h - BOTON_ACEPTAR_H - 50)) && (mouse_y <= (window.h - 50))))
+                    if (filename)
                     {
-                        // Se ha clickado en el boton de aceptar
-                        writeScoreToFile(filename, score);
-                        exit = true;
+                        printf("Click x=%d y=%d\n", mouse_x, mouse_y);
+                        if (((mouse_x >= (window.w - BOTON_ACEPTAR_W - 50)) && (mouse_x <= (window.w - 50))) &&
+                            ((mouse_y >= (window.h - BOTON_ACEPTAR_H - 50)) && (mouse_y <= (window.h - 50))))
+                        {
+                            // Se ha clickado en el boton de aceptar
+                            writeScoreToFile(filename, score);
+                            exit = true;
+                        }
                     }
                 } break;
             }
         }
 
         renderScoreScreen(window, tex.titulo_puntuacion, tex.boton, text_filename);
-        // SDL_DestroyTexture(text_filename.texture);
     }
 
     free(filename);
+    if (text_filename.texture) {
+        SDL_DestroyTexture(text_filename.texture);
+    }
 }
