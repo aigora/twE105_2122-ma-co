@@ -1,4 +1,4 @@
-﻿# MazeGates
+﻿# HeavyWork
 
 El trabajo consiste en diseñar un juego **entretenido**, **ameno** y **diverso** de escape de *laberinto*.
 Contará con diversas *mecánicas* a las que un jugador individual tendrá que hacer frente.
