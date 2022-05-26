@@ -3988,7 +3988,7 @@
 	"Player.h"
 	<SDL2/SDL_rect.h>
 
-1653544292 c:\users\ivano\onedrive\documentos\github\heavywork\utilities.h
+1653569103 c:\users\ivano\onedrive\documentos\github\heavywork\utilities.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -4022,7 +4022,7 @@
 	"Utilities.h"
 	<SDL2/SDL.h>
 
-1653491742 source:c:\users\ivano\onedrive\documentos\github\heavywork\heavywork.c
+1653569103 source:c:\users\ivano\onedrive\documentos\github\heavywork\heavywork.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -4037,7 +4037,7 @@
 	"Tokens.h"
 	"Font.h"
 
-1653544292 c:\users\ivano\onedrive\documentos\github\heavywork\game.h
+1653569103 c:\users\ivano\onedrive\documentos\github\heavywork\game.h
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -4068,7 +4068,7 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653485769 c:\users\ivano\onedrive\documentos\github\heavywork\tokens.h
+1653569103 c:\users\ivano\onedrive\documentos\github\heavywork\tokens.h
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -4089,7 +4089,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653544292 source:c:\users\ivano\onedrive\documentos\github\heavywork\laberinto.c
+1653556998 source:c:\users\ivano\onedrive\documentos\github\heavywork\laberinto.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -4104,9 +4104,13 @@
 	"Enemies.h"
 	"Tokens.h"
 
-1653464307 source:c:\users\ivano\onedrive\documentos\github\heavywork\menu.c
+1653569103 source:c:\users\ivano\onedrive\documentos\github\heavywork\menu.c
 	<stdio.h>
 	<stdbool.h>
+	<stdlib.h>
+	<dirent.h>
+	<sys/stat.h>
+	<sys/types.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_timer.h>
 	<SDL2/SDL_image.h>
@@ -4115,8 +4119,9 @@
 	<SDL2/SDL_audio.h>
 	"Menu.h"
 	"Utilities.h"
+	"Font.h"
 
-1653544292 source:c:\users\ivano\onedrive\documentos\github\heavywork\player.c
+1653556998 source:c:\users\ivano\onedrive\documentos\github\heavywork\player.c
 	<stdio.h>
 	<math.h>
 	<stdbool.h>
@@ -4129,11 +4134,12 @@
 	"Player.h"
 	"Utilities.h"
 
-1653544292 source:c:\users\ivano\onedrive\documentos\github\heavywork\tokens.c
+1653569103 source:c:\users\ivano\onedrive\documentos\github\heavywork\tokens.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
 	<time.h>
+	<direct.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_timer.h>
@@ -4144,7 +4150,7 @@
 	"Player.h"
 	<time.h>
 
-1653496552 source:c:\users\ivano\onedrive\documentos\github\heavywork\utilities.c
+1653569103 source:c:\users\ivano\onedrive\documentos\github\heavywork\utilities.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
@@ -4157,7 +4163,7 @@
 	<SDL2/SDL_audio.h>
 	"Utilities.h"
 
-1653500937 source:c:\users\ivano\onedrive\documentos\github\heavywork\game.c
+1653569691 source:c:\users\ivano\onedrive\documentos\github\heavywork\game.c
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>

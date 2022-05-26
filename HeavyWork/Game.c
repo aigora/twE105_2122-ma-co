@@ -157,6 +157,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi, lon
             temp=0;
             invisibilidad = false; invenc = false;
             last_time=SDL_GetTicks();
+            tiempo_boton_in = 0;tiempo_boton_fin = 0;tiempo_fin_invisibilidad = 0;
 
             while(update)
             {
