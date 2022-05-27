@@ -236,9 +236,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi, lon
                         stage=1;
                         update=false;
                         *score+=calcPuntos(tok, ntok, game_time);
-                        printf("%i", *score);
-                        //if(plantas==0)
-                            //stage=3;
+                        //printf("%i", *score);
                     }
                     if (KEYS.SPACE)
                         boton = boton_invisibilidad (boton, game_time, &tiempo_boton_in, &tiempo_boton_fin,&tiempo_fin_invisibilidad, &invisibilidad, invisi);
