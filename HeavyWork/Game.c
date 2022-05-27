@@ -39,6 +39,7 @@ int game(Window window, Textures tex, Mix_Chunk *recoger, Mix_Chunk *invisi, lon
     bool same_press;
     Tokens *tok; //Vector de Tokens
     Vector2i inip,inis,desfase;
+    *score=0;
 
     player_textures_t player_textures = {
         .player_right = tex.playerdrcha,
